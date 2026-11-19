@@ -34,10 +34,17 @@ func _salvar(i: Image, nome: String) -> void:
 
 
 func _personagens() -> void:
-	var gari := _nova(144, 32)
+	var gari := _nova(144, 64)
 	for quadro in 6:
 		_gari(gari, quadro * 24, quadro)
+	gari.blit_rect(gari, Rect2i(0, 0, 144, 32), Vector2i(0, 32))
+	_colocar_solado(gari)
 	_salvar(gari, "gari")
+
+	var pneu := _nova(44, 22)
+	for quadro in 2:
+		_pneu(pneu, quadro * 22, quadro)
+	_salvar(pneu, "pneu")
 
 	var pet := _nova(36, 22)
 	for quadro in 2:
@@ -70,6 +77,35 @@ func _personagens() -> void:
 		_r(monitor, x + 20, 0, 1, 2, "#ffd84a")
 		_r(monitor, x + 3, 0, 1, 2, "#ff6a4a")
 	_salvar(monitor, "monitor")
+
+
+func _colocar_solado(i: Image) -> void:
+	var bota := Color("#20242c")
+	for y in range(62, 32, -1):
+		for x in 144:
+			if i.get_pixel(x, y).is_equal_approx(bota) and i.get_pixel(x, y + 1).a == 0.0:
+				i.set_pixel(x, y + 1, Color("#e0a060") if x % 2 == 0 else Color("#15171c"))
+
+
+func _pneu(i: Image, x: int, quadro: int) -> void:
+	var centro := Vector2(10.5, 10.5)
+	for py in 22:
+		for px in 22:
+			var d := Vector2(px, py).distance_to(centro)
+			if d > 11.0:
+				continue
+			var angulo := atan2(py - centro.y, px - centro.x) + quadro * PI / 8.0
+			var cor := "#23262d"
+			if d > 9.0 and int(floor(angulo / (PI / 4.0))) % 2 == 0:
+				cor = "#3b3f49"
+			elif d < 6.0:
+				cor = "#8f939c"
+			i.set_pixel(x + px, py, Color(cor))
+	_r(i, x + 7, 8, 2, 2, "#17202b")
+	_r(i, x + 13, 8, 2, 2, "#17202b")
+	_r(i, x + 6, 7, 3, 1, "#17202b")
+	_r(i, x + 13, 7, 3, 1, "#17202b")
+	_r(i, x + 8, 13, 6, 1, "#17202b")
 
 
 func _gari(i: Image, x: int, quadro: int) -> void:
@@ -160,6 +196,13 @@ func _itens() -> void:
 	_r(componente, 3, 3, 1, 1, "#7dffb0")
 	_salvar(componente, "componente")
 
+	var borracha := _nova(14, 10)
+	_r(borracha, 1, 2, 12, 7, "#2a2d35")
+	for x in [2, 6, 10]:
+		_r(borracha, x, 1, 2, 2, "#e0a060")
+		_r(borracha, x, 8, 2, 2, "#e0a060")
+	_salvar(borracha, "borracha")
+
 	_salvar(_faisca("#ffffff", "#3fe07f"), "faisca_gari")
 	_salvar(_faisca("#fff0a0", "#f0442c"), "faisca_inimiga")
 
@@ -243,6 +286,21 @@ func _cenario() -> void:
 	_r(saco, 7, 0, 2, 2, "#d8b84a")
 	_r(saco, 4, 5, 2, 3, "#454955")
 	_salvar(saco, "saco")
+
+	var ecoponto := _nova(36, 30)
+	for quadro in 2:
+		var x := quadro * 18
+		var cor := "#6b6e78" if quadro == 0 else "#27a35d"
+		var escura := "#4a4d56" if quadro == 0 else "#1c7a45"
+		_r(ecoponto, x + 2, 10, 14, 20, cor)
+		_r(ecoponto, x + 1, 8, 16, 3, escura)
+		_r(ecoponto, x + 6, 15, 6, 2, "#f4f4ee")
+		_r(ecoponto, x + 6, 19, 6, 2, "#f4f4ee")
+		_r(ecoponto, x + 6, 23, 6, 2, "#f4f4ee")
+		_r(ecoponto, x + 8, 0, 1, 8, "#30343c")
+		if quadro == 1:
+			_r(ecoponto, x + 9, 0, 7, 4, "#f6e96a")
+	_salvar(ecoponto, "ecoponto")
 
 	var poste := _nova(14, 70)
 	_r(poste, 5, 4, 3, 66, "#4a4e58")

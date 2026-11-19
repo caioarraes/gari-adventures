@@ -62,6 +62,19 @@ Ordenados pela proximidade mecânica com o jogo. Tema e visual não contam. As o
 - O sistema tem poucas receitas, cada uma com função própria.
 - **Observar:** é o paralelo do componente que serve para montar a pistola e para gerar balas.
 
+### Shovel Knight: derrota sem vidas e com checkpoints
+
+- O jogo troca vidas por perda de parte do ouro, que pode ser recuperado na tentativa seguinte.
+- Os desenvolvedores queriam uma derrota com impacto, mas compreensível para o jogador.
+- Críticas citam estresse para quem quer coletar tudo.
+- **Observar:** o protótipo usa checkpoints sem perda de material. Perder material continua sendo uma opção a testar.
+
+### Metroidvanias: obstáculo visível antes da habilidade
+
+- Guias de design recomendam mostrar o obstáculo antes de o jogador poder resolvê-lo, para que ele o reconheça e o reinterprete depois.
+- O obstáculo deve parecer intencional e se destacar do cenário comum.
+- **Observar:** é a referência do muro alto que aparece antes do solado. As fontes são gerais e não tratam só de pulo alto.
+
 ## Fontes
 
 Muitas são guias e wikis de fãs. Confira números antes de usá-los como referência exata.
@@ -75,6 +88,11 @@ Muitas são guias e wikis de fãs. Confira números antes de usá-los como refer
 - Doom Eternal: [Game Developer](https://www.gamedeveloper.com/design/the-aggressive-resource-management-of-i-doom-eternal-i-), [Doom Wiki](https://doom.fandom.com/wiki/Chainsaw/Doom_Eternal)
 - The Last of Us: [Push Square](https://pushsquare.com/guides/the-last-of-us-1-all-items-and-how-to-craft-them), [SuperJump](https://medium.com/super-jump/the-brilliant-crafting-system-in-the-last-of-us-bb33f221f2c1)
 
+- Shovel Knight: [Yacht Club Games](https://www.yachtclubgames.com/blog/check-point-design), [Game Informer](https://www.gameinformer.com/games/shovel_knight/b/3ds/archive/2014/06/26/game-informer-review-shovel-knight-3ds-pc-wii-u.aspx), [Middle of Nowhere Gaming](https://middleofnowheregaming.com/2015/05/06/why-i-cant-play-shovel-knight-and-our-obsessive-gaming-tendencies)
+- Bloqueio por habilidade: [Bugnet](https://bugnet.io/blog/how-to-design-a-metroidvania-map), [Sorceress](https://sorceress.games/blog/sprawl-how-to-make-a-metroidvania-map-ability-gates)
+
 ## Referência do mundo real
+
+Pneu: marcas como a Indosole fabricam solados com pneus reciclados. A informação vem do site da empresa: [Indosole](https://indosole.com/pages/history-page).
 
 PET: garrafas são enfardadas, lavadas e transformadas em flocos, que são fundidos e fiados em poliéster. A pesquisa confirmou a etapa até o fio, mas não a confecção de bolsas. Fontes: [Textile World](https://www.textileworld.com/textile-world/fiber-world/2021/02/one-step-recycling-and-inline-spinning-of-pet-waste-into-high-end-fibers/), [Innovation in Textiles](https://www.innovationintextiles.com/new-technology-for-production-of-bcf-yarn-from-recycled-pet).

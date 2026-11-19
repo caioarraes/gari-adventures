@@ -5,6 +5,7 @@ const ACELERACAO := 60.0
 const FREIO := 80.0
 const CONTROLE_NO_AR := 0.7
 const FORCA_PULO := 12.0
+const FORCA_PULO_SOLADO := 15.0
 const GRAVIDADE := 32.0
 const GRAVIDADE_QUEDA := 48.0
 const QUEDA_MAXIMA := 20.0
@@ -19,6 +20,7 @@ const DURACAO_GOLPE := 0.12
 const EMPURRAO := Vector2(9.0, 5.0)
 const DURACAO_EMPURRAO := 0.25
 const DURACAO_PROTECAO := 1.0
+const VIDA_MAXIMA := 3
 
 const PET_POR_BOLSA := 3
 const NIVEL_MAXIMO_BOLSA := 2
@@ -26,6 +28,7 @@ const ESPACOS_INICIAIS := 3
 const ESPACOS_POR_BOLSA := 3
 const CAPACIDADE_MAXIMA := 9
 const COMPONENTES_PARA_PISTOLA := 3
+const BORRACHA_PARA_SOLADO := 3
 
 const FAISCA := preload("res://jogo/faisca_gari.tscn")
 const VELOCIDADE_FAISCA := 14.0
@@ -38,6 +41,7 @@ const QUADRO_ANDANDO := 1
 const QUADRO_SUBINDO := 3
 const QUADRO_CAINDO := 4
 const QUADRO_GOLPE := 5
+const QUADROS_POR_LINHA := 6
 
 var tempo_borda := 0.0
 var tempo_pulo := 0.0
@@ -49,13 +53,18 @@ var tempo_protecao := 0.0
 var tempo_passos := 0.0
 var olhando := 1.0
 
+var vida := VIDA_MAXIMA
+var precisa_voltar := false
+
 var pet := 0
 var nivel_bolsa := 0
 var capacidade := ESPACOS_INICIAIS
 var componentes := 0
 var tem_arma := false
+var borracha := 0
+var tem_solado := false
 
-@onready var inicio := global_position
+@onready var ponto_retorno := global_position
 @onready var sprite: Sprite3D = $Sprite
 @onready var arma: Sprite3D = $Faiscador
 @onready var golpe: Area3D = $Golpe
@@ -77,7 +86,7 @@ func _physics_process(delta: float) -> void:
 		velocity.y = maxf(velocity.y - gravidade * delta, -QUEDA_MAXIMA)
 
 	if tempo_pulo > 0.0 and tempo_borda > 0.0:
-		velocity.y = FORCA_PULO
+		velocity.y = FORCA_PULO_SOLADO if tem_solado else FORCA_PULO
 		tempo_pulo = 0.0
 		tempo_borda = 0.0
 		sons.get_node("Pulo").play()
@@ -105,11 +114,38 @@ func _physics_process(delta: float) -> void:
 		_fazer_bolsa()
 	if Input.is_action_just_pressed("montar"):
 		_montar_pistola()
+	if Input.is_action_just_pressed("solado"):
+		_fazer_solado()
 
 	if global_position.y < ALTURA_DE_RETORNO:
-		global_position = inicio
-		velocity = Vector3.ZERO
-		reset_physics_interpolation()
+		_perder_vida()
+		precisa_voltar = true
+	if precisa_voltar:
+		_voltar()
+
+
+func _perder_vida() -> void:
+	vida -= 1
+	sons.get_node("Dano").play()
+	if vida <= 0:
+		precisa_voltar = true
+
+
+func _voltar() -> void:
+	precisa_voltar = false
+	if vida <= 0:
+		vida = VIDA_MAXIMA
+	global_position = ponto_retorno
+	velocity = Vector3.ZERO
+	tempo_empurrao = 0.0
+	tempo_protecao = DURACAO_PROTECAO
+	reset_physics_interpolation()
+
+
+func marcar_retorno(posicao: Vector3) -> void:
+	ponto_retorno = posicao + Vector3(0.0, 0.05, 0.0)
+	vida = VIDA_MAXIMA
+	sons.get_node("Coleta").play()
 
 
 func _atualizar_golpe(delta: float) -> void:
@@ -157,15 +193,15 @@ func _atualizar_visual(delta: float) -> void:
 	bolsa.position.x = -olhando * 0.3
 	sprite.visible = tempo_protecao == 0.0 or int(tempo_protecao * 12.0) % 2 == 0
 
+	var quadro := QUADRO_PARADO
 	if vassoura.visible:
-		sprite.frame = QUADRO_GOLPE
+		quadro = QUADRO_GOLPE
 	elif not is_on_floor():
-		sprite.frame = QUADRO_SUBINDO if velocity.y > 0.0 else QUADRO_CAINDO
+		quadro = QUADRO_SUBINDO if velocity.y > 0.0 else QUADRO_CAINDO
 	elif absf(velocity.x) > 0.5:
 		tempo_passos += delta
-		sprite.frame = QUADRO_ANDANDO + int(tempo_passos * 10.0) % 2
-	else:
-		sprite.frame = QUADRO_PARADO
+		quadro = QUADRO_ANDANDO + int(tempo_passos * 10.0) % 2
+	sprite.frame = quadro + (QUADROS_POR_LINHA if tem_solado else 0)
 
 
 func _fazer_bolsa() -> void:
@@ -188,6 +224,19 @@ func _montar_pistola() -> void:
 	sons.get_node("Fabricar").play()
 
 
+func _fazer_solado() -> void:
+	if tem_solado or borracha < BORRACHA_PARA_SOLADO:
+		return
+	borracha -= BORRACHA_PARA_SOLADO
+	tem_solado = true
+	sons.get_node("Fabricar").play()
+
+
+func guardar_borracha() -> void:
+	borracha += 1
+	sons.get_node("Coleta").play()
+
+
 func guardar_pet() -> bool:
 	pet += 1
 	sons.get_node("Coleta").play()
@@ -206,7 +255,7 @@ func empurrar(origem_x: float) -> void:
 	if tempo_protecao > 0.0:
 		return
 	tempo_protecao = DURACAO_PROTECAO
-	sons.get_node("Dano").play()
+	_perder_vida()
 	var lado := signf(global_position.x - origem_x)
 	if lado == 0.0:
 		lado = -olhando

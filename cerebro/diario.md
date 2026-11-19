@@ -2,9 +2,10 @@
 
 ## Estado atual
 
-- **Fase:** 1 a 3 aprovadas. Fase 4 implementada, aguardando avaliação.
+- **Fase:** 1 a 3 aprovadas. Fase 4 elogiada pelo usuário, ainda sem teste com outra pessoa. Fase 5 em andamento.
 - **Projeto Godot:** criado na raiz, com cena principal em `jogo/main.tscn`.
-- **Próximo passo:** o usuário avalia arte e som, e outra pessoa joga sem explicação. Depois, planejar a Fase 5 de [roadmap.md](roadmap.md) com o que aparecer nesse teste.
+- **Repositório:** público em https://github.com/caioarraes/gari-adventures. O solado e a vida ainda não foram enviados.
+- **Próximo passo:** o usuário avalia vida e ecopontos. Depois, escolher o próximo item da Fase 5 em [roadmap.md](roadmap.md).
 
 ## Registro
 
@@ -26,3 +27,7 @@
 - Sistema refeito conforme D-006 e D-007, com contadores separados, dois níveis de bolsa e componentes que viram pistola e depois balas.
 - Usuário aprovou o sistema refeito.
 - Fatia vertical criada: arte em pixel, animações, efeitos sonoros, música, placas e telas de início e fim.
+- Projeto publicado no GitHub, primeiro privado e depois público a pedido do usuário.
+- Pneu, borracha, solado e muro final criados. O teste mostrou garrafas empurrando o gari de volta ao vão, e elas foram afastadas da borda.
+- Usuário aprovou o solado.
+- Vida, derrota e ecopontos criados, sem perda de materiais.

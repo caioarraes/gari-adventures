@@ -6,6 +6,8 @@
 [ext_resource type="Script" path="res://jogo/hud.gd" id="4_hud"]
 [ext_resource type="PackedScene" path="res://jogo/monitor.tscn" id="5_monitor"]
 [ext_resource type="Script" path="res://jogo/tela.gd" id="6_tela"]
+[ext_resource type="PackedScene" path="res://jogo/pneu.tscn" id="7_pneu"]
+[ext_resource type="PackedScene" path="res://jogo/ecoponto.tscn" id="8_ecoponto"]
 [ext_resource type="Texture2D" path="res://arte/gari.png" id="10_gari"]
 [ext_resource type="Texture2D" path="res://arte/bolsa.png" id="11_bolsa"]
 [ext_resource type="Texture2D" path="res://arte/pistola.png" id="12_pistola"]
@@ -128,6 +130,7 @@ alpha_cut = 1
 texture_filter = 0
 texture = ExtResource("10_gari")
 hframes = 6
+vframes = 2
 
 [node name="Bolsa" type="Sprite3D" parent="Gari"]
 visible = false
@@ -207,10 +210,22 @@ size = Vector3(3, 0.6, 4)
 material = SubResource("plataforma")
 
 [node name="Chao3" type="CSGBox3D" parent="Pista"]
-position = Vector3(48, -1, 0)
+position = Vector3(49, -1, 0)
 use_collision = true
-size = Vector3(24, 2, 4)
+size = Vector3(26, 2, 4)
 material = SubResource("chao")
+
+[node name="Muro" type="CSGBox3D" parent="Pista"]
+position = Vector3(69, 0.5, 0)
+use_collision = true
+size = Vector3(14, 5, 4)
+material = SubResource("parede")
+
+[node name="ParedeFinal" type="CSGBox3D" parent="Pista"]
+position = Vector3(76.5, 6, 0)
+use_collision = true
+size = Vector3(1, 10, 4)
+material = SubResource("parede")
 
 [node name="Cerca" type="CSGBox3D" parent="Pista"]
 position = Vector3(51, 4, 0)
@@ -225,7 +240,7 @@ texture_filter = 0
 texture = ExtResource("19_cerca")
 
 [node name="Chegada" type="Area3D" parent="."]
-position = Vector3(57, 2, 0)
+position = Vector3(72, 5, 0)
 collision_layer = 0
 collision_mask = 2
 
@@ -248,13 +263,13 @@ position = Vector3(2.5, 0, 0)
 position = Vector3(5, 0, 0)
 
 [node name="Pet3" parent="Inimigos" instance=ExtResource("3_pet")]
-position = Vector3(17.5, 0, 0)
+position = Vector3(18.5, 0, 0)
 
 [node name="Pet4" parent="Inimigos" instance=ExtResource("3_pet")]
-position = Vector3(19.7, 0, 0)
+position = Vector3(20.4, 0, 0)
 
 [node name="Pet5" parent="Inimigos" instance=ExtResource("3_pet")]
-position = Vector3(21.9, 0, 0)
+position = Vector3(22.2, 0, 0)
 
 [node name="Pet6" parent="Inimigos" instance=ExtResource("3_pet")]
 position = Vector3(38.5, 0, 0)
@@ -274,7 +289,34 @@ position = Vector3(49, 0, 0)
 [node name="MonitorFinal" parent="Inimigos" instance=ExtResource("5_monitor")]
 position = Vector3(54, 0, 0)
 
+[node name="Pneu1" parent="Inimigos" instance=ExtResource("7_pneu")]
+position = Vector3(56, 0, 0)
+
+[node name="Pneu2" parent="Inimigos" instance=ExtResource("7_pneu")]
+position = Vector3(58, 0, 0)
+
+[node name="Pneu3" parent="Inimigos" instance=ExtResource("7_pneu")]
+position = Vector3(60, 0, 0)
+
+[node name="Ecopontos" type="Node3D" parent="."]
+
+[node name="Ecoponto1" parent="Ecopontos" instance=ExtResource("8_ecoponto")]
+position = Vector3(16, 0, 0)
+
+[node name="Ecoponto2" parent="Ecopontos" instance=ExtResource("8_ecoponto")]
+position = Vector3(36.8, 0, 0)
+
+[node name="Ecoponto3" parent="Ecopontos" instance=ExtResource("8_ecoponto")]
+position = Vector3(52.5, 0, 0)
+
 [node name="Placas" type="Node3D" parent="."]
+
+[node name="Placa4" type="Label3D" parent="Placas"]
+position = Vector3(58, 4, -1.9)
+pixel_size = 0.01
+text = "Pneus viram solado: pule mais alto"
+font_size = 44
+outline_size = 14
 
 [node name="Placa1" type="Label3D" parent="Placas"]
 position = Vector3(3, 3.4, -1.9)
@@ -391,6 +433,53 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 6
 theme_override_font_sizes/font_size = 22
 
+[node name="LinhaVida" type="HBoxContainer" parent="HUD"]
+offset_left = 960.0
+offset_top = 20.0
+offset_right = 1130.0
+offset_bottom = 54.0
+theme_override_constants/separation = 12
+
+[node name="Titulo" type="Label" parent="HUD/LinhaVida"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.25, 0.25, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 22
+text = "Vida"
+
+[node name="Pips" type="HBoxContainer" parent="HUD/LinhaVida"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="LinhaBorracha" type="HBoxContainer" parent="HUD"]
+visible = false
+offset_left = 24.0
+offset_top = 104.0
+offset_right = 1120.0
+offset_bottom = 138.0
+theme_override_constants/separation = 14
+
+[node name="Titulo" type="Label" parent="HUD/LinhaBorracha"]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.88, 0.63, 0.38, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 22
+text = "Borracha"
+
+[node name="Pips" type="HBoxContainer" parent="HUD/LinhaBorracha"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="Info" type="Label" parent="HUD/LinhaBorracha"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 22
+
 [node name="Controles" type="Label" parent="HUD"]
 offset_left = 24.0
 offset_top = 606.0
@@ -454,6 +543,11 @@ material = SubResource("predio_b")
 position = Vector3(59, 3.5, -9)
 size = Vector3(9, 9, 5)
 material = SubResource("predio_a")
+
+[node name="Predio6" type="CSGBox3D" parent="Fundo"]
+position = Vector3(72, 5, -10)
+size = Vector3(10, 12, 5)
+material = SubResource("predio_b")
 
 [node name="Lixeira1" type="Sprite3D" parent="Fundo"]
 position = Vector3(-2.5, 0.53, -1.6)

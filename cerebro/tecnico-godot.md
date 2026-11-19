@@ -42,7 +42,7 @@ Uma fonte externa dizia que `CharacterBody3D` não tem trava de eixo. O teste ac
 
 ## Controles
 
-A/D ou setas: andar. Espaço, W ou seta para cima: pular. J ou X: vassourada. E: bolsa. R: pistola. K ou C: atirar.
+A/D ou setas: andar. Espaço, W ou seta para cima: pular. J ou X: vassourada. E: bolsa. R: pistola. F: solado. K ou C: atirar.
 
 ## Último teste automático (2026-11-19)
 
@@ -56,5 +56,13 @@ A/D ou setas: andar. Espaço, W ou seta para cima: pular. J ou X: vassourada. E:
 ## Teste da fatia vertical (2026-11-19)
 
 Um jogador automático foi do título à vitória e reiniciou a fase, que voltou ao estado inicial. A imagem foi conferida em capturas de tela. O áudio foi gerado e a música iniciou, mas ninguém o ouviu ainda.
+
+## Teste do solado (2026-11-19)
+
+Sem solado, o pulo chegou a 2,35 e não passou do muro. Com solado, chegou a 3,64, passou do muro e alcançou o caminhão. O sprite do gari tem uma segunda linha com o solado.
+
+## Teste de vida (2026-11-19)
+
+O ecoponto marcou o retorno e recuperou a vida. O dano tirou 1 ponto e foi ignorado durante a proteção. Na terceira perda, o gari voltou ao ecoponto com vida cheia e manteve o PET. A queda no vão tirou 1 ponto e o levou ao ecoponto. A fase completa continuou vencível.
 
 A sensação de jogo só pode ser avaliada jogando.

@@ -31,7 +31,10 @@ Uma fase curta com arte, som e os dois ciclos anteriores.
 
 **Pronto quando:** outra pessoa consegue jogar do início ao fim sem explicação.
 
-## Fase 5: Expansão
+## Fase 5: Expansão (em andamento)
+
+- Pneu → borracha → solado de pulo alto: aprovado pelo usuário.
+- Vida, derrota e ecopontos: implementados, aguardando avaliação.
 
 Novos inimigos, melhorias e fases, conforme o resultado da fatia vertical.
 

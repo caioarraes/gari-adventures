@@ -33,3 +33,7 @@ O espaço compartilhado entre materiais confundiu o usuário. A tela agora mostr
 ## D-008: Arte e áudio da fatia vertical gerados por código (2026-11-19)
 
 `ferramentas/gerar_assets.gd` cria tudo em `arte/` e `som/`. Assim a fatia vertical não depende de material de terceiros. Os arquivos podem ser substituídos por arte final mantendo nome e tamanho.
+
+## D-009: Pneu vira solado de pulo alto (2026-11-19)
+
+Escolhido pelo usuário como início da Fase 5. É o primeiro reaproveitamento que muda o movimento.
