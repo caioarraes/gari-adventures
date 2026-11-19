@@ -1,0 +1,8 @@
+# Godot
+.godot/
+*.translation
+export/
+builds/
+
+# Claude Code
+.claude/settings.local.json

@@ -1,0 +1,510 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://jogo/gari.gd" id="1_gari"]
+[ext_resource type="Script" path="res://jogo/camera.gd" id="2_camera"]
+[ext_resource type="PackedScene" path="res://jogo/pet.tscn" id="3_pet"]
+[ext_resource type="Script" path="res://jogo/hud.gd" id="4_hud"]
+[ext_resource type="PackedScene" path="res://jogo/monitor.tscn" id="5_monitor"]
+[ext_resource type="Script" path="res://jogo/tela.gd" id="6_tela"]
+[ext_resource type="Texture2D" path="res://arte/gari.png" id="10_gari"]
+[ext_resource type="Texture2D" path="res://arte/bolsa.png" id="11_bolsa"]
+[ext_resource type="Texture2D" path="res://arte/pistola.png" id="12_pistola"]
+[ext_resource type="Texture2D" path="res://arte/vassoura.png" id="13_vassoura"]
+[ext_resource type="Texture2D" path="res://arte/asfalto.png" id="14_asfalto"]
+[ext_resource type="Texture2D" path="res://arte/papelao.png" id="15_papelao"]
+[ext_resource type="Texture2D" path="res://arte/tijolo.png" id="16_tijolo"]
+[ext_resource type="Texture2D" path="res://arte/predio_a.png" id="17_predio_a"]
+[ext_resource type="Texture2D" path="res://arte/predio_b.png" id="18_predio_b"]
+[ext_resource type="Texture2D" path="res://arte/cerca.png" id="19_cerca"]
+[ext_resource type="Texture2D" path="res://arte/caminhao.png" id="20_caminhao"]
+[ext_resource type="Texture2D" path="res://arte/lixeira.png" id="21_lixeira"]
+[ext_resource type="Texture2D" path="res://arte/saco.png" id="22_saco"]
+[ext_resource type="Texture2D" path="res://arte/poste.png" id="23_poste"]
+[ext_resource type="AudioStream" path="res://som/pulo.wav" id="30_pulo"]
+[ext_resource type="AudioStream" path="res://som/golpe.wav" id="31_golpe"]
+[ext_resource type="AudioStream" path="res://som/acerto.wav" id="32_acerto"]
+[ext_resource type="AudioStream" path="res://som/coleta.wav" id="33_coleta"]
+[ext_resource type="AudioStream" path="res://som/fabricar.wav" id="34_fabricar"]
+[ext_resource type="AudioStream" path="res://som/tiro.wav" id="35_tiro"]
+[ext_resource type="AudioStream" path="res://som/faisca_inimiga.wav" id="36_faisca"]
+[ext_resource type="AudioStream" path="res://som/dano.wav" id="37_dano"]
+[ext_resource type="AudioStream" path="res://som/cerca.wav" id="38_cerca"]
+[ext_resource type="AudioStream" path="res://som/vitoria.wav" id="39_vitoria"]
+[ext_resource type="AudioStream" path="res://som/musica.wav" id="40_musica"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ceu_material"]
+sky_top_color = Color(0.36, 0.62, 0.86, 1)
+sky_horizon_color = Color(0.98, 0.82, 0.66, 1)
+ground_horizon_color = Color(0.98, 0.82, 0.66, 1)
+ground_bottom_color = Color(0.5, 0.55, 0.6, 1)
+
+[sub_resource type="Sky" id="ceu"]
+sky_material = SubResource("ceu_material")
+
+[sub_resource type="Environment" id="ambiente"]
+background_mode = 2
+sky = SubResource("ceu")
+ambient_light_source = 2
+ambient_light_color = Color(1, 0.96, 0.9, 1)
+ambient_light_energy = 0.55
+fog_enabled = true
+fog_light_color = Color(0.9, 0.82, 0.74, 1)
+fog_density = 0.012
+fog_sky_affect = 0.0
+
+[sub_resource type="StandardMaterial3D" id="chao"]
+albedo_texture = ExtResource("14_asfalto")
+uv1_scale = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
+uv1_world_triplanar = true
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="plataforma"]
+albedo_texture = ExtResource("15_papelao")
+uv1_scale = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
+uv1_world_triplanar = true
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="parede"]
+albedo_texture = ExtResource("16_tijolo")
+uv1_scale = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
+uv1_world_triplanar = true
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="predio_a"]
+albedo_texture = ExtResource("17_predio_a")
+uv1_scale = Vector3(0.25, 0.25, 0.25)
+uv1_triplanar = true
+uv1_world_triplanar = true
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="predio_b"]
+albedo_texture = ExtResource("18_predio_b")
+uv1_scale = Vector3(0.25, 0.25, 0.25)
+uv1_triplanar = true
+uv1_world_triplanar = true
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="invisivel"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0)
+
+[sub_resource type="CapsuleShape3D" id="corpo_gari"]
+radius = 0.35
+height = 1.7
+
+[sub_resource type="BoxShape3D" id="forma_golpe"]
+size = Vector3(1.6, 1.6, 2)
+
+[sub_resource type="BoxShape3D" id="forma_chegada"]
+size = Vector3(1, 4, 4)
+
+[node name="Main" type="Node3D"]
+
+[node name="Ambiente" type="WorldEnvironment" parent="."]
+environment = SubResource("ambiente")
+
+[node name="Sol" type="DirectionalLight3D" parent="."]
+rotation = Vector3(-0.9, 0.5, 0)
+light_color = Color(1, 0.93, 0.82, 1)
+shadow_enabled = true
+
+[node name="Gari" type="CharacterBody3D" parent="."]
+position = Vector3(0, 0.05, 0)
+collision_layer = 2
+axis_lock_linear_z = true
+script = ExtResource("1_gari")
+
+[node name="Colisao" type="CollisionShape3D" parent="Gari"]
+position = Vector3(0, 0.85, 0)
+shape = SubResource("corpo_gari")
+
+[node name="Sprite" type="Sprite3D" parent="Gari"]
+position = Vector3(0, 0.85, 0)
+pixel_size = 0.053
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("10_gari")
+hframes = 6
+
+[node name="Bolsa" type="Sprite3D" parent="Gari"]
+visible = false
+position = Vector3(-0.3, 0.95, -0.03)
+pixel_size = 0.053
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("11_bolsa")
+
+[node name="Faiscador" type="Sprite3D" parent="Gari"]
+visible = false
+position = Vector3(0.45, 0.8, 0.05)
+pixel_size = 0.053
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("12_pistola")
+
+[node name="Golpe" type="Area3D" parent="Gari"]
+position = Vector3(0.95, 0, 0)
+collision_layer = 0
+collision_mask = 4
+
+[node name="Colisao" type="CollisionShape3D" parent="Gari/Golpe"]
+position = Vector3(0, 0.85, 0)
+shape = SubResource("forma_golpe")
+
+[node name="Vassoura" type="Sprite3D" parent="Gari/Golpe"]
+visible = false
+position = Vector3(0, 0.85, 0.08)
+pixel_size = 0.053
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("13_vassoura")
+
+[node name="Camera" type="Camera3D" parent="."]
+position = Vector3(0, 3.5, 17)
+rotation = Vector3(-0.14, 0, 0)
+fov = 40.0
+script = ExtResource("2_camera")
+
+[node name="Pista" type="Node3D" parent="."]
+
+[node name="ParedeInicial" type="CSGBox3D" parent="Pista"]
+position = Vector3(-5.5, 4, 0)
+use_collision = true
+size = Vector3(1, 10, 4)
+material = SubResource("parede")
+
+[node name="Chao1" type="CSGBox3D" parent="Pista"]
+position = Vector3(3.5, -1, 0)
+use_collision = true
+size = Vector3(17, 2, 4)
+material = SubResource("chao")
+
+[node name="Caixa" type="CSGBox3D" parent="Pista"]
+position = Vector3(9, 0.6, 0)
+use_collision = true
+size = Vector3(2, 1.2, 4)
+material = SubResource("plataforma")
+
+[node name="Chao2" type="CSGBox3D" parent="Pista"]
+position = Vector3(19.5, -1, 0)
+use_collision = true
+size = Vector3(9, 2, 4)
+material = SubResource("chao")
+
+[node name="Plataforma1" type="CSGBox3D" parent="Pista"]
+position = Vector3(27.5, 1.2, 0)
+use_collision = true
+size = Vector3(3, 0.6, 4)
+material = SubResource("plataforma")
+
+[node name="Plataforma2" type="CSGBox3D" parent="Pista"]
+position = Vector3(32.5, 2.7, 0)
+use_collision = true
+size = Vector3(3, 0.6, 4)
+material = SubResource("plataforma")
+
+[node name="Chao3" type="CSGBox3D" parent="Pista"]
+position = Vector3(48, -1, 0)
+use_collision = true
+size = Vector3(24, 2, 4)
+material = SubResource("chao")
+
+[node name="Cerca" type="CSGBox3D" parent="Pista"]
+position = Vector3(51, 4, 0)
+use_collision = true
+size = Vector3(0.6, 8, 4)
+material = SubResource("invisivel")
+
+[node name="Sprite" type="Sprite3D" parent="Pista/Cerca"]
+pixel_size = 0.053
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("19_cerca")
+
+[node name="Chegada" type="Area3D" parent="."]
+position = Vector3(57, 2, 0)
+collision_layer = 0
+collision_mask = 2
+
+[node name="Colisao" type="CollisionShape3D" parent="Chegada"]
+shape = SubResource("forma_chegada")
+
+[node name="Caminhao" type="Sprite3D" parent="Chegada"]
+position = Vector3(1.6, -0.74, -1)
+pixel_size = 0.07
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("20_caminhao")
+
+[node name="Inimigos" type="Node3D" parent="."]
+
+[node name="Pet1" parent="Inimigos" instance=ExtResource("3_pet")]
+position = Vector3(2.5, 0, 0)
+
+[node name="Pet2" parent="Inimigos" instance=ExtResource("3_pet")]
+position = Vector3(5, 0, 0)
+
+[node name="Pet3" parent="Inimigos" instance=ExtResource("3_pet")]
+position = Vector3(17.5, 0, 0)
+
+[node name="Pet4" parent="Inimigos" instance=ExtResource("3_pet")]
+position = Vector3(19.7, 0, 0)
+
+[node name="Pet5" parent="Inimigos" instance=ExtResource("3_pet")]
+position = Vector3(21.9, 0, 0)
+
+[node name="Pet6" parent="Inimigos" instance=ExtResource("3_pet")]
+position = Vector3(38.5, 0, 0)
+
+[node name="Monitor1" parent="Inimigos" instance=ExtResource("5_monitor")]
+position = Vector3(43, 0, 0)
+
+[node name="Monitor2" parent="Inimigos" instance=ExtResource("5_monitor")]
+position = Vector3(45, 0, 0)
+
+[node name="Monitor3" parent="Inimigos" instance=ExtResource("5_monitor")]
+position = Vector3(47, 0, 0)
+
+[node name="Monitor4" parent="Inimigos" instance=ExtResource("5_monitor")]
+position = Vector3(49, 0, 0)
+
+[node name="MonitorFinal" parent="Inimigos" instance=ExtResource("5_monitor")]
+position = Vector3(54, 0, 0)
+
+[node name="Placas" type="Node3D" parent="."]
+
+[node name="Placa1" type="Label3D" parent="Placas"]
+position = Vector3(3, 3.4, -1.9)
+pixel_size = 0.01
+text = "Garrafas PET viram fio e bolsa"
+font_size = 44
+outline_size = 14
+
+[node name="Placa2" type="Label3D" parent="Placas"]
+position = Vector3(41, 3.4, -1.9)
+pixel_size = 0.01
+text = "Eletrônicos viram pistola e balas"
+font_size = 44
+outline_size = 14
+
+[node name="Placa3" type="Label3D" parent="Placas"]
+position = Vector3(47.5, 4.6, -1.9)
+pixel_size = 0.01
+text = "Só faíscas atravessam a cerca"
+font_size = 44
+outline_size = 14
+
+[node name="Sons" type="Node" parent="."]
+process_mode = 3
+
+[node name="Pulo" type="AudioStreamPlayer" parent="Sons"]
+stream = ExtResource("30_pulo")
+
+[node name="Golpe" type="AudioStreamPlayer" parent="Sons"]
+stream = ExtResource("31_golpe")
+
+[node name="Acerto" type="AudioStreamPlayer" parent="Sons"]
+stream = ExtResource("32_acerto")
+
+[node name="Coleta" type="AudioStreamPlayer" parent="Sons"]
+stream = ExtResource("33_coleta")
+
+[node name="Fabricar" type="AudioStreamPlayer" parent="Sons"]
+stream = ExtResource("34_fabricar")
+
+[node name="Tiro" type="AudioStreamPlayer" parent="Sons"]
+stream = ExtResource("35_tiro")
+
+[node name="FaiscaInimiga" type="AudioStreamPlayer" parent="Sons"]
+stream = ExtResource("36_faisca")
+volume_db = -5.0
+
+[node name="Dano" type="AudioStreamPlayer" parent="Sons"]
+stream = ExtResource("37_dano")
+
+[node name="Cerca" type="AudioStreamPlayer" parent="Sons"]
+stream = ExtResource("38_cerca")
+
+[node name="Vitoria" type="AudioStreamPlayer" parent="Sons"]
+stream = ExtResource("39_vitoria")
+
+[node name="Musica" type="AudioStreamPlayer" parent="Sons"]
+stream = ExtResource("40_musica")
+volume_db = -9.0
+
+[node name="HUD" type="CanvasLayer" parent="."]
+script = ExtResource("4_hud")
+
+[node name="LinhaPet" type="HBoxContainer" parent="HUD"]
+offset_left = 24.0
+offset_top = 20.0
+offset_right = 1120.0
+offset_bottom = 54.0
+theme_override_constants/separation = 14
+
+[node name="Titulo" type="Label" parent="HUD/LinhaPet"]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.55, 0.88, 0.98, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 22
+text = "PET"
+
+[node name="Pips" type="HBoxContainer" parent="HUD/LinhaPet"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="Info" type="Label" parent="HUD/LinhaPet"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 22
+
+[node name="LinhaComponentes" type="HBoxContainer" parent="HUD"]
+offset_left = 24.0
+offset_top = 62.0
+offset_right = 1120.0
+offset_bottom = 96.0
+theme_override_constants/separation = 14
+
+[node name="Titulo" type="Label" parent="HUD/LinhaComponentes"]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 0.95, 0.55, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 22
+
+[node name="Pips" type="HBoxContainer" parent="HUD/LinhaComponentes"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="Info" type="Label" parent="HUD/LinhaComponentes"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 22
+
+[node name="Controles" type="Label" parent="HUD"]
+offset_left = 24.0
+offset_top = 606.0
+offset_right = 1120.0
+offset_bottom = 636.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 18
+
+[node name="Telas" type="CanvasLayer" parent="."]
+process_mode = 3
+layer = 2
+script = ExtResource("6_tela")
+
+[node name="Painel" type="ColorRect" parent="Telas"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.07, 0.09, 0.12, 0.78)
+
+[node name="Titulo" type="Label" parent="Telas/Painel"]
+anchor_right = 1.0
+offset_top = 190.0
+offset_bottom = 290.0
+theme_override_colors/font_color = Color(0.95, 0.42, 0.08, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 76
+horizontal_alignment = 1
+
+[node name="Texto" type="Label" parent="Telas/Painel"]
+anchor_right = 1.0
+offset_top = 310.0
+offset_bottom = 460.0
+theme_override_font_sizes/font_size = 26
+horizontal_alignment = 1
+
+[node name="Fundo" type="Node3D" parent="."]
+
+[node name="Predio1" type="CSGBox3D" parent="Fundo"]
+position = Vector3(2, 3, -8)
+size = Vector3(7, 8, 5)
+material = SubResource("predio_a")
+
+[node name="Predio2" type="CSGBox3D" parent="Fundo"]
+position = Vector3(16, 4.5, -10)
+size = Vector3(8, 11, 5)
+material = SubResource("predio_b")
+
+[node name="Predio3" type="CSGBox3D" parent="Fundo"]
+position = Vector3(31, 3.5, -8)
+size = Vector3(9, 9, 5)
+material = SubResource("predio_a")
+
+[node name="Predio4" type="CSGBox3D" parent="Fundo"]
+position = Vector3(45, 5, -11)
+size = Vector3(10, 12, 5)
+material = SubResource("predio_b")
+
+[node name="Predio5" type="CSGBox3D" parent="Fundo"]
+position = Vector3(59, 3.5, -9)
+size = Vector3(9, 9, 5)
+material = SubResource("predio_a")
+
+[node name="Lixeira1" type="Sprite3D" parent="Fundo"]
+position = Vector3(-2.5, 0.53, -1.6)
+pixel_size = 0.053
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("21_lixeira")
+
+[node name="Saco1" type="Sprite3D" parent="Fundo"]
+position = Vector3(6.8, 0.32, -1.6)
+pixel_size = 0.053
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("22_saco")
+
+[node name="Poste1" type="Sprite3D" parent="Fundo"]
+position = Vector3(-1, 1.86, -1.8)
+pixel_size = 0.053
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("23_poste")
+
+[node name="Poste2" type="Sprite3D" parent="Fundo"]
+position = Vector3(20, 1.86, -1.8)
+pixel_size = 0.053
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("23_poste")
+
+[node name="Saco2" type="Sprite3D" parent="Fundo"]
+position = Vector3(16, 0.32, -1.6)
+pixel_size = 0.053
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("22_saco")
+
+[node name="Lixeira2" type="Sprite3D" parent="Fundo"]
+position = Vector3(37.5, 0.53, -1.6)
+pixel_size = 0.053
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("21_lixeira")
+
+[node name="Poste3" type="Sprite3D" parent="Fundo"]
+position = Vector3(36.6, 1.86, -1.8)
+pixel_size = 0.053
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("23_poste")
+
+[connection signal="finished" from="Sons/Musica" to="Sons/Musica" method="play"]
+[connection signal="body_entered" from="Chegada" to="Telas" method="_ao_chegar"]
+[connection signal="derrotado" from="Inimigos/MonitorFinal" to="Pista/Cerca" method="queue_free"]
+[connection signal="derrotado" from="Inimigos/MonitorFinal" to="Sons/Cerca" method="play"]
