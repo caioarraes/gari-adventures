@@ -4,7 +4,7 @@
 
 - **Fase:** 1 a 3 aprovadas. Fase 4 elogiada pelo usuário, ainda sem teste com outra pessoa. Fase 5 em andamento.
 - **Projeto Godot:** criado na raiz, com cena principal em `jogo/main.tscn`.
-- **Repositório:** público em https://github.com/caioarraes/gari-adventures. O solado e a vida ainda não foram enviados.
+- **Repositório:** público em https://github.com/caioarraes/gari-adventures, com o solado e a vida já enviados.
 - **Próximo passo:** o usuário avalia vida e ecopontos. Depois, escolher o próximo item da Fase 5 em [roadmap.md](roadmap.md).
 
 ## Registro
