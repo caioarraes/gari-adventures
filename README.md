@@ -2,7 +2,7 @@
 
 Plataforma 2.5D feito na Godot, em que um gari reaproveita os próprios inimigos para ficar mais forte. Garrafas PET viram fio e bolsas. Lixo eletrônico vira pistola e balas. Pneus viram solados para pular mais alto.
 
-> Protótipo jogável com uma fase curta. O nome é provisório.
+> Protótipo jogável com uma fase curta.
 
 ![Gari diante da cerca, atirando uma faísca com a pistola](docs/captura.png)
 

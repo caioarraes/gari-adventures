@@ -31,3 +31,5 @@
 - Pneu, borracha, solado e muro final criados. O teste mostrou garrafas empurrando o gari de volta ao vão, e elas foram afastadas da borda.
 - Usuário aprovou o solado.
 - Vida, derrota e ecopontos criados, sem perda de materiais.
+- Usuário removeu a coautoria do Claude dos commits, e o repositório foi recriado para limpar a lista de contribuidores.
+- Jogo, repositório e pasta renomeados para Gari Adventures (D-010).

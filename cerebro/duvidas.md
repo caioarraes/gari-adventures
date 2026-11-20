@@ -1,9 +1,5 @@
 # Dúvidas
 
-## Para o usuário
-
-1. **Nome:** qual será o nome definitivo do jogo?
-
 ## De design
 
 Consulte [precedentes.md](precedentes.md) antes de decidir.

@@ -37,3 +37,7 @@ O espaço compartilhado entre materiais confundiu o usuário. A tela agora mostr
 ## D-009: Pneu vira solado de pulo alto (2026-11-19)
 
 Escolhido pelo usuário como início da Fase 5. É o primeiro reaproveitamento que muda o movimento.
+
+## D-010: Nome do jogo é Gari Adventures (2026-11-19)
+
+Definido pelo usuário. Substitui o nome provisório no jogo, no repositório `caioarraes/gari-adventures` e na pasta do projeto.
