@@ -1,0 +1,133 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://jogo/cutscene.gd" id="1_cutscene"]
+
+[node name="Cutscene" type="CanvasLayer"]
+process_mode = 3
+layer = 3
+script = ExtResource("1_cutscene")
+
+[node name="Fundo" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.04, 0.06, 0.09, 0.97)
+
+[node name="Titulo" type="Label" parent="Fundo"]
+anchor_right = 1.0
+offset_top = 48.0
+offset_bottom = 104.0
+theme_override_colors/font_color = Color(0.95, 0.42, 0.08, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 40
+horizontal_alignment = 1
+
+[node name="Cadeia" type="HBoxContainer" parent="Fundo"]
+anchor_right = 1.0
+offset_top = 130.0
+offset_bottom = 330.0
+theme_override_constants/separation = 36
+alignment = 1
+
+[node name="Etapa1" type="VBoxContainer" parent="Fundo/Cadeia"]
+custom_minimum_size = Vector2(190, 0)
+layout_mode = 2
+
+[node name="Imagem" type="TextureRect" parent="Fundo/Cadeia/Etapa1"]
+texture_filter = 1
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Nome" type="Label" parent="Fundo/Cadeia/Etapa1"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+
+[node name="Seta1" type="Label" parent="Fundo/Cadeia"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.3, 0.95, 0.55, 1)
+theme_override_font_sizes/font_size = 56
+text = "→"
+vertical_alignment = 1
+
+[node name="Etapa2" type="VBoxContainer" parent="Fundo/Cadeia"]
+custom_minimum_size = Vector2(190, 0)
+layout_mode = 2
+
+[node name="Imagem" type="TextureRect" parent="Fundo/Cadeia/Etapa2"]
+texture_filter = 1
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Nome" type="Label" parent="Fundo/Cadeia/Etapa2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+
+[node name="Seta2" type="Label" parent="Fundo/Cadeia"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.3, 0.95, 0.55, 1)
+theme_override_font_sizes/font_size = 56
+text = "→"
+vertical_alignment = 1
+
+[node name="Etapa3" type="VBoxContainer" parent="Fundo/Cadeia"]
+custom_minimum_size = Vector2(190, 0)
+layout_mode = 2
+
+[node name="Imagem" type="TextureRect" parent="Fundo/Cadeia/Etapa3"]
+texture_filter = 1
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Nome" type="Label" parent="Fundo/Cadeia/Etapa3"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.86, 0.3, 1)
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+
+[node name="Real" type="Label" parent="Fundo"]
+anchor_right = 1.0
+offset_left = 140.0
+offset_top = 336.0
+offset_right = -140.0
+offset_bottom = 470.0
+theme_override_font_sizes/font_size = 20
+autowrap_mode = 3
+horizontal_alignment = 1
+
+[node name="Cuidado" type="Label" parent="Fundo"]
+anchor_right = 1.0
+offset_left = 160.0
+offset_top = 488.0
+offset_right = -160.0
+offset_bottom = 538.0
+theme_override_colors/font_color = Color(1, 0.55, 0.4, 1)
+theme_override_font_sizes/font_size = 17
+autowrap_mode = 3
+horizontal_alignment = 1
+
+[node name="Jogo" type="Label" parent="Fundo"]
+anchor_right = 1.0
+offset_top = 548.0
+offset_bottom = 578.0
+theme_override_colors/font_color = Color(0.3, 0.95, 0.55, 1)
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+
+[node name="Continuar" type="Label" parent="Fundo"]
+anchor_right = 1.0
+offset_top = 596.0
+offset_bottom = 626.0
+theme_override_colors/font_color = Color(0.8, 0.85, 0.9, 1)
+theme_override_font_sizes/font_size = 18
+text = "Espaço: continuar"
+horizontal_alignment = 1

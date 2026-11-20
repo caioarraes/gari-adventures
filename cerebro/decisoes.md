@@ -41,3 +41,23 @@ Escolhido pelo usuário como início da Fase 5. É o primeiro reaproveitamento q
 ## D-010: Nome do jogo é Gari Adventures (2026-11-19)
 
 Definido pelo usuário. Substitui o nome provisório no jogo, no repositório `caioarraes/gari-adventures` e na pasta do projeto.
+
+## D-011: Notebook substitui o monitor (2026-11-20)
+
+Definido pelo usuário para aproximar o jogo da reciclagem real. O notebook deixa células 18650. As células montam e recarregam a pistola e montam um powerbank que aumenta a energia máxima. A bolsa de PET passa a definir quantas células o gari carrega. A lanterna foi descartada pelo usuário. Substitui D-003 e D-006. A reciclagem real está em [reciclagem.md](reciclagem.md).
+
+## D-012: Sai o PET, notebook vira básico e micro-ondas atira (2026-11-20)
+
+Definido pelo usuário. A garrafa PET e a bolsa saem do jogo. O notebook passa a ser o inimigo básico, sem tiro, e suas células só montam powerbanks. O micro-ondas é o inimigo que atira, e seu motor monta uma pistola-dínamo, inspirada no uso real do motor do prato como gerador de manivela. Substitui D-002 e a parte da pistola em D-011.
+
+## D-013: Fios no lugar do pneu e chão eletrificado no lugar do muro (2026-11-20)
+
+Definido pelo usuário. O inimigo de fios usados deixa cobre, que vira a malha de aterramento, inspirada na extração real de cobre de cabos. O muro sai e entra um chão eletrificado, que só pode ser atravessado com a malha. O solado sai junto com o pneu. Substitui D-009.
+
+## D-014: A malha leva a corrente do chão até um gerador (2026-11-20)
+
+Definido pelo usuário. O gari aterrado absorve a corrente do chão eletrificado e a usa para ligar um gerador, que abre o portão antes do caminhão.
+
+## D-015: Apresentação do uso real na primeira montagem de cada item (2026-11-20)
+
+Definido pelo usuário. Os textos seguem só o que está confirmado em [reciclagem.md](reciclagem.md) e incluem um cuidado real, como o risco das células de lítio, do capacitor do micro-ondas e da queima de fios.

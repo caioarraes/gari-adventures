@@ -42,6 +42,6 @@ func _vencer() -> void:
 	sons.get_node("Musica").stop()
 	sons.get_node("Vitoria").play()
 	titulo.text = "Rua limpa!"
-	var bolsa := "Sua bolsa chegou ao nível %d." % gari.nivel_bolsa if gari.nivel_bolsa > 0 else "Você terminou sem bolsa."
-	texto.text = "%s\nO lixo eletrônico virou sua pistola.\n\nAperte Espaço para jogar de novo" % bolsa
+	var powerbanks := "Você montou %d powerbank(s) com células de notebook." % gari.powerbanks if gari.powerbanks > 0 else "Você terminou sem powerbank."
+	texto.text = "%s\nO motor do micro-ondas virou sua pistola-dínamo.\n\nAperte Espaço para jogar de novo" % powerbanks
 	painel.visible = true

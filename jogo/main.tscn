@@ -2,14 +2,25 @@
 
 [ext_resource type="Script" path="res://jogo/gari.gd" id="1_gari"]
 [ext_resource type="Script" path="res://jogo/camera.gd" id="2_camera"]
-[ext_resource type="PackedScene" path="res://jogo/pet.tscn" id="3_pet"]
+[ext_resource type="PackedScene" path="res://jogo/notebook.tscn" id="3_notebook"]
 [ext_resource type="Script" path="res://jogo/hud.gd" id="4_hud"]
-[ext_resource type="PackedScene" path="res://jogo/monitor.tscn" id="5_monitor"]
+[ext_resource type="PackedScene" path="res://jogo/microondas.tscn" id="5_microondas"]
 [ext_resource type="Script" path="res://jogo/tela.gd" id="6_tela"]
-[ext_resource type="PackedScene" path="res://jogo/pneu.tscn" id="7_pneu"]
+[ext_resource type="PackedScene" path="res://jogo/cutscene.tscn" id="12_cutscene"]
+[ext_resource type="PackedScene" path="res://jogo/fio.tscn" id="7_fio"]
+[ext_resource type="PackedScene" path="res://jogo/chao_eletrico.tscn" id="9_chao_eletrico"]
+[ext_resource type="PackedScene" path="res://jogo/gerador.tscn" id="10_gerador"]
+[ext_resource type="Script" path="res://jogo/portao.gd" id="11_portao"]
+[ext_resource type="Texture2D" path="res://arte/portao.png" id="26_portao"]
+[ext_resource type="AudioStream" path="res://som/gerador.wav" id="44_gerador"]
+[ext_resource type="AudioStream" path="res://som/portao.wav" id="45_portao"]
+[ext_resource type="Texture2D" path="res://arte/particula.png" id="25_particula"]
+[ext_resource type="AudioStream" path="res://som/choque.wav" id="41_choque"]
+[ext_resource type="AudioStream" path="res://som/chicote.wav" id="42_chicote"]
+[ext_resource type="AudioStream" path="res://som/aterrado.wav" id="43_aterrado"]
 [ext_resource type="PackedScene" path="res://jogo/ecoponto.tscn" id="8_ecoponto"]
 [ext_resource type="Texture2D" path="res://arte/gari.png" id="10_gari"]
-[ext_resource type="Texture2D" path="res://arte/bolsa.png" id="11_bolsa"]
+[ext_resource type="Texture2D" path="res://arte/powerbank.png" id="24_powerbank"]
 [ext_resource type="Texture2D" path="res://arte/pistola.png" id="12_pistola"]
 [ext_resource type="Texture2D" path="res://arte/vassoura.png" id="13_vassoura"]
 [ext_resource type="Texture2D" path="res://arte/asfalto.png" id="14_asfalto"]
@@ -93,6 +104,13 @@ texture_filter = 0
 transparency = 1
 albedo_color = Color(1, 1, 1, 0)
 
+[sub_resource type="StandardMaterial3D" id="portao"]
+albedo_texture = ExtResource("26_portao")
+uv1_scale = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
+uv1_world_triplanar = true
+texture_filter = 0
+
 [sub_resource type="CapsuleShape3D" id="corpo_gari"]
 radius = 0.35
 height = 1.7
@@ -102,6 +120,38 @@ size = Vector3(1.6, 1.6, 2)
 
 [sub_resource type="BoxShape3D" id="forma_chegada"]
 size = Vector3(1, 4, 4)
+
+[sub_resource type="Gradient" id="cores_aterramento"]
+offsets = PackedFloat32Array(0, 0.4, 1)
+colors = PackedColorArray(1, 1, 0.8, 1, 0.95, 0.6, 0.3, 1, 0.4, 1, 0.5, 0)
+
+[sub_resource type="GradientTexture1D" id="rampa_aterramento"]
+gradient = SubResource("cores_aterramento")
+
+[sub_resource type="ParticleProcessMaterial" id="processo_aterramento"]
+emission_shape = 3
+emission_box_extents = Vector3(0.35, 0.05, 0.2)
+direction = Vector3(0, 1, 0)
+spread = 25.0
+initial_velocity_min = 1.5
+initial_velocity_max = 3.5
+gravity = Vector3(0, -2, 0)
+scale_min = 0.8
+scale_max = 1.6
+color_ramp = SubResource("rampa_aterramento")
+
+[sub_resource type="StandardMaterial3D" id="material_aterramento"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("25_particula")
+billboard_mode = 3
+texture_filter = 0
+
+[sub_resource type="QuadMesh" id="malha_aterramento"]
+material = SubResource("material_aterramento")
+size = Vector2(0.1, 0.1)
 
 [node name="Main" type="Node3D"]
 
@@ -132,13 +182,13 @@ texture = ExtResource("10_gari")
 hframes = 6
 vframes = 2
 
-[node name="Bolsa" type="Sprite3D" parent="Gari"]
+[node name="Powerbank" type="Sprite3D" parent="Gari"]
 visible = false
-position = Vector3(-0.3, 0.95, -0.03)
+position = Vector3(-0.32, 0.6, -0.02)
 pixel_size = 0.053
 alpha_cut = 1
 texture_filter = 0
-texture = ExtResource("11_bolsa")
+texture = ExtResource("24_powerbank")
 
 [node name="Faiscador" type="Sprite3D" parent="Gari"]
 visible = false
@@ -147,6 +197,14 @@ pixel_size = 0.053
 alpha_cut = 1
 texture_filter = 0
 texture = ExtResource("12_pistola")
+
+[node name="Aterramento" type="GPUParticles3D" parent="Gari"]
+position = Vector3(0, 0.05, 0)
+emitting = false
+amount = 40
+lifetime = 0.5
+process_material = SubResource("processo_aterramento")
+draw_pass_1 = SubResource("malha_aterramento")
 
 [node name="Golpe" type="Area3D" parent="Gari"]
 position = Vector3(0.95, 0, 0)
@@ -215,17 +273,30 @@ use_collision = true
 size = Vector3(26, 2, 4)
 material = SubResource("chao")
 
-[node name="Muro" type="CSGBox3D" parent="Pista"]
-position = Vector3(69, 0.5, 0)
-use_collision = true
-size = Vector3(14, 5, 4)
-material = SubResource("parede")
-
 [node name="ParedeFinal" type="CSGBox3D" parent="Pista"]
-position = Vector3(76.5, 6, 0)
+position = Vector3(76.5, 4, 0)
 use_collision = true
 size = Vector3(1, 10, 4)
 material = SubResource("parede")
+
+[node name="Chao4" type="CSGBox3D" parent="Pista"]
+position = Vector3(73, -1, 0)
+use_collision = true
+size = Vector3(6, 2, 4)
+material = SubResource("chao")
+
+[node name="ChaoEletrico" parent="Pista" instance=ExtResource("9_chao_eletrico")]
+position = Vector3(66, 0, 0)
+
+[node name="Gerador" parent="Pista" instance=ExtResource("10_gerador")]
+position = Vector3(70.7, 0, 0)
+
+[node name="Portao" type="CSGBox3D" parent="Pista"]
+position = Vector3(71.8, 2, 0)
+use_collision = true
+size = Vector3(0.4, 4, 4)
+material = SubResource("portao")
+script = ExtResource("11_portao")
 
 [node name="Cerca" type="CSGBox3D" parent="Pista"]
 position = Vector3(51, 4, 0)
@@ -240,7 +311,7 @@ texture_filter = 0
 texture = ExtResource("19_cerca")
 
 [node name="Chegada" type="Area3D" parent="."]
-position = Vector3(72, 5, 0)
+position = Vector3(72.5, 2, 0)
 collision_layer = 0
 collision_mask = 2
 
@@ -256,46 +327,43 @@ texture = ExtResource("20_caminhao")
 
 [node name="Inimigos" type="Node3D" parent="."]
 
-[node name="Pet1" parent="Inimigos" instance=ExtResource("3_pet")]
+[node name="Notebook1" parent="Inimigos" instance=ExtResource("3_notebook")]
 position = Vector3(2.5, 0, 0)
 
-[node name="Pet2" parent="Inimigos" instance=ExtResource("3_pet")]
+[node name="Notebook2" parent="Inimigos" instance=ExtResource("3_notebook")]
 position = Vector3(5, 0, 0)
 
-[node name="Pet3" parent="Inimigos" instance=ExtResource("3_pet")]
+[node name="Notebook3" parent="Inimigos" instance=ExtResource("3_notebook")]
 position = Vector3(18.5, 0, 0)
 
-[node name="Pet4" parent="Inimigos" instance=ExtResource("3_pet")]
+[node name="Notebook4" parent="Inimigos" instance=ExtResource("3_notebook")]
 position = Vector3(20.4, 0, 0)
 
-[node name="Pet5" parent="Inimigos" instance=ExtResource("3_pet")]
+[node name="Notebook5" parent="Inimigos" instance=ExtResource("3_notebook")]
 position = Vector3(22.2, 0, 0)
 
-[node name="Pet6" parent="Inimigos" instance=ExtResource("3_pet")]
+[node name="Notebook6" parent="Inimigos" instance=ExtResource("3_notebook")]
 position = Vector3(38.5, 0, 0)
 
-[node name="Monitor1" parent="Inimigos" instance=ExtResource("5_monitor")]
+[node name="Microondas1" parent="Inimigos" instance=ExtResource("5_microondas")]
 position = Vector3(43, 0, 0)
 
-[node name="Monitor2" parent="Inimigos" instance=ExtResource("5_monitor")]
-position = Vector3(45, 0, 0)
+[node name="Microondas2" parent="Inimigos" instance=ExtResource("5_microondas")]
+position = Vector3(45.5, 0, 0)
 
-[node name="Monitor3" parent="Inimigos" instance=ExtResource("5_monitor")]
-position = Vector3(47, 0, 0)
+[node name="Microondas3" parent="Inimigos" instance=ExtResource("5_microondas")]
+position = Vector3(48, 0, 0)
 
-[node name="Monitor4" parent="Inimigos" instance=ExtResource("5_monitor")]
-position = Vector3(49, 0, 0)
-
-[node name="MonitorFinal" parent="Inimigos" instance=ExtResource("5_monitor")]
+[node name="MicroondasFinal" parent="Inimigos" instance=ExtResource("5_microondas")]
 position = Vector3(54, 0, 0)
 
-[node name="Pneu1" parent="Inimigos" instance=ExtResource("7_pneu")]
+[node name="Fio1" parent="Inimigos" instance=ExtResource("7_fio")]
 position = Vector3(56, 0, 0)
 
-[node name="Pneu2" parent="Inimigos" instance=ExtResource("7_pneu")]
+[node name="Fio2" parent="Inimigos" instance=ExtResource("7_fio")]
 position = Vector3(58, 0, 0)
 
-[node name="Pneu3" parent="Inimigos" instance=ExtResource("7_pneu")]
+[node name="Fio3" parent="Inimigos" instance=ExtResource("7_fio")]
 position = Vector3(60, 0, 0)
 
 [node name="Ecopontos" type="Node3D" parent="."]
@@ -314,21 +382,35 @@ position = Vector3(52.5, 0, 0)
 [node name="Placa4" type="Label3D" parent="Placas"]
 position = Vector3(58, 4, -1.9)
 pixel_size = 0.01
-text = "Pneus viram solado: pule mais alto"
+text = "Fios usados viram cobre: malha de aterramento"
 font_size = 44
+outline_size = 14
+
+[node name="Placa5" type="Label3D" parent="Placas"]
+position = Vector3(66, 3.6, -1.9)
+pixel_size = 0.01
+text = "Chão eletrificado: só passa quem está aterrado"
+font_size = 44
+outline_size = 14
+
+[node name="Placa6" type="Label3D" parent="Placas"]
+position = Vector3(71, 4.6, -1.9)
+pixel_size = 0.01
+text = "Gerador: traga a corrente do chão"
+font_size = 40
 outline_size = 14
 
 [node name="Placa1" type="Label3D" parent="Placas"]
 position = Vector3(3, 3.4, -1.9)
 pixel_size = 0.01
-text = "Garrafas PET viram fio e bolsa"
+text = "Células boas de notebook viram powerbank"
 font_size = 44
 outline_size = 14
 
 [node name="Placa2" type="Label3D" parent="Placas"]
 position = Vector3(41, 3.4, -1.9)
 pixel_size = 0.01
-text = "Eletrônicos viram pistola e balas"
+text = "Motor de micro-ondas vira dínamo: pistola de faíscas"
 font_size = 44
 outline_size = 14
 
@@ -370,6 +452,22 @@ stream = ExtResource("37_dano")
 [node name="Cerca" type="AudioStreamPlayer" parent="Sons"]
 stream = ExtResource("38_cerca")
 
+[node name="Choque" type="AudioStreamPlayer" parent="Sons"]
+stream = ExtResource("41_choque")
+
+[node name="Chicote" type="AudioStreamPlayer" parent="Sons"]
+stream = ExtResource("42_chicote")
+volume_db = -4.0
+
+[node name="Aterrado" type="AudioStreamPlayer" parent="Sons"]
+stream = ExtResource("43_aterrado")
+
+[node name="Gerador" type="AudioStreamPlayer" parent="Sons"]
+stream = ExtResource("44_gerador")
+
+[node name="Portao" type="AudioStreamPlayer" parent="Sons"]
+stream = ExtResource("45_portao")
+
 [node name="Vitoria" type="AudioStreamPlayer" parent="Sons"]
 stream = ExtResource("39_vitoria")
 
@@ -380,53 +478,63 @@ volume_db = -9.0
 [node name="HUD" type="CanvasLayer" parent="."]
 script = ExtResource("4_hud")
 
-[node name="LinhaPet" type="HBoxContainer" parent="HUD"]
+[node name="Linhas" type="VBoxContainer" parent="HUD"]
+offset_left = 24.0
+offset_top = 20.0
+offset_right = 1120.0
+offset_bottom = 200.0
+theme_override_constants/separation = 8
+
+[node name="LinhaCelulas" type="HBoxContainer" parent="HUD/Linhas"]
+layout_mode = 2
 offset_left = 24.0
 offset_top = 20.0
 offset_right = 1120.0
 offset_bottom = 54.0
 theme_override_constants/separation = 14
 
-[node name="Titulo" type="Label" parent="HUD/LinhaPet"]
-custom_minimum_size = Vector2(160, 0)
-layout_mode = 2
-theme_override_colors/font_color = Color(0.55, 0.88, 0.98, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 6
-theme_override_font_sizes/font_size = 22
-text = "PET"
-
-[node name="Pips" type="HBoxContainer" parent="HUD/LinhaPet"]
-layout_mode = 2
-theme_override_constants/separation = 6
-
-[node name="Info" type="Label" parent="HUD/LinhaPet"]
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 6
-theme_override_font_sizes/font_size = 22
-
-[node name="LinhaComponentes" type="HBoxContainer" parent="HUD"]
-offset_left = 24.0
-offset_top = 62.0
-offset_right = 1120.0
-offset_bottom = 96.0
-theme_override_constants/separation = 14
-
-[node name="Titulo" type="Label" parent="HUD/LinhaComponentes"]
+[node name="Titulo" type="Label" parent="HUD/Linhas/LinhaCelulas"]
 custom_minimum_size = Vector2(160, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.3, 0.95, 0.55, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 6
 theme_override_font_sizes/font_size = 22
+text = "Células"
 
-[node name="Pips" type="HBoxContainer" parent="HUD/LinhaComponentes"]
+[node name="Pips" type="HBoxContainer" parent="HUD/Linhas/LinhaCelulas"]
 layout_mode = 2
 theme_override_constants/separation = 6
 
-[node name="Info" type="Label" parent="HUD/LinhaComponentes"]
+[node name="Info" type="Label" parent="HUD/Linhas/LinhaCelulas"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 22
+
+[node name="LinhaMotores" type="HBoxContainer" parent="HUD/Linhas"]
+layout_mode = 2
+offset_left = 24.0
+offset_top = 62.0
+offset_right = 1120.0
+offset_bottom = 96.0
+theme_override_constants/separation = 14
+
+[node name="Titulo" type="Label" parent="HUD/Linhas/LinhaMotores"]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.5, 0.25, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 22
+text = "Motores"
+
+[node name="Pips" type="HBoxContainer" parent="HUD/Linhas/LinhaMotores"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="Info" type="Label" parent="HUD/Linhas/LinhaMotores"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -452,7 +560,8 @@ text = "Vida"
 layout_mode = 2
 theme_override_constants/separation = 6
 
-[node name="LinhaBorracha" type="HBoxContainer" parent="HUD"]
+[node name="LinhaEnergia" type="HBoxContainer" parent="HUD/Linhas"]
+layout_mode = 2
 visible = false
 offset_left = 24.0
 offset_top = 104.0
@@ -460,20 +569,49 @@ offset_right = 1120.0
 offset_bottom = 138.0
 theme_override_constants/separation = 14
 
-[node name="Titulo" type="Label" parent="HUD/LinhaBorracha"]
+[node name="Titulo" type="Label" parent="HUD/Linhas/LinhaEnergia"]
 custom_minimum_size = Vector2(160, 0)
 layout_mode = 2
-theme_override_colors/font_color = Color(0.88, 0.63, 0.38, 1)
+theme_override_colors/font_color = Color(1, 0.86, 0.3, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 6
 theme_override_font_sizes/font_size = 22
-text = "Borracha"
+text = "Energia"
 
-[node name="Pips" type="HBoxContainer" parent="HUD/LinhaBorracha"]
+[node name="Pips" type="HBoxContainer" parent="HUD/Linhas/LinhaEnergia"]
 layout_mode = 2
 theme_override_constants/separation = 6
 
-[node name="Info" type="Label" parent="HUD/LinhaBorracha"]
+[node name="Info" type="Label" parent="HUD/Linhas/LinhaEnergia"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 22
+
+[node name="LinhaCobre" type="HBoxContainer" parent="HUD/Linhas"]
+layout_mode = 2
+visible = false
+offset_left = 24.0
+offset_top = 146.0
+offset_right = 1120.0
+offset_bottom = 180.0
+theme_override_constants/separation = 14
+
+[node name="Titulo" type="Label" parent="HUD/Linhas/LinhaCobre"]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.6, 0.3, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 22
+text = "Cobre"
+
+[node name="Pips" type="HBoxContainer" parent="HUD/Linhas/LinhaCobre"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="Info" type="Label" parent="HUD/Linhas/LinhaCobre"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -516,6 +654,8 @@ offset_top = 310.0
 offset_bottom = 460.0
 theme_override_font_sizes/font_size = 26
 horizontal_alignment = 1
+
+[node name="Cutscene" parent="." instance=ExtResource("12_cutscene")]
 
 [node name="Fundo" type="Node3D" parent="."]
 
@@ -600,5 +740,6 @@ texture = ExtResource("23_poste")
 
 [connection signal="finished" from="Sons/Musica" to="Sons/Musica" method="play"]
 [connection signal="body_entered" from="Chegada" to="Telas" method="_ao_chegar"]
-[connection signal="derrotado" from="Inimigos/MonitorFinal" to="Pista/Cerca" method="queue_free"]
-[connection signal="derrotado" from="Inimigos/MonitorFinal" to="Sons/Cerca" method="play"]
+[connection signal="derrotado" from="Inimigos/MicroondasFinal" to="Pista/Cerca" method="queue_free"]
+[connection signal="derrotado" from="Inimigos/MicroondasFinal" to="Sons/Cerca" method="play"]
+[connection signal="ligado" from="Pista/Gerador" to="Pista/Portao" method="abrir"]

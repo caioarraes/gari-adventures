@@ -11,6 +11,7 @@ Memória do desenvolvimento. Cada informação tem um lugar só. Os outros arqui
 | [decisoes.md](decisoes.md) | Decisões tomadas e motivos | Uma decisão for tomada |
 | [duvidas.md](duvidas.md) | Perguntas em aberto | Surgir ou se resolver uma dúvida |
 | [precedentes.md](precedentes.md) | Jogos de referência e fontes | Uma pesquisa trouxer algo útil |
+| [reciclagem.md](reciclagem.md) | Reaproveitamento real de cada inimigo | Um inimigo for criado ou mudar |
 | [tecnico-godot.md](tecnico-godot.md) | Instalação e fatos técnicos testados | Algo técnico for confirmado |
 
 ## Convenções

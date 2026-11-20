@@ -12,7 +12,7 @@ Valem para qualquer agente ou sessão neste projeto. O jogo é um plataforma 2.5
 
 - Interprete o pedido pela **experiência** proposta, não pelo sistema descrito.
 - Pergunte-se: o que o jogador deve sentir ou perceber aqui? Atenda a isso.
-- Se o sistema descrito for parte explícita da ideia, como PET virar capacidade de inventário, ele continua valendo. A experiência orienta como realizá-lo.
+- Se o sistema descrito for parte explícita da ideia, como as células de notebook virarem powerbank, ele continua valendo. A experiência orienta como realizá-lo.
 
 ## Não julgar mecânicas
 

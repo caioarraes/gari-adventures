@@ -5,7 +5,8 @@
 - Plataforma 2.5D feito na Godot.
 - O protagonista é um gari.
 - Os inimigos são lixo, e o gari os reaproveita para se aprimorar.
-- A evolução acompanha práticas reais de reaproveitamento. Exemplo: garrafa PET vira fio, e o fio vira bolsa.
+- A garrafa PET saiu do jogo em 2026-11-20. Os inimigos atuais estão em [mecanicas.md](mecanicas.md).
+- A evolução acompanha práticas reais de reaproveitamento. Exemplo: células boas de baterias de notebook viram powerbanks.
 
 ## Experiência central (interpretação, a validar)
 

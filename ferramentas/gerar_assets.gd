@@ -7,7 +7,6 @@ const TAXA := 22050
 
 var rng := RandomNumberGenerator.new()
 
-
 func _init() -> void:
 	rng.seed = 7
 	DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(ARTE))
@@ -20,93 +19,103 @@ func _init() -> void:
 	print("assets gerados")
 	quit()
 
-
 func _nova(w: int, h: int) -> Image:
 	return Image.create_empty(w, h, false, Image.FORMAT_RGBA8)
-
 
 func _r(i: Image, x: int, y: int, w: int, h: int, cor: String) -> void:
 	i.fill_rect(Rect2i(x, y, w, h), Color(cor))
 
-
 func _salvar(i: Image, nome: String) -> void:
 	i.save_png(ProjectSettings.globalize_path(ARTE + nome + ".png"))
-
 
 func _personagens() -> void:
 	var gari := _nova(144, 64)
 	for quadro in 6:
 		_gari(gari, quadro * 24, quadro)
 	gari.blit_rect(gari, Rect2i(0, 0, 144, 32), Vector2i(0, 32))
-	_colocar_solado(gari)
+	_colocar_malha(gari)
 	_salvar(gari, "gari")
 
-	var pneu := _nova(44, 22)
+	var fio := _nova(80, 22)
 	for quadro in 2:
-		_pneu(pneu, quadro * 22, quadro)
-	_salvar(pneu, "pneu")
+		_fio(fio, quadro * 40, quadro)
+	_salvar(fio, "fio")
 
-	var pet := _nova(36, 22)
+	var notebook := _nova(52, 20)
 	for quadro in 2:
-		var x := quadro * 18
-		var y := quadro
-		_r(pet, x + 7, y + 0, 4, 3, "#1f5fd0")
-		_r(pet, x + 7, y + 3, 4, 2, "#bfe9f5")
-		_r(pet, x + 5, y + 5, 8, 2, "#9fdcef")
-		_r(pet, x + 4, y + 7, 10, 14 - y, "#7fcde6")
-		_r(pet, x + 5, y + 8, 2, 11 - y, "#d8f5fb")
-		_r(pet, x + 4, y + 13, 10, 4, "#e8f0f2")
-		_r(pet, x + 6, y + 9, 2, 2, "#17202b")
-		_r(pet, x + 11, y + 9, 2, 2, "#17202b")
-		_r(pet, x + 5, y + 8, 3, 1, "#17202b")
-		_r(pet, x + 11, y + 8, 3, 1, "#17202b")
-	_salvar(pet, "pet")
+		var x := quadro * 26
+		var tela := "#5aa0e0" if quadro == 0 else "#e0f4ff"
+		_r(notebook, x + 3, 0, 20, 13, "#3a3d45")
+		_r(notebook, x + 5, 2, 16, 9, tela)
+		_r(notebook, x + 8, 4, 3, 2, "#10202e")
+		_r(notebook, x + 15, 4, 3, 2, "#10202e")
+		_r(notebook, x + 7, 3, 4, 1, "#10202e")
+		_r(notebook, x + 15, 3, 4, 1, "#10202e")
+		_r(notebook, x + 10, 8, 6, 1, "#10202e")
+		_r(notebook, x + 0, 13, 26, 4, "#8a8e98")
+		for k in [3, 7, 11, 15, 19]:
+			_r(notebook, x + k, 14, 2, 1, "#5a5d66")
+		_r(notebook, x + 1, 17, 24, 2, "#5a5d66")
+		_r(notebook, x + 18, 17, 7, 3, "#2a9d6a")
+		_r(notebook, x + 18, 17, 1, 3, "#c9ccd2")
+	notebook.fill_rect(Rect2i(26, 0, 26, 20), Color(0, 0, 0, 0))
+	notebook.blit_rect(notebook, Rect2i(0, 0, 26, 19), Vector2i(26, 1))
+	_salvar(notebook, "notebook")
 
-	var monitor := _nova(48, 22)
+	var microondas := _nova(56, 20)
 	for quadro in 2:
-		var x := quadro * 24
-		var tela := "#2fd070" if quadro == 0 else "#b8ffd0"
-		_r(monitor, x + 1, 1, 22, 16, "#5a5d66")
-		_r(monitor, x + 3, 3, 18, 12, "#20242c")
-		_r(monitor, x + 4, 4, 16, 10, tela)
-		_r(monitor, x + 7, 6, 3, 2, "#10261a")
-		_r(monitor, x + 14, 6, 3, 2, "#10261a")
-		_r(monitor, x + 8, 11, 8, 1, "#10261a")
-		_r(monitor, x + 8, 17, 8, 2, "#44464e")
-		_r(monitor, x + 4, 19, 16, 3, "#6b6e78")
-		_r(monitor, x + 20, 0, 1, 2, "#ffd84a")
-		_r(monitor, x + 3, 0, 1, 2, "#ff6a4a")
-	_salvar(monitor, "monitor")
+		var x := quadro * 28
+		var vidro := "#3a4a3a" if quadro == 0 else "#fff3b0"
+		_r(microondas, x + 0, 0, 28, 18, "#d8d8d0")
+		_r(microondas, x + 0, 0, 28, 1, "#f0f0ea")
+		_r(microondas, x + 2, 2, 17, 13, "#30343c")
+		_r(microondas, x + 3, 3, 15, 11, vidro)
+		_r(microondas, x + 5, 5, 3, 2, "#e04030")
+		_r(microondas, x + 12, 5, 3, 2, "#e04030")
+		_r(microondas, x + 4, 4, 4, 1, "#17202b")
+		_r(microondas, x + 12, 4, 4, 1, "#17202b")
+		_r(microondas, x + 7, 10, 7, 1, "#17202b")
+		_r(microondas, x + 21, 3, 5, 3, "#2fd070")
+		for y in [8, 11, 14]:
+			_r(microondas, x + 22, y, 3, 2, "#8a8e98")
+		_r(microondas, x + 2, 18, 4, 2, "#5a5d66")
+		_r(microondas, x + 22, 18, 4, 2, "#5a5d66")
+	_salvar(microondas, "microondas")
 
-
-func _colocar_solado(i: Image) -> void:
+func _colocar_malha(i: Image) -> void:
 	var bota := Color("#20242c")
 	for y in range(62, 32, -1):
 		for x in 144:
 			if i.get_pixel(x, y).is_equal_approx(bota) and i.get_pixel(x, y + 1).a == 0.0:
-				i.set_pixel(x, y + 1, Color("#e0a060") if x % 2 == 0 else Color("#15171c"))
+				i.set_pixel(x, y + 1, Color("#f2b066") if x % 2 == 0 else Color("#b8651f"))
 
-
-func _pneu(i: Image, x: int, quadro: int) -> void:
-	var centro := Vector2(10.5, 10.5)
+func _fio(i: Image, x: int, quadro: int) -> void:
+	var capas := ["#c0392b", "#2b6cc0", "#2a2d35"]
 	for py in 22:
-		for px in 22:
-			var d := Vector2(px, py).distance_to(centro)
-			if d > 11.0:
+		for px in 40:
+			var e := sqrt(pow((px - 20.0) / 9.5, 2.0) + pow((py - 13.0) / 8.5, 2.0))
+			if e > 1.0:
 				continue
-			var angulo := atan2(py - centro.y, px - centro.x) + quadro * PI / 8.0
-			var cor := "#23262d"
-			if d > 9.0 and int(floor(angulo / (PI / 4.0))) % 2 == 0:
-				cor = "#3b3f49"
-			elif d < 6.0:
-				cor = "#8f939c"
+			var cor: String = capas[int(e * 6.0) % 3]
+			if e < 0.3:
+				cor = "#d9822b"
 			i.set_pixel(x + px, py, Color(cor))
-	_r(i, x + 7, 8, 2, 2, "#17202b")
-	_r(i, x + 13, 8, 2, 2, "#17202b")
-	_r(i, x + 6, 7, 3, 1, "#17202b")
-	_r(i, x + 13, 7, 3, 1, "#17202b")
-	_r(i, x + 8, 13, 6, 1, "#17202b")
-
+	_r(i, x + 15, 8, 3, 3, "#f4f4ee")
+	_r(i, x + 23, 8, 3, 3, "#f4f4ee")
+	_r(i, x + 16, 9, 2, 2, "#17202b")
+	_r(i, x + 24, 9, 2, 2, "#17202b")
+	_r(i, x + 14, 7, 4, 1, "#17202b")
+	_r(i, x + 23, 7, 4, 1, "#17202b")
+	if quadro == 0:
+		_r(i, x + 29, 15, 4, 2, "#2a2d35")
+		_r(i, x + 32, 13, 2, 3, "#2a2d35")
+		_r(i, x + 32, 12, 2, 1, "#d9822b")
+	else:
+		_r(i, x + 28, 12, 9, 2, "#c0392b")
+		_r(i, x + 36, 11, 2, 4, "#f2b066")
+		_r(i, x + 38, 9, 2, 2, "#fff0a0")
+		_r(i, x + 38, 14, 2, 2, "#fff0a0")
+		_r(i, x + 39, 11, 1, 3, "#ffffff")
 
 func _gari(i: Image, x: int, quadro: int) -> void:
 	var y := 1 if quadro == 2 else 0
@@ -147,12 +156,10 @@ func _gari(i: Image, x: int, quadro: int) -> void:
 		_r(i, x + 11, y + 11, 3, 7, "#c94f08")
 		_r(i, x + 11, y + 18, 3, 2, "#d9a07a")
 
-
 func _perna(i: Image, x: int, y: int, altura: int) -> void:
 	_r(i, x, y, 3, altura - 2, "#d65a0c")
 	_r(i, x, y + altura - 2, 4, 2, "#20242c")
 	_r(i, x, y + altura - 4, 3, 1, "#f6e96a")
-
 
 func _itens() -> void:
 	var vassoura := _nova(30, 9)
@@ -171,41 +178,61 @@ func _itens() -> void:
 	_r(pistola, 9, 0, 1, 1, "#ffd84a")
 	_salvar(pistola, "pistola")
 
-	var bolsa := _nova(12, 15)
-	_r(bolsa, 3, 0, 6, 2, "#0e6f6a")
-	_r(bolsa, 1, 2, 10, 13, "#16938c")
-	for y in [4, 8, 12]:
-		_r(bolsa, 1, y, 10, 1, "#8fe0ec")
-	for x in [3, 7]:
-		_r(bolsa, x, 2, 1, 13, "#0e6f6a")
-	_salvar(bolsa, "bolsa")
+	var celula := _nova(14, 8)
+	_r(celula, 1, 1, 12, 6, "#2a9d6a")
+	_r(celula, 1, 1, 12, 1, "#5fd49a")
+	_r(celula, 1, 5, 12, 1, "#1d7a48")
+	_r(celula, 0, 2, 1, 4, "#c9ccd2")
+	_r(celula, 13, 3, 1, 2, "#e8eaee")
+	_salvar(celula, "celula")
 
-	var material := _nova(14, 10)
-	_r(material, 2, 2, 10, 7, "#8fdcf0")
-	_r(material, 0, 4, 4, 4, "#bfeefa")
-	_r(material, 9, 1, 5, 4, "#6fc4e0")
-	_r(material, 11, 0, 2, 2, "#1f5fd0")
-	_salvar(material, "material_pet")
+	var powerbank := _nova(10, 14)
+	_r(powerbank, 0, 0, 10, 14, "#30343c")
+	_r(powerbank, 1, 1, 8, 12, "#3a3d45")
+	for y in [2, 6, 10]:
+		_r(powerbank, 2, y, 6, 2, "#2a9d6a")
+	_r(powerbank, 7, 1, 1, 1, "#ffd84a")
+	_salvar(powerbank, "powerbank")
 
-	var componente := _nova(14, 10)
-	_r(componente, 2, 2, 10, 6, "#1d7a48")
-	_r(componente, 5, 3, 4, 4, "#20242c")
-	for x in [3, 6, 9]:
-		_r(componente, x, 0, 1, 2, "#e8d27a")
-		_r(componente, x, 8, 1, 2, "#e8d27a")
-	_r(componente, 3, 3, 1, 1, "#7dffb0")
-	_salvar(componente, "componente")
+	var cobre := _nova(14, 10)
+	for n in 4:
+		_r(cobre, 1 + n * 3, 1, 2, 8, "#d9822b")
+		_r(cobre, 1 + n * 3, 1, 1, 8, "#f2b066")
+	_r(cobre, 0, 4, 14, 2, "#b8651f")
+	_salvar(cobre, "cobre")
 
-	var borracha := _nova(14, 10)
-	_r(borracha, 1, 2, 12, 7, "#2a2d35")
-	for x in [2, 6, 10]:
-		_r(borracha, x, 1, 2, 2, "#e0a060")
-		_r(borracha, x, 8, 2, 2, "#e0a060")
-	_salvar(borracha, "borracha")
+	var malha := _nova(16, 14)
+	for k in range(0, 16, 3):
+		_r(malha, k, 0, 1, 10, "#d9822b")
+	for k in range(0, 10, 3):
+		_r(malha, 0, k, 16, 1, "#f2b066")
+	_r(malha, 6, 10, 2, 4, "#2fd070")
+	_r(malha, 6, 12, 2, 1, "#f2e230")
+	_r(malha, 4, 13, 6, 1, "#5a5d66")
+	_salvar(malha, "malha")
+
+	var particula := _nova(4, 4)
+	_r(particula, 1, 0, 2, 4, "#ffffff")
+	_r(particula, 0, 1, 4, 2, "#ffffff")
+	_salvar(particula, "particula")
+
+	var motor := _nova(14, 10)
+	_r(motor, 2, 1, 9, 8, "#b86a2c")
+	for y in [2, 4, 6]:
+		_r(motor, 2, y, 9, 1, "#e08a40")
+	_r(motor, 0, 3, 2, 4, "#5a5d66")
+	_r(motor, 11, 4, 3, 2, "#c9ccd2")
+	_salvar(motor, "motor")
 
 	_salvar(_faisca("#ffffff", "#3fe07f"), "faisca_gari")
-	_salvar(_faisca("#fff0a0", "#f0442c"), "faisca_inimiga")
 
+	var onda := _nova(10, 12)
+	for n in 3:
+		var x := n * 3
+		_r(onda, x + 1, 1, 1, 2, "#ffd84a")
+		_r(onda, x + 2, 3, 1, 6, "#f0442c")
+		_r(onda, x + 1, 9, 1, 2, "#ffd84a")
+	_salvar(onda, "faisca_inimiga")
 
 func _faisca(centro: String, borda: String) -> Image:
 	var i := _nova(9, 9)
@@ -215,11 +242,9 @@ func _faisca(centro: String, borda: String) -> Image:
 	_r(i, 3, 3, 3, 3, centro)
 	return i
 
-
 func _ruido(i: Image, cores: Array, quantidade: int) -> void:
 	for n in quantidade:
 		_r(i, rng.randi_range(0, i.get_width() - 1), rng.randi_range(0, i.get_height() - 1), 1, 1, cores[rng.randi_range(0, cores.size() - 1)])
-
 
 func _cenario() -> void:
 	var asfalto := _nova(32, 32)
@@ -302,12 +327,51 @@ func _cenario() -> void:
 			_r(ecoponto, x + 9, 0, 7, 4, "#f6e96a")
 	_salvar(ecoponto, "ecoponto")
 
+	var chao_eletrico := _nova(32, 32)
+	_r(chao_eletrico, 0, 0, 32, 32, "#3a3f48")
+	for k in [0, 16]:
+		_r(chao_eletrico, 0, k, 32, 1, "#5a606b")
+		_r(chao_eletrico, k, 0, 1, 32, "#5a606b")
+	for k in [7, 23]:
+		_r(chao_eletrico, 0, k, 32, 2, "#3fa9ff")
+		_r(chao_eletrico, k, 0, 2, 32, "#3fa9ff")
+	for k in [3, 12, 19, 28]:
+		_r(chao_eletrico, k, k, 1, 1, "#8a909b")
+	_salvar(chao_eletrico, "chao_eletrico")
+
+	var gerador := _nova(40, 25)
+	for quadro in 2:
+		var x := quadro * 20
+		var raio := "#5a5d66" if quadro == 0 else "#ffd84a"
+		var lampada := "#3a3d45" if quadro == 0 else "#5fff8a"
+		_r(gerador, x + 1, 4, 18, 21, "#4a5058")
+		_r(gerador, x + 2, 5, 16, 1, "#6a707a")
+		_r(gerador, x + 4, 0, 3, 4, "#30343c")
+		_r(gerador, x + 13, 0, 3, 4, "#30343c")
+		_r(gerador, x + 13, 0, 3, 1, lampada)
+		_r(gerador, x + 6, 8, 8, 12, "#30343c")
+		_r(gerador, x + 10, 9, 3, 5, raio)
+		_r(gerador, x + 8, 13, 4, 2, raio)
+		_r(gerador, x + 7, 15, 3, 4, raio)
+		for y in [21, 23]:
+			_r(gerador, x + 3, y, 14, 1, "#30343c")
+	_salvar(gerador, "gerador")
+
+	var portao := _nova(32, 32)
+	_r(portao, 0, 0, 32, 32, "#6a707a")
+	for y in range(0, 32, 4):
+		_r(portao, 0, y, 32, 1, "#4a5058")
+		_r(portao, 0, y + 1, 32, 1, "#8a909b")
+	for x in range(0, 32, 8):
+		_r(portao, x, 28, 4, 4, "#f2c230")
+		_r(portao, x + 4, 28, 4, 4, "#2a2d35")
+	_salvar(portao, "portao")
+
 	var poste := _nova(14, 70)
 	_r(poste, 5, 4, 3, 66, "#4a4e58")
 	_r(poste, 5, 3, 9, 2, "#4a4e58")
 	_r(poste, 10, 5, 4, 2, "#ffe9a0")
 	_salvar(poste, "poste")
-
 
 func _predio(parede: String, sombra: String) -> Image:
 	var i := _nova(32, 32)
@@ -320,12 +384,10 @@ func _predio(parede: String, sombra: String) -> Image:
 		_r(i, x + 4, 7, 1, 14, sombra)
 	return i
 
-
 func _vazio(segundos: float) -> PackedFloat32Array:
 	var buffer := PackedFloat32Array()
 	buffer.resize(int(segundos * TAXA))
 	return buffer
-
 
 func _nota(b: PackedFloat32Array, inicio: float, duracao: float, f0: float, f1: float, tipo: String, volume: float) -> void:
 	var primeira := int(inicio * TAXA)
@@ -349,7 +411,6 @@ func _nota(b: PackedFloat32Array, inicio: float, duracao: float, f0: float, f1: 
 				valor = rng.randf_range(-1.0, 1.0)
 		b[i] += valor * volume * pow(1.0 - t, 1.5)
 
-
 func _gravar(b: PackedFloat32Array, nome: String) -> void:
 	var dados := PackedByteArray()
 	dados.resize(b.size() * 2)
@@ -361,13 +422,11 @@ func _gravar(b: PackedFloat32Array, nome: String) -> void:
 	wav.data = dados
 	wav.save_to_wav(ProjectSettings.globalize_path(SOM + nome + ".wav"))
 
-
 func _som(nome: String, segundos: float, notas: Array) -> void:
 	var b := _vazio(segundos)
 	for n in notas:
 		_nota(b, n[0], n[1], n[2], n[3], n[4], n[5])
 	_gravar(b, nome)
-
 
 func _sons() -> void:
 	_som("pulo", 0.2, [[0.0, 0.18, 240.0, 560.0, "quadrada", 0.22]])
@@ -380,11 +439,30 @@ func _sons() -> void:
 	_som("dano", 0.3, [[0.0, 0.28, 400.0, 90.0, "quadrada", 0.25]])
 	_som("cerca", 0.7, [[0.0, 0.65, 180.0, 40.0, "quadrada", 0.25], [0.0, 0.4, 0.0, 0.0, "ruido", 0.2]])
 	_som("vitoria", 1.1, [[0.0, 0.18, 523.0, 523.0, "quadrada", 0.22], [0.16, 0.18, 659.0, 659.0, "quadrada", 0.22], [0.32, 0.18, 784.0, 784.0, "quadrada", 0.22], [0.48, 0.6, 1047.0, 1047.0, "quadrada", 0.22]])
+	_som("choque", 0.45, [[0.0, 0.4, 0.0, 0.0, "ruido", 0.4], [0.0, 0.35, 1200.0, 90.0, "quadrada", 0.25]])
+	_som("chicote", 0.25, [[0.0, 0.08, 0.0, 0.0, "ruido", 0.45], [0.02, 0.2, 1800.0, 600.0, "quadrada", 0.15]])
+	_som("aterrado", 0.35, [[0.0, 0.3, 300.0, 900.0, "seno", 0.25], [0.1, 0.2, 900.0, 1400.0, "seno", 0.15]])
+	_som("raio", 0.5, [[0.0, 0.05, 0.0, 0.0, "ruido", 0.7], [0.0, 0.45, 0.0, 0.0, "ruido", 0.28], [0.0, 0.3, 2600.0, 140.0, "quadrada", 0.16], [0.0, 0.35, 95.0, 40.0, "seno", 0.45]])
+	_som("gerador", 0.9, [[0.0, 0.85, 60.0, 220.0, "quadrada", 0.18], [0.0, 0.85, 120.0, 440.0, "seno", 0.2], [0.55, 0.3, 880.0, 1320.0, "quadrada", 0.12]])
+	_som("portao", 0.9, [[0.0, 0.85, 0.0, 0.0, "ruido", 0.18], [0.0, 0.85, 90.0, 140.0, "triangulo", 0.25]])
+	_zumbido()
 
+
+func _zumbido() -> void:
+	var b := _vazio(1.0)
+	for i in b.size():
+		var t := float(i) / TAXA
+		var base := (1.0 if fmod(t * 100.0, 1.0) < 0.5 else -1.0) * 0.07
+		base += sin(t * TAU * 50.0) * 0.08
+		b[i] = base * (0.75 + 0.25 * sin(t * TAU * 3.0))
+	for estalo in 9:
+		var inicio := rng.randi_range(0, b.size() - 900)
+		for n in rng.randi_range(200, 800):
+			b[inicio + n] += rng.randf_range(-0.35, 0.35) * (1.0 - n / 800.0)
+	_gravar(b, "zumbido")
 
 func _hz(midi: int) -> float:
 	return 440.0 * pow(2.0, (midi - 69) / 12.0)
-
 
 func _musica() -> void:
 	var a := [72,0,76,0,79,0,76,74, 72,0,0,69,72,0,74,0, 69,0,72,0,76,0,74,72, 69,0,0,67,69,0,72,0]

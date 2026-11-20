@@ -5,7 +5,6 @@ const ACELERACAO := 60.0
 const FREIO := 80.0
 const CONTROLE_NO_AR := 0.7
 const FORCA_PULO := 12.0
-const FORCA_PULO_SOLADO := 15.0
 const GRAVIDADE := 32.0
 const GRAVIDADE_QUEDA := 48.0
 const QUEDA_MAXIMA := 20.0
@@ -22,19 +21,22 @@ const DURACAO_EMPURRAO := 0.25
 const DURACAO_PROTECAO := 1.0
 const VIDA_MAXIMA := 3
 
-const PET_POR_BOLSA := 3
-const NIVEL_MAXIMO_BOLSA := 2
-const ESPACOS_INICIAIS := 3
-const ESPACOS_POR_BOLSA := 3
-const CAPACIDADE_MAXIMA := 9
-const COMPONENTES_PARA_PISTOLA := 3
-const BORRACHA_PARA_SOLADO := 3
+const MOTORES_PARA_PISTOLA := 3
+const CELULAS_POR_POWERBANK := 3
+const MAXIMO_POWERBANKS := 2
+const ENERGIA_INICIAL := 3
+const ENERGIA_POR_POWERBANK := 3
+const ENERGIA_MAXIMA_TOTAL := 9
+const COBRE_PARA_MALHA := 3
+const CHOQUE := Vector2(-9.0, 6.0)
+const DURACAO_CHOQUE := 0.3
+const DURACAO_CARGA := 4.0
 
 const FAISCA := preload("res://jogo/faisca_gari.tscn")
 const VELOCIDADE_FAISCA := 14.0
 const RECARGA_TIRO := 0.35
 const ALTURA_TIRO := 0.85
-const RECARGA_EMERGENCIA := 4.0
+const TEMPO_DINAMO := 1.2
 
 const QUADRO_PARADO := 0
 const QUADRO_ANDANDO := 1
@@ -47,7 +49,7 @@ var tempo_borda := 0.0
 var tempo_pulo := 0.0
 var tempo_golpe := 0.0
 var tempo_tiro := 0.0
-var tempo_emergencia := RECARGA_EMERGENCIA
+var tempo_dinamo := TEMPO_DINAMO
 var tempo_empurrao := 0.0
 var tempo_protecao := 0.0
 var tempo_passos := 0.0
@@ -56,21 +58,26 @@ var olhando := 1.0
 var vida := VIDA_MAXIMA
 var precisa_voltar := false
 
-var pet := 0
-var nivel_bolsa := 0
-var capacidade := ESPACOS_INICIAIS
-var componentes := 0
+var celulas := 0
+var powerbanks := 0
+var motores := 0
 var tem_arma := false
-var borracha := 0
-var tem_solado := false
+var energia := 0
+var energia_maxima := ENERGIA_INICIAL
+var cobre := 0
+var tem_malha := false
+var tempo_aterrado := 0.0
+var carga_eletrica := 0.0
 
 @onready var ponto_retorno := global_position
 @onready var sprite: Sprite3D = $Sprite
 @onready var arma: Sprite3D = $Faiscador
 @onready var golpe: Area3D = $Golpe
 @onready var vassoura: Sprite3D = $Golpe/Vassoura
-@onready var bolsa: Sprite3D = $Bolsa
+@onready var powerbank: Sprite3D = $Powerbank
+@onready var aterramento: GPUParticles3D = $Aterramento
 @onready var sons: Node = $"../Sons"
+@onready var cutscene: CanvasLayer = $"../Cutscene"
 
 
 func _physics_process(delta: float) -> void:
@@ -86,7 +93,7 @@ func _physics_process(delta: float) -> void:
 		velocity.y = maxf(velocity.y - gravidade * delta, -QUEDA_MAXIMA)
 
 	if tempo_pulo > 0.0 and tempo_borda > 0.0:
-		velocity.y = FORCA_PULO_SOLADO if tem_solado else FORCA_PULO
+		velocity.y = FORCA_PULO
 		tempo_pulo = 0.0
 		tempo_borda = 0.0
 		sons.get_node("Pulo").play()
@@ -107,15 +114,18 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 	tempo_protecao = maxf(tempo_protecao - delta, 0.0)
+	tempo_aterrado = maxf(tempo_aterrado - delta, 0.0)
+	carga_eletrica = maxf(carga_eletrica - delta, 0.0)
+	aterramento.emitting = tempo_aterrado > 0.0 or carga_eletrica > 0.0
 	_atualizar_golpe(delta)
 	_atualizar_tiro(delta)
 	_atualizar_visual(delta)
-	if Input.is_action_just_pressed("fabricar"):
-		_fazer_bolsa()
 	if Input.is_action_just_pressed("montar"):
 		_montar_pistola()
-	if Input.is_action_just_pressed("solado"):
-		_fazer_solado()
+	if Input.is_action_just_pressed("powerbank"):
+		_montar_powerbank()
+	if Input.is_action_just_pressed("aterramento"):
+		_fazer_malha()
 
 	if global_position.y < ALTURA_DE_RETORNO:
 		_perder_vida()
@@ -164,18 +174,18 @@ func _atualizar_tiro(delta: float) -> void:
 	if not tem_arma:
 		return
 
-	if componentes == 0:
-		tempo_emergencia -= delta
-		if tempo_emergencia <= 0.0:
-			componentes = 1
-			tempo_emergencia = RECARGA_EMERGENCIA
+	if energia < energia_maxima:
+		tempo_dinamo -= delta
+		if tempo_dinamo <= 0.0:
+			energia += 1
+			tempo_dinamo = TEMPO_DINAMO
 	else:
-		tempo_emergencia = RECARGA_EMERGENCIA
+		tempo_dinamo = TEMPO_DINAMO
 
-	if tempo_tiro > 0.0 or componentes == 0 or not Input.is_action_just_pressed("atirar"):
+	if tempo_tiro > 0.0 or energia == 0 or not Input.is_action_just_pressed("atirar"):
 		return
 	tempo_tiro = RECARGA_TIRO
-	componentes -= 1
+	energia -= 1
 	sons.get_node("Tiro").play()
 	var faisca := FAISCA.instantiate()
 	faisca.position = global_position + Vector3(olhando * 0.7, ALTURA_TIRO, 0.0)
@@ -188,9 +198,9 @@ func _atualizar_visual(delta: float) -> void:
 	sprite.flip_h = virado
 	vassoura.flip_h = virado
 	arma.flip_h = virado
-	bolsa.flip_h = virado
+	powerbank.flip_h = virado
 	arma.position.x = olhando * 0.45
-	bolsa.position.x = -olhando * 0.3
+	powerbank.position.x = -olhando * 0.32
 	sprite.visible = tempo_protecao == 0.0 or int(tempo_protecao * 12.0) % 2 == 0
 
 	var quadro := QUADRO_PARADO
@@ -201,52 +211,79 @@ func _atualizar_visual(delta: float) -> void:
 	elif absf(velocity.x) > 0.5:
 		tempo_passos += delta
 		quadro = QUADRO_ANDANDO + int(tempo_passos * 10.0) % 2
-	sprite.frame = quadro + (QUADROS_POR_LINHA if tem_solado else 0)
-
-
-func _fazer_bolsa() -> void:
-	if nivel_bolsa >= NIVEL_MAXIMO_BOLSA or pet < PET_POR_BOLSA:
-		return
-	pet -= PET_POR_BOLSA
-	nivel_bolsa += 1
-	capacidade += ESPACOS_POR_BOLSA
-	bolsa.visible = true
-	bolsa.scale = Vector3.ONE * (1.0 + 0.3 * (nivel_bolsa - 1))
-	sons.get_node("Fabricar").play()
+	sprite.frame = quadro + (QUADROS_POR_LINHA if tem_malha else 0)
 
 
 func _montar_pistola() -> void:
-	if tem_arma or componentes < COMPONENTES_PARA_PISTOLA:
+	if tem_arma or motores < MOTORES_PARA_PISTOLA:
 		return
-	componentes -= COMPONENTES_PARA_PISTOLA
+	motores -= MOTORES_PARA_PISTOLA
 	tem_arma = true
+	energia = energia_maxima
 	arma.visible = true
 	sons.get_node("Fabricar").play()
+	cutscene.mostrar("pistola")
 
 
-func _fazer_solado() -> void:
-	if tem_solado or borracha < BORRACHA_PARA_SOLADO:
+func _montar_powerbank() -> void:
+	if powerbanks >= MAXIMO_POWERBANKS or celulas < CELULAS_POR_POWERBANK:
 		return
-	borracha -= BORRACHA_PARA_SOLADO
-	tem_solado = true
+	celulas -= CELULAS_POR_POWERBANK
+	powerbanks += 1
+	energia_maxima += ENERGIA_POR_POWERBANK
+	if tem_arma:
+		energia = energia_maxima
+	powerbank.visible = true
+	powerbank.scale = Vector3.ONE * (1.0 + 0.3 * (powerbanks - 1))
 	sons.get_node("Fabricar").play()
+	cutscene.mostrar("powerbank")
 
 
-func guardar_borracha() -> void:
-	borracha += 1
+func _fazer_malha() -> void:
+	if tem_malha or cobre < COBRE_PARA_MALHA:
+		return
+	cobre -= COBRE_PARA_MALHA
+	tem_malha = true
+	sons.get_node("Fabricar").play()
+	cutscene.mostrar("malha")
+
+
+func pisar_chao_eletrico(inicio_x: float) -> void:
+	if tem_malha:
+		if tempo_aterrado == 0.0:
+			sons.get_node("Aterrado").play()
+		tempo_aterrado = 0.15
+		carga_eletrica = DURACAO_CARGA
+		return
+	if tempo_protecao == 0.0:
+		tempo_protecao = DURACAO_PROTECAO
+		sons.get_node("Choque").play()
+		_perder_vida()
+	var lado := signf(inicio_x - global_position.x)
+	velocity = Vector3(lado * absf(CHOQUE.x), CHOQUE.y, 0.0)
+	tempo_empurrao = DURACAO_CHOQUE
+
+
+func entregar_carga() -> bool:
+	if carga_eletrica == 0.0:
+		return false
+	carga_eletrica = 0.0
+	return true
+
+
+func guardar_cobre() -> void:
+	cobre += 1
 	sons.get_node("Coleta").play()
 
 
-func guardar_pet() -> bool:
-	pet += 1
+func guardar_celula() -> bool:
+	celulas += 1
 	sons.get_node("Coleta").play()
 	return true
 
 
-func guardar_componente() -> bool:
-	if componentes >= capacidade:
-		return false
-	componentes += 1
+func guardar_motor() -> bool:
+	motores += 1
 	sons.get_node("Coleta").play()
 	return true
 

@@ -4,8 +4,8 @@
 
 - **Fase:** 1 a 3 aprovadas. Fase 4 elogiada pelo usuário, ainda sem teste com outra pessoa. Fase 5 em andamento.
 - **Projeto Godot:** criado na raiz, com cena principal em `jogo/main.tscn`.
-- **Repositório:** público em https://github.com/caioarraes/gari-adventures, com o solado e a vida já enviados.
-- **Próximo passo:** o usuário avalia vida e ecopontos. Depois, escolher o próximo item da Fase 5 em [roadmap.md](roadmap.md).
+- **Repositório:** público em https://github.com/caioarraes/gari-adventures, com notebook, micro-ondas e fios ainda não enviados.
+- **Próximo passo:** o usuário avalia os fios, a malha e o chão eletrificado e envia os próximos inimigos. Cada inimigo novo entra também em [reciclagem.md](reciclagem.md).
 
 ## Registro
 
@@ -33,3 +33,15 @@
 - Vida, derrota e ecopontos criados, sem perda de materiais.
 - Usuário removeu a coautoria do Claude dos commits, e o repositório foi recriado para limpar a lista de contribuidores.
 - Jogo, repositório e pasta renomeados para Gari Adventures (D-010).
+
+### 2026-11-20
+
+- Monitor substituído por notebook, com células 18650, recarga da pistola e powerbank (D-011).
+- Criado [reciclagem.md](reciclagem.md) com o reaproveitamento real de cada inimigo.
+- Garrafa PET e bolsa retiradas. Notebook virou o inimigo básico e o micro-ondas, o atirador, com motor para a pistola-dínamo (D-012).
+- A pedido do usuário, a linha de motores some da tela depois da pistola. As linhas do canto superior agora ficam empilhadas.
+- Pneu, borracha, solado e muro substituídos por fios usados, cobre, malha de aterramento e chão eletrificado com partículas e zumbido (D-013).
+- Gerador e portão adicionados: o gari aterrado leva a corrente do chão até o gerador, que abre o caminho (D-014).
+- Usuário achou que o chão não parecia ter raios. Foram criados raios desenhados em zigue-zague, com clarão e estalo de raio.
+- Raios do chão aprovados.
+- Apresentação animada do uso real criada para a primeira montagem de cada item (D-015).

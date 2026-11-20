@@ -25,15 +25,15 @@ Uma fonte externa dizia que `CharacterBody3D` não tem trava de eixo. O teste ac
 
 - **Cena principal:** `jogo/main.tscn`. Pista e fundo usam `CSGBox3D`, editáveis no editor.
 - **Gari:** `jogo/gari.gd`, com movimento, golpe, tiro, bolsa e inventário.
-- **Inimigos:** `jogo/pet.*` e `jogo/monitor.*`.
-- **Materiais:** `jogo/material_pet.*` e `jogo/componente.*`.
+- **Inimigos:** `jogo/notebook.*`, `jogo/microondas.*` e `jogo/fio.*`.
+- **Materiais:** `jogo/celula.*`, `jogo/motor.*` e `jogo/cobre.*`. Chão eletrificado em `jogo/chao_eletrico.*`, gerador em `jogo/gerador.*` e portão em `jogo/portao.gd`. Apresentações dos itens em `jogo/cutscene.*`, que pausa o jogo e roda com `process_mode` sempre ativo.
 - **Faíscas:** `jogo/faisca.gd`, `jogo/faisca_inimiga.tscn` e `jogo/faisca_gari.tscn`.
 - **Tela:** `jogo/hud.gd`.
 - **Câmera:** `jogo/camera.gd`.
 - **Camadas de colisão:** 1 cenário, 2 gari, 3 (valor 4) inimigos.
 - A interpolação de física está ligada para suavizar o movimento em monitores acima de 60 Hz.
 - `derrotar()` é adiada quando chamada por sinal de colisão, porque criar áreas durante esse sinal não é permitido.
-- A cerca é removida pelo sinal `tree_exiting` de `MonitorFinal`, ligado em `main.tscn`.
+- A cerca é removida pelo sinal `derrotado` de `MicroondasFinal`, ligado em `main.tscn`.
 
 - **Telas:** `jogo/tela.gd` controla início, vitória e reinício. O jogo fica pausado nessas telas.
 - **Sons:** nó `Sons` em `main.tscn`, com um `AudioStreamPlayer` por efeito. Ele continua ativo durante a pausa.
@@ -42,7 +42,7 @@ Uma fonte externa dizia que `CharacterBody3D` não tem trava de eixo. O teste ac
 
 ## Controles
 
-A/D ou setas: andar. Espaço, W ou seta para cima: pular. J ou X: vassourada. E: bolsa. R: pistola. F: solado. K ou C: atirar.
+A/D ou setas: andar. Espaço, W ou seta para cima: pular. J ou X: vassourada. R: pistola-dínamo. F: malha de aterramento. K ou C: atirar. Q: powerbank.
 
 ## Último teste automático (2026-11-19)
 
@@ -66,3 +66,23 @@ Sem solado, o pulo chegou a 2,35 e não passou do muro. Com solado, chegou a 3,6
 O ecoponto marcou o retorno e recuperou a vida. O dano tirou 1 ponto e foi ignorado durante a proteção. Na terceira perda, o gari voltou ao ecoponto com vida cheia e manteve o PET. A queda no vão tirou 1 ponto e o levou ao ecoponto. A fase completa continuou vencível.
 
 A sensação de jogo só pode ser avaliada jogando.
+
+## Teste do notebook (2026-11-20)
+
+O powerbank foi recusado antes da pistola. A pistola consumiu 3 células e começou com 3 de energia. O powerbank consumiu outras 3 e levou a energia a 6 de 6. O tiro na cerca gastou 1 de energia e abriu o caminho. Com a energia em zero, uma célula recarregou a pistola por completo. Sem células, 1 tiro voltou após a espera. A fase completa continuou vencível. No teste, o jogador automático chegou à cerca com 1 de vida, porque seis notebooks atiram faíscas em sequência.
+
+## Teste do micro-ondas (2026-11-20)
+
+Os 6 notebooks deram 6 células, e os 2 powerbanks levaram a carga máxima a 9 antes da pistola. Os 3 micro-ondas deram 3 motores, e a pistola-dínamo começou com 9 de 9. Com a carga zerada, o dínamo gerou 1 em cerca de 1,3 segundo. O tiro atravessou a cerca e abriu o caminho, e a fase completa continuou vencível. Parado em frente à cerca, o jogador automático perdeu toda a vida para o micro-ondas do outro lado e voltou ao ecoponto.
+
+## Teste dos fios e do chão eletrificado (2026-11-20)
+
+Os 3 fios deram 3 cobres. Sem a malha, o chão eletrificado empurrou o gari de volta a cada contato e tirou a vida até devolvê-lo ao ecoponto, sem que ele atravessasse. Com a malha, ele atravessou com as faíscas de aterramento ativas e chegou ao caminhão. A textura de brilho do chão com mapeamento `triplanar` deixava a placa toda branca, e o brilho foi trocado pela grade azul da própria textura, partículas e luz piscando.
+
+Com a malha, o gari ficou carregado ao sair do chão, ligou o gerador e o portão subiu antes de ele chegar ao caminhão. Sem carga, o gerador não liga.
+
+Os raios do chão são desenhados a cada quadro com `ImmediateMesh` em `jogo/chao_eletrico.gd`. A mistura aditiva sumia contra o céu claro, então o material usa transparência comum.
+
+## Teste das apresentações (2026-11-20)
+
+A primeira montagem do powerbank pausou o jogo e mostrou a apresentação. O primeiro Espaço completou a animação, e o segundo fechou e despausou. O segundo powerbank não repetiu a apresentação. Pistola e malha mostraram as suas, e a fase completa continuou vencível.
