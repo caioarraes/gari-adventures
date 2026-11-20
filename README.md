@@ -4,7 +4,7 @@ Plataforma 2.5D feito na Godot, em que um gari reaproveita os próprios inimigos
 
 > Protótipo jogável com uma fase curta.
 
-![Gari diante da cerca, atirando uma faísca com a pistola](docs/captura.png)
+![Gari com a malha de aterramento atravessando o chão eletrificado, cercado de raios, com o gerador, o portão e o caminhão de lixo ao fundo](docs/captura.png)
 
 ## Como rodar
 
@@ -56,9 +56,23 @@ O primeiro comando só é necessário depois de baixar o projeto ou quando a art
 5. Derrote os fios usados e, com 3 cobres, faça a malha de aterramento.
 6. Atravesse o chão eletrificado com a malha. Ela leva a corrente até o gerador, que abre o portão do caminhão de lixo.
 
-Na primeira vez que você monta cada item, uma apresentação mostra como aquele material é reciclado de verdade.
-
 Você tem 3 pontos de vida. Encoste nos ecopontos verdes para recuperar a vida e marcar o local de retorno. Ao perder toda a vida, você volta ao último ecoponto sem perder o que coletou.
+
+## Inimigos e reciclagem real
+
+Cada inimigo é um tipo de lixo, e cada item segue um reaproveitamento que existe de verdade.
+
+| Inimigo | Ataque | Deixa | Vira | Na vida real |
+|---|---|---|---|---|
+| Notebook | Contato | Célula 18650 | Powerbank | Células boas de baterias descartadas são testadas e reaproveitadas em powerbanks e lanternas |
+| Micro-ondas | Atira ondas | Motor | Pistola-dínamo | O motor do prato funciona como gerador de manivela |
+| Fios usados | Chicotada elétrica | Cobre | Malha de aterramento | O cobre é desencapado e reciclado muitas vezes sem perder qualidade |
+
+Na primeira vez que você monta cada item, o jogo pausa e mostra como aquele material é reciclado de verdade, com um cuidado de segurança real.
+
+![Apresentação do powerbank: notebook, célula 18650 e powerbank, com o uso real e um aviso sobre células de lítio](docs/apresentacao.png)
+
+As fontes de cada informação estão em [`cerebro/reciclagem.md`](cerebro/reciclagem.md).
 
 ## Organização
 
