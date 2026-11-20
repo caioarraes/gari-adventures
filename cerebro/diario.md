@@ -4,7 +4,7 @@
 
 - **Fase:** 1 a 3 aprovadas. Fase 4 elogiada pelo usuário, ainda sem teste com outra pessoa. Fase 5 em andamento.
 - **Projeto Godot:** criado na raiz, com cena principal em `jogo/main.tscn`.
-- **Repositório:** público em https://github.com/caioarraes/gari-adventures, com notebook, micro-ondas e fios ainda não enviados.
+- **Repositório:** público em https://github.com/caioarraes/gari-adventures, com tudo enviado até as apresentações dos itens.
 - **Próximo passo:** o usuário avalia os fios, a malha e o chão eletrificado e envia os próximos inimigos. Cada inimigo novo entra também em [reciclagem.md](reciclagem.md).
 
 ## Registro
@@ -45,3 +45,4 @@
 - Usuário achou que o chão não parecia ter raios. Foram criados raios desenhados em zigue-zague, com clarão e estalo de raio.
 - Raios do chão aprovados.
 - Apresentação animada do uso real criada para a primeira montagem de cada item (D-015).
+- A pedido do usuário, o nome provisório anterior foi retirado dos arquivos.
