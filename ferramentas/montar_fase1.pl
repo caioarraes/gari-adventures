@@ -17,7 +17,12 @@ sub caixa {
 	my ($nome, $x, $y, $w, $h, $mat) = @_;
 	return "[node name=\"$nome\" type=\"CSGBox3D\" parent=\"Pista\"]\nposition = Vector3($x, $y, 0)\nuse_collision = true\nsize = Vector3($w, $h, 4)\nmaterial = SubResource(\"$mat\")\n\n";
 }
-sub chao { my ($nome, $ini, $fim) = @_; my $w = $fim - $ini; my $c = ($ini + $fim) / 2; return caixa($nome, $c, -1, $w, 2, "chao"); }
+sub chao { my ($nome, $ini, $fim) = @_; my $w = $fim - $ini; my $c = ($ini + $fim) / 2; return caixa($nome, $c, -1, $w, 2, "chao") . "[node name=\"Frente$nome\" type=\"CSGBox3D\" parent=\"Pista\"]
+position = Vector3($c, -1, 2.03)
+size = Vector3($w, 2, 0.06)
+material = SubResource(\"concreto\")
+
+"; }
 sub caixote { my ($nome, $ini, $fim, $h) = @_; my $w = $fim - $ini; my $c = ($ini + $fim) / 2; return caixa($nome, $c, $h / 2, $w, $h, "plataforma"); }
 sub flutuante { my ($nome, $ini, $fim, $topo) = @_; my $w = $fim - $ini; my $c = ($ini + $fim) / 2; return caixa($nome, $c, $topo - 0.3, $w, 0.6, "plataforma"); }
 sub eletrico {

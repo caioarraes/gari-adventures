@@ -81,6 +81,6 @@ As fontes de cada informação estão em [`cerebro/reciclagem.md`](cerebro/recic
 |---|---|
 | `jogo/` | Cenas e scripts |
 | `arte/` e `som/` | Arte e áudio gerados para o protótipo |
-| `ferramentas/` | Gerador da arte e do áudio |
+| `ferramentas/` | Gerador da arte e do áudio e scripts que montam a fase e o cenário |
 | `cerebro/` | Decisões, roadmap, notas do desenvolvimento e a reciclagem real de cada inimigo |
 | `.claude/agents/` e `AGENTS.md` | Regras e agentes usados no desenvolvimento com Claude Code |

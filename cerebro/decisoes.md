@@ -73,3 +73,7 @@ Pedido do usuário, que achou a fase curta e os micro-ondas mal posicionados. O 
 ## D-018: Chão eletrificado só dá choque ao ser pisado (2026-11-21)
 
 Pedido do usuário para melhorar a experiência. A área de dano virou uma camada fina na superfície e só afeta o gari quando ele está no chão. Os raios só miram no gari nessas condições.
+
+## D-019: Cenário de rua brasileira em camadas, com tema por trecho (2026-11-21)
+
+Pedido do usuário para um cenário mais rico e coeso, com referências. Cada trecho ganhou um tema ligado ao inimigo, e o cenário inteiro segue uma paleta e luz únicas. A direção visual está em [visao.md](visao.md).

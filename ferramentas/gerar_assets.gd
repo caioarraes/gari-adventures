@@ -16,6 +16,7 @@ func _init() -> void:
 	_cenario()
 	_sons()
 	_musica()
+	_cenario_rua()
 	print("assets gerados")
 	quit()
 
@@ -483,3 +484,170 @@ func _musica() -> void:
 		if i % 8 == 4:
 			_nota(b, t, 0.1, 0.0, 0.0, "ruido", 0.16)
 	_gravar(b, "musica")
+
+
+func _cenario_rua() -> void:
+	rng.seed = 21
+
+	var calcada := _nova(32, 32)
+	_r(calcada, 0, 0, 32, 32, "#d9d4c7")
+	for x in 32:
+		var y := int(8.0 + sin(x / 32.0 * TAU) * 4.0)
+		_r(calcada, x, y, 1, 3, "#3b3833")
+		_r(calcada, x, y + 16, 1, 3, "#3b3833")
+	_ruido(calcada, ["#cfc9bb", "#e3dfd3"], 90)
+	_salvar(calcada, "calcada")
+
+	var concreto := _nova(32, 32)
+	_r(concreto, 0, 0, 32, 32, "#8d8a83")
+	_r(concreto, 0, 0, 32, 5, "#c9c5ba")
+	_r(concreto, 0, 5, 32, 1, "#6b6862")
+	_ruido(concreto, ["#7f7c75", "#9a968e", "#777470"], 120)
+	for x in [5, 19, 27]:
+		_r(concreto, x, 12, 1, 20, "#77746d")
+	_salvar(concreto, "concreto")
+
+	var rua := _nova(32, 32)
+	_r(rua, 0, 0, 32, 32, "#4a4d53")
+	_ruido(rua, ["#43464c", "#53565c"], 140)
+	_r(rua, 0, 15, 16, 2, "#e8c43a")
+	_salvar(rua, "rua")
+
+	for variante in [["loja_a", "#d98b5f", "#3f6f8f"], ["loja_b", "#8fb59a", "#7a4a3a"], ["loja_c", "#e2c66f", "#2f5f6f"]]:
+		var loja := _nova(32, 32)
+		_r(loja, 0, 0, 32, 32, variante[1])
+		_r(loja, 0, 0, 32, 3, variante[2])
+		_r(loja, 0, 3, 32, 1, "#f4f1e8")
+		_r(loja, 3, 8, 14, 24, "#6a6d74")
+		for y in range(9, 32, 2):
+			_r(loja, 3, y, 14, 1, "#8a8d94")
+		_r(loja, 20, 10, 9, 12, "#3b4a58")
+		_r(loja, 21, 11, 7, 10, "#f3d98a")
+		_r(loja, 20, 22, 9, 2, "#ece6d6")
+		_ruido(loja, ["#00000022"], 0)
+		_salvar(loja, variante[0])
+
+	for variante in [["andar_a", "#c7a48a", "#9f7f68"], ["andar_b", "#9fb0b8", "#7d8e96"], ["andar_c", "#d7c9a3", "#b0a27e"]]:
+		var andar := _nova(32, 32)
+		_r(andar, 0, 0, 32, 32, variante[1])
+		_r(andar, 0, 30, 32, 2, variante[2])
+		for x in [4, 19]:
+			var acesa := rng.randf() < 0.35
+			_r(andar, x - 1, 6, 11, 16, variante[2])
+			_r(andar, x, 7, 9, 14, "#f3d98a" if acesa else "#3a4a5a")
+			_r(andar, x + 4, 7, 1, 14, variante[2])
+			_r(andar, x - 1, 22, 11, 2, "#ece6d6")
+		if rng.randf() < 0.5:
+			_r(andar, 20, 24, 8, 5, "#d8d8d0")
+			_r(andar, 21, 25, 6, 3, "#a9adb5")
+		_salvar(andar, variante[0])
+
+	var tapume := _nova(32, 32)
+	_r(tapume, 0, 0, 32, 32, "#2f6db0")
+	for x in range(0, 32, 8):
+		_r(tapume, x, 0, 1, 32, "#245a93")
+	_r(tapume, 0, 4, 32, 3, "#f4f1e8")
+	_r(tapume, 0, 25, 32, 3, "#f28a1e")
+	_salvar(tapume, "tapume")
+
+	var ferro := _nova(32, 32)
+	_r(ferro, 0, 0, 32, 32, "#8a6a52")
+	for x in range(0, 32, 4):
+		_r(ferro, x, 0, 2, 32, "#a3826a")
+	_ruido(ferro, ["#6e4f3a", "#b0603a", "#7c5a44"], 160)
+	_salvar(ferro, "ferro_velho")
+
+	var toldo := _nova(16, 8)
+	for x in range(0, 16, 4):
+		_r(toldo, x, 0, 2, 6, "#d94b3a")
+		_r(toldo, x + 2, 0, 2, 6, "#f4f1e8")
+	for x in range(0, 16, 4):
+		_r(toldo, x, 6, 3, 2, "#d94b3a")
+	_salvar(toldo, "toldo")
+
+	var banca := _nova(30, 34)
+	_r(banca, 0, 4, 30, 30, "#2f7a4a")
+	_r(banca, 0, 0, 30, 5, "#245e39")
+	_r(banca, 3, 9, 24, 12, "#f4f1e8")
+	for x in range(4, 26, 5):
+		_r(banca, x, 10, 4, 10, ["#e04030", "#3fa9ff", "#f2c230", "#9b59b6", "#2fd070"][rng.randi_range(0, 4)])
+	_r(banca, 3, 24, 24, 10, "#6a6d74")
+	_salvar(banca, "banca")
+
+	var orelhao := _nova(14, 34)
+	_r(orelhao, 1, 0, 12, 4, "#f28a1e")
+	_r(orelhao, 0, 3, 14, 12, "#f28a1e")
+	_r(orelhao, 3, 5, 8, 8, "#c96a10")
+	_r(orelhao, 5, 6, 4, 5, "#30343c")
+	_r(orelhao, 6, 15, 2, 19, "#5a5d66")
+	_salvar(orelhao, "orelhao")
+
+	var cone := _nova(10, 14)
+	for y in 12:
+		var largura := 2 + y / 2
+		_r(cone, 5 - largura / 2, y, largura, 1, "#f28a1e" if (y / 3) % 2 == 0 else "#f4f1e8")
+	_r(cone, 0, 12, 10, 2, "#30343c")
+	_salvar(cone, "cone")
+
+	var sucata := _nova(48, 30)
+	_r(sucata, 2, 12, 16, 18, "#e8e8e0")
+	_r(sucata, 3, 14, 14, 6, "#c9c9c0")
+	_r(sucata, 18, 18, 14, 12, "#d8d8d0")
+	_r(sucata, 20, 20, 9, 7, "#3a4a3a")
+	_r(sucata, 30, 6, 16, 24, "#8a8e98")
+	_r(sucata, 32, 8, 12, 9, "#30343c")
+	_r(sucata, 10, 4, 14, 9, "#5a5d66")
+	_r(sucata, 12, 5, 10, 6, "#20242c")
+	_r(sucata, 0, 27, 48, 3, "#6e4f3a")
+	_salvar(sucata, "sucata")
+
+	var bobina := _nova(20, 20)
+	var centro := Vector2(9.5, 9.5)
+	for py in 20:
+		for px in 20:
+			var d := Vector2(px, py).distance_to(centro)
+			if d <= 9.5:
+				bobina.set_pixel(px, py, Color("#a3826a") if d > 7.5 or d < 3.0 else Color("#2a2d35" if int(d) % 2 == 0 else "#c0392b"))
+	_salvar(bobina, "bobina")
+
+	var bag := _nova(24, 24)
+	_r(bag, 2, 4, 20, 20, "#e8e4d6")
+	_r(bag, 2, 4, 20, 3, "#cfc9b6")
+	_r(bag, 4, 0, 3, 5, "#cfc9b6")
+	_r(bag, 17, 0, 3, 5, "#cfc9b6")
+	for n in 10:
+		_r(bag, rng.randi_range(3, 19), rng.randi_range(1, 4), 2, 2, ["#7fcde6", "#2fd070", "#e04030", "#f2c230"][rng.randi_range(0, 3)])
+	_salvar(bag, "bag")
+
+	var fiacao := _nova(256, 48)
+	for n in 5:
+		var altura := 4 + n * 5
+		var flecha := 6.0 + n * 2.0
+		for x in 256:
+			var y := altura + int(flecha * sin(x / 255.0 * PI))
+			fiacao.set_pixel(x, y, Color("#17191f"))
+	for volta in 4:
+		var cx := 120.0 + volta * 3.0
+		for a in 60:
+			var angulo := a / 60.0 * TAU
+			fiacao.set_pixel(int(cx + cos(angulo) * (8 + volta)), int(24 + sin(angulo) * (5 + volta)), Color("#17191f"))
+	_salvar(fiacao, "fiacao")
+
+	var arvore := _nova(30, 44)
+	_r(arvore, 13, 22, 4, 22, "#6e4f3a")
+	for n in 40:
+		var cx := rng.randi_range(2, 26)
+		var cy := rng.randi_range(2, 24)
+		_r(arvore, cx, cy, 5, 4, ["#f2c230", "#e0a81e", "#f6d55a"][rng.randi_range(0, 2)])
+	_salvar(arvore, "arvore")
+
+	var morro := _nova(160, 50)
+	for x in 160:
+		var topo := int(14.0 + sin(x / 160.0 * PI) * -10.0 + sin(x / 9.0) * 1.5)
+		_r(morro, x, topo, 1, 50 - topo, "#7d8a6a")
+	for n in 260:
+		var x := rng.randi_range(8, 150)
+		var topo := int(14.0 + sin(x / 160.0 * PI) * -10.0)
+		var y := rng.randi_range(topo + 2, 48)
+		_r(morro, x, y, rng.randi_range(2, 4), 2, ["#c98f6a", "#d9c7a0", "#a3b0b8", "#e3b38a", "#b86a4a"][rng.randi_range(0, 4)])
+	_salvar(morro, "morro")

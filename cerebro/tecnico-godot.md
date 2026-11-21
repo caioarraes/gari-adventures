@@ -96,3 +96,7 @@ O jogador automático completou a fase de 118 unidades em 27,5 segundos, sem que
 O jogador automático completou as 172 unidades sem quedas. Atrás da caixa-escudo, nenhuma onda passou e o gari não perdeu vida. Ondas e faíscas têm máscara de colisão com a camada 1, do cenário. A cerca usa a camada 16, e o gari colide com as camadas 1 e 16, então ela bloqueia o gari mas não as faíscas. O layout da fase é gerado por `ferramentas/montar_fase1.pl`, que reescreve os nós de `Pista`, `Inimigos`, `Ecopontos` e `Placas` em `main.tscn`.
 
 O chão eletrificado usa uma zona de 0,3 de altura e filtra os corpos com `is_on_floor()`. No teste, pular por cima da faixa curta não tirou vida, e cair ou ficar de pé nela tirou.
+
+## Cenário (2026-11-21)
+
+`ferramentas/montar_cenario.pl` gera todos os nós de `Fundo`: rua, calçada de trás, fachada contínua, toldos, letreiros, objetos por trecho, morros e horizonte. `ferramentas/montar_fase1.pl` também cria a frente de concreto de cada trecho de chão. As texturas novas vêm de `_cenario_rua()` em `gerar_assets.gd`. Materiais de fachada usam escala vertical negativa no mapeamento `triplanar` para a imagem não ficar de cabeça para baixo, exceto o concreto. Nada do cenário tem colisão, e a fase continuou vencível no teste automático.

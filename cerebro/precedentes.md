@@ -76,6 +76,13 @@ Ordenados pela proximidade mecânica com o jogo. Tema e visual não contam. As o
 - O guia de fases do SRB2, de outro jogo e escrito pela comunidade, recomenda um atirador por área e cobertura para o jogador.
 - **Observar:** base da versão 3 da fase 1, com um micro-ondas por vez, caixa como escudo e nenhum atirador perto de ecoponto ou pouso.
 
+### Cenário 2.5D: camadas, coerência e legibilidade
+
+- Guias de cenário em camadas recomendam separar primeiro plano, meio e fundo, e manter todas as camadas com o mesmo horário, luz e paleta.
+- O fundo deve contextualizar o ambiente sem prejudicar a leitura do primeiro plano. Cor e contraste ajudam a marcar o que é jogável.
+- O léxico de elementos urbanos de São Paulo, da USP, lista banca de jornal, calçada, fiação elétrica, poste de luz e piso de caquinhos. Estudos sobre pichação a tratam como parte do cenário das cidades.
+- **Observar:** base da direção visual em [visao.md](visao.md).
+
 ### Metroidvanias: obstáculo visível antes da habilidade
 
 - Guias de design recomendam mostrar o obstáculo antes de o jogador poder resolvê-lo, para que ele o reconheça e o reinterprete depois.
@@ -96,6 +103,7 @@ Muitas são guias e wikis de fãs. Confira números antes de usá-los como refer
 - The Last of Us: [Push Square](https://pushsquare.com/guides/the-last-of-us-1-all-items-and-how-to-craft-them), [SuperJump](https://medium.com/super-jump/the-brilliant-crafting-system-in-the-last-of-us-bb33f221f2c1)
 
 - Inimigos que atiram: [Yacht Club Games, Specter of Torment 2/5](https://yachtclubgames.com/blog/specter-of-torment-level-design-deep-dive-2-5), [Ben Fritz sobre Shovel Knight](https://medium.com/@benedictfritz/dissecting-the-game-hazard-design-in-shovel-knight-4dfcbe46b758), [SRB2 Wiki](https://mail.wiki.srb2.org/wiki/Level_Design_101/Enemy_placement)
+- Cenário: [Return devlog sobre profundidade](https://jesseeisenbart.itch.io/return-alpha/devlog/384936/return-devlog-02-creating-visual-depth-in-a-2d-pixel-world), [Sorceress sobre parallax](https://sorceress.games/wiki/sorceress/parallax), [Game Developer sobre cenários laterais](https://gamedeveloper.com/art/sexy-tiles-sidescrollers), [São Paulo Elementos Urbanos, USP](https://edisciplinas.usp.br/pluginfile.php/5811883/mod_resource/content/0/LIVRO%20LEXICO%20SP.pdf), [Revista Pixo](https://periodicos.ufpel.edu.br/index.php/pixo/issue/download/634/468)
 - Shovel Knight: [Yacht Club Games](https://www.yachtclubgames.com/blog/check-point-design), [Game Informer](https://www.gameinformer.com/games/shovel_knight/b/3ds/archive/2014/06/26/game-informer-review-shovel-knight-3ds-pc-wii-u.aspx), [Middle of Nowhere Gaming](https://middleofnowheregaming.com/2015/05/06/why-i-cant-play-shovel-knight-and-our-obsessive-gaming-tendencies)
 - Bloqueio por habilidade: [Bugnet](https://bugnet.io/blog/how-to-design-a-metroidvania-map), [Sorceress](https://sorceress.games/blog/sprawl-how-to-make-a-metroidvania-map-ability-gates)
 

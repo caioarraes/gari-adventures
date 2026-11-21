@@ -44,6 +44,27 @@
 [ext_resource type="AudioStream" path="res://som/cerca.wav" id="38_cerca"]
 [ext_resource type="AudioStream" path="res://som/vitoria.wav" id="39_vitoria"]
 [ext_resource type="AudioStream" path="res://som/musica.wav" id="40_musica"]
+[ext_resource type="Texture2D" path="res://arte/calcada.png" id="60_calcada"]
+[ext_resource type="Texture2D" path="res://arte/concreto.png" id="61_concreto"]
+[ext_resource type="Texture2D" path="res://arte/rua.png" id="62_rua"]
+[ext_resource type="Texture2D" path="res://arte/loja_a.png" id="63_loja_a"]
+[ext_resource type="Texture2D" path="res://arte/loja_b.png" id="64_loja_b"]
+[ext_resource type="Texture2D" path="res://arte/loja_c.png" id="65_loja_c"]
+[ext_resource type="Texture2D" path="res://arte/andar_a.png" id="66_andar_a"]
+[ext_resource type="Texture2D" path="res://arte/andar_b.png" id="67_andar_b"]
+[ext_resource type="Texture2D" path="res://arte/andar_c.png" id="68_andar_c"]
+[ext_resource type="Texture2D" path="res://arte/tapume.png" id="69_tapume"]
+[ext_resource type="Texture2D" path="res://arte/ferro_velho.png" id="70_ferro_velho"]
+[ext_resource type="Texture2D" path="res://arte/toldo.png" id="71_toldo"]
+[ext_resource type="Texture2D" path="res://arte/banca.png" id="72_banca"]
+[ext_resource type="Texture2D" path="res://arte/orelhao.png" id="73_orelhao"]
+[ext_resource type="Texture2D" path="res://arte/cone.png" id="74_cone"]
+[ext_resource type="Texture2D" path="res://arte/sucata.png" id="75_sucata"]
+[ext_resource type="Texture2D" path="res://arte/bobina.png" id="76_bobina"]
+[ext_resource type="Texture2D" path="res://arte/bag.png" id="77_bag"]
+[ext_resource type="Texture2D" path="res://arte/fiacao.png" id="78_fiacao"]
+[ext_resource type="Texture2D" path="res://arte/arvore.png" id="79_arvore"]
+[ext_resource type="Texture2D" path="res://arte/morro.png" id="80_morro"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ceu_material"]
 sky_top_color = Color(0.36, 0.62, 0.86, 1)
@@ -66,7 +87,7 @@ fog_density = 0.012
 fog_sky_affect = 0.0
 
 [sub_resource type="StandardMaterial3D" id="chao"]
-albedo_texture = ExtResource("14_asfalto")
+albedo_texture = ExtResource("60_calcada")
 uv1_scale = Vector3(0.5, 0.5, 0.5)
 uv1_triplanar = true
 uv1_world_triplanar = true
@@ -153,6 +174,79 @@ texture_filter = 0
 material = SubResource("material_aterramento")
 size = Vector2(0.1, 0.1)
 
+[sub_resource type="StandardMaterial3D" id="horizonte"]
+albedo_color = Color(0.55, 0.6, 0.68, 1)
+
+[sub_resource type="StandardMaterial3D" id="concreto"]
+albedo_texture = ExtResource("61_concreto")
+uv1_scale = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
+uv1_world_triplanar = true
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="rua"]
+albedo_texture = ExtResource("62_rua")
+uv1_scale = Vector3(0.25, -0.25, 0.25)
+uv1_triplanar = true
+uv1_world_triplanar = true
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="tapume"]
+albedo_texture = ExtResource("69_tapume")
+uv1_scale = Vector3(0.4, -0.4, 0.4)
+uv1_triplanar = true
+uv1_world_triplanar = true
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="ferro_velho"]
+albedo_texture = ExtResource("70_ferro_velho")
+uv1_scale = Vector3(0.4, -0.4, 0.4)
+uv1_triplanar = true
+uv1_world_triplanar = true
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="loja_a"]
+albedo_texture = ExtResource("63_loja_a")
+uv1_scale = Vector3(0.2857, -0.2857, 0.2857)
+uv1_triplanar = true
+uv1_world_triplanar = true
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="andar_a"]
+albedo_texture = ExtResource("66_andar_a")
+uv1_scale = Vector3(0.25, -0.25, 0.25)
+uv1_triplanar = true
+uv1_world_triplanar = true
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="loja_b"]
+albedo_texture = ExtResource("64_loja_b")
+uv1_scale = Vector3(0.2857, -0.2857, 0.2857)
+uv1_triplanar = true
+uv1_world_triplanar = true
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="andar_b"]
+albedo_texture = ExtResource("67_andar_b")
+uv1_scale = Vector3(0.25, -0.25, 0.25)
+uv1_triplanar = true
+uv1_world_triplanar = true
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="loja_c"]
+albedo_texture = ExtResource("65_loja_c")
+uv1_scale = Vector3(0.2857, -0.2857, 0.2857)
+uv1_triplanar = true
+uv1_world_triplanar = true
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="andar_c"]
+albedo_texture = ExtResource("68_andar_c")
+uv1_scale = Vector3(0.25, -0.25, 0.25)
+uv1_triplanar = true
+uv1_world_triplanar = true
+texture_filter = 0
+
 [node name="Main" type="Node3D"]
 
 [node name="Ambiente" type="WorldEnvironment" parent="."]
@@ -166,6 +260,7 @@ shadow_enabled = true
 [node name="Gari" type="CharacterBody3D" parent="."]
 position = Vector3(0, 0.05, 0)
 collision_layer = 2
+collision_mask = 17
 collision_mask = 17
 collision_mask = 17
 collision_mask = 17
@@ -246,6 +341,11 @@ use_collision = true
 size = Vector3(17, 2, 4)
 material = SubResource("chao")
 
+[node name="FrenteChao1" type="CSGBox3D" parent="Pista"]
+position = Vector3(3.5, -1, 2.03)
+size = Vector3(17, 2, 0.06)
+material = SubResource("concreto")
+
 [node name="Caixa" type="CSGBox3D" parent="Pista"]
 position = Vector3(9, 0.6, 0)
 use_collision = true
@@ -257,6 +357,11 @@ position = Vector3(19.5, -1, 0)
 use_collision = true
 size = Vector3(9, 2, 4)
 material = SubResource("chao")
+
+[node name="FrenteChao2" type="CSGBox3D" parent="Pista"]
+position = Vector3(19.5, -1, 2.03)
+size = Vector3(9, 2, 0.06)
+material = SubResource("concreto")
 
 [node name="Plataforma1" type="CSGBox3D" parent="Pista"]
 position = Vector3(27.5, 1.2, 0)
@@ -276,6 +381,11 @@ use_collision = true
 size = Vector3(8, 2, 4)
 material = SubResource("chao")
 
+[node name="FrenteChao3" type="CSGBox3D" parent="Pista"]
+position = Vector3(40, -1, 2.03)
+size = Vector3(8, 2, 0.06)
+material = SubResource("concreto")
+
 [node name="ChaoEletricoPequeno" parent="Pista" instance=ExtResource("9_chao_eletrico")]
 position = Vector3(45.25, 0, 0)
 largura = 2.5
@@ -285,6 +395,11 @@ position = Vector3(76.25, -1, 0)
 use_collision = true
 size = Vector3(59.5, 2, 4)
 material = SubResource("chao")
+
+[node name="FrenteChao3b" type="CSGBox3D" parent="Pista"]
+position = Vector3(76.25, -1, 2.03)
+size = Vector3(59.5, 2, 0.06)
+material = SubResource("concreto")
 
 [node name="Caixa2" type="CSGBox3D" parent="Pista"]
 position = Vector3(64.75, 0.6, 0)
@@ -328,6 +443,11 @@ use_collision = true
 size = Vector3(26, 2, 4)
 material = SubResource("chao")
 
+[node name="FrenteChao5" type="CSGBox3D" parent="Pista"]
+position = Vector3(131, -1, 2.03)
+size = Vector3(26, 2, 0.06)
+material = SubResource("concreto")
+
 [node name="Cerca" type="CSGBox3D" parent="Pista"]
 position = Vector3(136, 4, 0)
 collision_layer = 16
@@ -351,6 +471,11 @@ use_collision = true
 size = Vector3(11.5, 2, 4)
 material = SubResource("chao")
 
+[node name="FrenteChao6" type="CSGBox3D" parent="Pista"]
+position = Vector3(152.25, -1, 2.03)
+size = Vector3(11.5, 2, 0.06)
+material = SubResource("concreto")
+
 [node name="ChaoEletrico" parent="Pista" instance=ExtResource("9_chao_eletrico")]
 position = Vector3(162, 0, 0)
 
@@ -369,6 +494,11 @@ position = Vector3(169, -1, 0)
 use_collision = true
 size = Vector3(6, 2, 4)
 material = SubResource("chao")
+
+[node name="FrenteChao4" type="CSGBox3D" parent="Pista"]
+position = Vector3(169, -1, 2.03)
+size = Vector3(6, 2, 0.06)
+material = SubResource("concreto")
 
 [node name="ParedeFinal" type="CSGBox3D" parent="Pista"]
 position = Vector3(172.5, 4, 0)
@@ -768,200 +898,936 @@ horizontal_alignment = 1
 
 [node name="Fundo" type="Node3D" parent="."]
 
-[node name="Predio1" type="CSGBox3D" parent="Fundo"]
-position = Vector3(2, 3, -8)
-size = Vector3(7, 8, 5)
-material = SubResource("predio_a")
+[node name="Caixa1" type="CSGBox3D" parent="Fundo"]
+position = Vector3(85, -0.15, -4.5)
+size = Vector3(200, 0.3, 5)
+material = SubResource("rua")
 
-[node name="Predio2" type="CSGBox3D" parent="Fundo"]
-position = Vector3(16, 4.5, -10)
-size = Vector3(8, 11, 5)
-material = SubResource("predio_b")
+[node name="Caixa2" type="CSGBox3D" parent="Fundo"]
+position = Vector3(85, 0, -7.75)
+size = Vector3(200, 0.3, 1.5)
+material = SubResource("chao")
 
-[node name="Predio3" type="CSGBox3D" parent="Fundo"]
-position = Vector3(31, 3.5, -8)
-size = Vector3(9, 9, 5)
-material = SubResource("predio_a")
+[node name="Caixa3" type="CSGBox3D" parent="Fundo"]
+position = Vector3(-8.5, 1.75, -10.5)
+size = Vector3(6.9, 3.5, 5)
+material = SubResource("loja_a")
 
-[node name="Predio4" type="CSGBox3D" parent="Fundo"]
-position = Vector3(45, 5, -11)
-size = Vector3(10, 12, 5)
-material = SubResource("predio_b")
+[node name="Caixa4" type="CSGBox3D" parent="Fundo"]
+position = Vector3(-8.5, 5.75, -10.5)
+size = Vector3(6.9, 4.5, 5)
+material = SubResource("andar_b")
 
-[node name="Predio5" type="CSGBox3D" parent="Fundo"]
-position = Vector3(59, 3.5, -9)
-size = Vector3(9, 9, 5)
-material = SubResource("predio_a")
+[node name="Objeto5" type="Sprite3D" parent="Fundo"]
+position = Vector3(-10.25, 3.53, -7.95)
+pixel_size = 0.12
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("71_toldo")
 
-[node name="Predio6" type="CSGBox3D" parent="Fundo"]
-position = Vector3(72, 5, -10)
-size = Vector3(10, 12, 5)
-material = SubResource("predio_b")
+[node name="Caixa6" type="CSGBox3D" parent="Fundo"]
+position = Vector3(-1, 1.75, -10.5)
+size = Vector3(7.9, 3.5, 5)
+material = SubResource("loja_b")
 
-[node name="Lixeira1" type="Sprite3D" parent="Fundo"]
+[node name="Caixa7" type="CSGBox3D" parent="Fundo"]
+position = Vector3(-1, 5.25, -10.5)
+size = Vector3(7.9, 3.5, 5)
+material = SubResource("andar_c")
+
+[node name="Objeto8" type="Sprite3D" parent="Fundo"]
+position = Vector3(-3, 3.53, -7.95)
+pixel_size = 0.12
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("71_toldo")
+
+[node name="Caixa9" type="CSGBox3D" parent="Fundo"]
+position = Vector3(6.5, 1.75, -10.5)
+size = Vector3(6.9, 3.5, 5)
+material = SubResource("loja_c")
+
+[node name="Caixa10" type="CSGBox3D" parent="Fundo"]
+position = Vector3(6.5, 8, -10.5)
+size = Vector3(6.9, 9, 5)
+material = SubResource("andar_a")
+
+[node name="Objeto11" type="Sprite3D" parent="Fundo"]
+position = Vector3(4.75, 3.53, -7.95)
+pixel_size = 0.12
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("71_toldo")
+
+[node name="Caixa12" type="CSGBox3D" parent="Fundo"]
+position = Vector3(12.5, 1.75, -10.5)
+size = Vector3(4.9, 3.5, 5)
+material = SubResource("loja_a")
+
+[node name="Caixa13" type="CSGBox3D" parent="Fundo"]
+position = Vector3(12.5, 6.5, -10.5)
+size = Vector3(4.9, 6, 5)
+material = SubResource("andar_b")
+
+[node name="Objeto14" type="Sprite3D" parent="Fundo"]
+position = Vector3(11.25, 3.53, -7.95)
+pixel_size = 0.12
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("71_toldo")
+
+[node name="Caixa15" type="CSGBox3D" parent="Fundo"]
+position = Vector3(18, 1.75, -10.5)
+size = Vector3(5.9, 3.5, 5)
+material = SubResource("loja_b")
+
+[node name="Caixa16" type="CSGBox3D" parent="Fundo"]
+position = Vector3(18, 8, -10.5)
+size = Vector3(5.9, 9, 5)
+material = SubResource("andar_c")
+
+[node name="Objeto17" type="Sprite3D" parent="Fundo"]
+position = Vector3(16.5, 3.53, -7.95)
+pixel_size = 0.12
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("71_toldo")
+
+[node name="Caixa18" type="CSGBox3D" parent="Fundo"]
+position = Vector3(25, 1.75, -10.5)
+size = Vector3(7.9, 3.5, 5)
+material = SubResource("loja_c")
+
+[node name="Caixa19" type="CSGBox3D" parent="Fundo"]
+position = Vector3(25, 6.5, -10.5)
+size = Vector3(7.9, 6, 5)
+material = SubResource("andar_a")
+
+[node name="Objeto20" type="Sprite3D" parent="Fundo"]
+position = Vector3(23, 3.53, -7.95)
+pixel_size = 0.12
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("71_toldo")
+
+[node name="Caixa21" type="CSGBox3D" parent="Fundo"]
+position = Vector3(32.5, 1.75, -10.5)
+size = Vector3(6.9, 3.5, 5)
+material = SubResource("loja_a")
+
+[node name="Caixa22" type="CSGBox3D" parent="Fundo"]
+position = Vector3(32.5, 5.75, -10.5)
+size = Vector3(6.9, 4.5, 5)
+material = SubResource("andar_b")
+
+[node name="Objeto23" type="Sprite3D" parent="Fundo"]
+position = Vector3(30.75, 3.53, -7.95)
+pixel_size = 0.12
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("71_toldo")
+
+[node name="Caixa24" type="CSGBox3D" parent="Fundo"]
+position = Vector3(38.5, 1.75, -10.5)
+size = Vector3(4.9, 3.5, 5)
+material = SubResource("loja_b")
+
+[node name="Caixa25" type="CSGBox3D" parent="Fundo"]
+position = Vector3(38.5, 7.25, -10.5)
+size = Vector3(4.9, 7.5, 5)
+material = SubResource("andar_c")
+
+[node name="Objeto26" type="Sprite3D" parent="Fundo"]
+position = Vector3(37.25, 3.53, -7.95)
+pixel_size = 0.12
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("71_toldo")
+
+[node name="Caixa27" type="CSGBox3D" parent="Fundo"]
+position = Vector3(44.5, 1.75, -10.5)
+size = Vector3(6.9, 3.5, 5)
+material = SubResource("loja_c")
+
+[node name="Caixa28" type="CSGBox3D" parent="Fundo"]
+position = Vector3(44.5, 7.25, -10.5)
+size = Vector3(6.9, 7.5, 5)
+material = SubResource("andar_a")
+
+[node name="Objeto29" type="Sprite3D" parent="Fundo"]
+position = Vector3(42.75, 3.53, -7.95)
+pixel_size = 0.12
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("71_toldo")
+
+[node name="Caixa30" type="CSGBox3D" parent="Fundo"]
+position = Vector3(50.5, 1.75, -10.5)
+size = Vector3(4.9, 3.5, 5)
+material = SubResource("loja_a")
+
+[node name="Caixa31" type="CSGBox3D" parent="Fundo"]
+position = Vector3(50.5, 5.75, -10.5)
+size = Vector3(4.9, 4.5, 5)
+material = SubResource("andar_b")
+
+[node name="Objeto32" type="Sprite3D" parent="Fundo"]
+position = Vector3(49.25, 3.53, -7.95)
+pixel_size = 0.12
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("71_toldo")
+
+[node name="Caixa33" type="CSGBox3D" parent="Fundo"]
+position = Vector3(56, 1.75, -10.5)
+size = Vector3(5.9, 3.5, 5)
+material = SubResource("loja_b")
+
+[node name="Caixa34" type="CSGBox3D" parent="Fundo"]
+position = Vector3(56, 7.25, -10.5)
+size = Vector3(5.9, 7.5, 5)
+material = SubResource("andar_c")
+
+[node name="Objeto35" type="Sprite3D" parent="Fundo"]
+position = Vector3(54.5, 3.53, -7.95)
+pixel_size = 0.12
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("71_toldo")
+
+[node name="Caixa36" type="CSGBox3D" parent="Fundo"]
+position = Vector3(63, 1.75, -10.5)
+size = Vector3(7.9, 3.5, 5)
+material = SubResource("loja_c")
+
+[node name="Caixa37" type="CSGBox3D" parent="Fundo"]
+position = Vector3(63, 5.75, -10.5)
+size = Vector3(7.9, 4.5, 5)
+material = SubResource("andar_a")
+
+[node name="Objeto38" type="Sprite3D" parent="Fundo"]
+position = Vector3(61, 3.53, -7.95)
+pixel_size = 0.12
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("71_toldo")
+
+[node name="Caixa39" type="CSGBox3D" parent="Fundo"]
+position = Vector3(70, 1.75, -10.5)
+size = Vector3(5.9, 3.5, 5)
+material = SubResource("loja_a")
+
+[node name="Caixa40" type="CSGBox3D" parent="Fundo"]
+position = Vector3(70, 8, -10.5)
+size = Vector3(5.9, 9, 5)
+material = SubResource("andar_b")
+
+[node name="Objeto41" type="Sprite3D" parent="Fundo"]
+position = Vector3(68.5, 3.53, -7.95)
+pixel_size = 0.12
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("71_toldo")
+
+[node name="Caixa42" type="CSGBox3D" parent="Fundo"]
+position = Vector3(77, 1.75, -10.5)
+size = Vector3(7.9, 3.5, 5)
+material = SubResource("loja_b")
+
+[node name="Caixa43" type="CSGBox3D" parent="Fundo"]
+position = Vector3(77, 5.75, -10.5)
+size = Vector3(7.9, 4.5, 5)
+material = SubResource("andar_c")
+
+[node name="Objeto44" type="Sprite3D" parent="Fundo"]
+position = Vector3(75, 3.53, -7.95)
+pixel_size = 0.12
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("71_toldo")
+
+[node name="Caixa45" type="CSGBox3D" parent="Fundo"]
+position = Vector3(85, 1.75, -10.5)
+size = Vector3(7.9, 3.5, 5)
+material = SubResource("loja_c")
+
+[node name="Caixa46" type="CSGBox3D" parent="Fundo"]
+position = Vector3(85, 6.5, -10.5)
+size = Vector3(7.9, 6, 5)
+material = SubResource("andar_a")
+
+[node name="Objeto47" type="Sprite3D" parent="Fundo"]
+position = Vector3(83, 3.53, -7.95)
+pixel_size = 0.12
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("71_toldo")
+
+[node name="Caixa48" type="CSGBox3D" parent="Fundo"]
+position = Vector3(93, 1.75, -10.5)
+size = Vector3(7.9, 3.5, 5)
+material = SubResource("loja_a")
+
+[node name="Caixa49" type="CSGBox3D" parent="Fundo"]
+position = Vector3(93, 5.75, -10.5)
+size = Vector3(7.9, 4.5, 5)
+material = SubResource("andar_b")
+
+[node name="Objeto50" type="Sprite3D" parent="Fundo"]
+position = Vector3(91, 3.53, -7.95)
+pixel_size = 0.12
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("71_toldo")
+
+[node name="Caixa51" type="CSGBox3D" parent="Fundo"]
+position = Vector3(100.5, 1.75, -10.5)
+size = Vector3(6.9, 3.5, 5)
+material = SubResource("loja_b")
+
+[node name="Caixa52" type="CSGBox3D" parent="Fundo"]
+position = Vector3(100.5, 6.5, -10.5)
+size = Vector3(6.9, 6, 5)
+material = SubResource("andar_c")
+
+[node name="Objeto53" type="Sprite3D" parent="Fundo"]
+position = Vector3(98.75, 3.53, -7.95)
+pixel_size = 0.12
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("71_toldo")
+
+[node name="Caixa54" type="CSGBox3D" parent="Fundo"]
+position = Vector3(106.5, 1.75, -10.5)
+size = Vector3(4.9, 3.5, 5)
+material = SubResource("loja_c")
+
+[node name="Caixa55" type="CSGBox3D" parent="Fundo"]
+position = Vector3(106.5, 7.25, -10.5)
+size = Vector3(4.9, 7.5, 5)
+material = SubResource("andar_a")
+
+[node name="Objeto56" type="Sprite3D" parent="Fundo"]
+position = Vector3(105.25, 3.53, -7.95)
+pixel_size = 0.12
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("71_toldo")
+
+[node name="Caixa57" type="CSGBox3D" parent="Fundo"]
+position = Vector3(112, 1.75, -10.5)
+size = Vector3(5.9, 3.5, 5)
+material = SubResource("loja_a")
+
+[node name="Caixa58" type="CSGBox3D" parent="Fundo"]
+position = Vector3(112, 5.25, -10.5)
+size = Vector3(5.9, 3.5, 5)
+material = SubResource("andar_b")
+
+[node name="Objeto59" type="Sprite3D" parent="Fundo"]
+position = Vector3(110.5, 3.53, -7.95)
+pixel_size = 0.12
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("71_toldo")
+
+[node name="Caixa60" type="CSGBox3D" parent="Fundo"]
+position = Vector3(119, 1.75, -10.5)
+size = Vector3(7.9, 3.5, 5)
+material = SubResource("loja_b")
+
+[node name="Caixa61" type="CSGBox3D" parent="Fundo"]
+position = Vector3(119, 7.25, -10.5)
+size = Vector3(7.9, 7.5, 5)
+material = SubResource("andar_c")
+
+[node name="Objeto62" type="Sprite3D" parent="Fundo"]
+position = Vector3(117, 3.53, -7.95)
+pixel_size = 0.12
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("71_toldo")
+
+[node name="Caixa63" type="CSGBox3D" parent="Fundo"]
+position = Vector3(125.5, 1.75, -10.5)
+size = Vector3(4.9, 3.5, 5)
+material = SubResource("loja_c")
+
+[node name="Caixa64" type="CSGBox3D" parent="Fundo"]
+position = Vector3(125.5, 8, -10.5)
+size = Vector3(4.9, 9, 5)
+material = SubResource("andar_a")
+
+[node name="Objeto65" type="Sprite3D" parent="Fundo"]
+position = Vector3(124.25, 3.53, -7.95)
+pixel_size = 0.12
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("71_toldo")
+
+[node name="Caixa66" type="CSGBox3D" parent="Fundo"]
+position = Vector3(132, 1.75, -10.5)
+size = Vector3(7.9, 3.5, 5)
+material = SubResource("loja_a")
+
+[node name="Caixa67" type="CSGBox3D" parent="Fundo"]
+position = Vector3(132, 5.25, -10.5)
+size = Vector3(7.9, 3.5, 5)
+material = SubResource("andar_b")
+
+[node name="Objeto68" type="Sprite3D" parent="Fundo"]
+position = Vector3(130, 3.53, -7.95)
+pixel_size = 0.12
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("71_toldo")
+
+[node name="Caixa69" type="CSGBox3D" parent="Fundo"]
+position = Vector3(138.5, 1.75, -10.5)
+size = Vector3(4.9, 3.5, 5)
+material = SubResource("loja_b")
+
+[node name="Caixa70" type="CSGBox3D" parent="Fundo"]
+position = Vector3(138.5, 6.5, -10.5)
+size = Vector3(4.9, 6, 5)
+material = SubResource("andar_c")
+
+[node name="Objeto71" type="Sprite3D" parent="Fundo"]
+position = Vector3(137.25, 3.53, -7.95)
+pixel_size = 0.12
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("71_toldo")
+
+[node name="Caixa72" type="CSGBox3D" parent="Fundo"]
+position = Vector3(144, 1.75, -10.5)
+size = Vector3(5.9, 3.5, 5)
+material = SubResource("loja_c")
+
+[node name="Caixa73" type="CSGBox3D" parent="Fundo"]
+position = Vector3(144, 8, -10.5)
+size = Vector3(5.9, 9, 5)
+material = SubResource("andar_a")
+
+[node name="Objeto74" type="Sprite3D" parent="Fundo"]
+position = Vector3(142.5, 3.53, -7.95)
+pixel_size = 0.12
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("71_toldo")
+
+[node name="Caixa75" type="CSGBox3D" parent="Fundo"]
+position = Vector3(151, 1.75, -10.5)
+size = Vector3(7.9, 3.5, 5)
+material = SubResource("loja_a")
+
+[node name="Caixa76" type="CSGBox3D" parent="Fundo"]
+position = Vector3(151, 5.25, -10.5)
+size = Vector3(7.9, 3.5, 5)
+material = SubResource("andar_b")
+
+[node name="Objeto77" type="Sprite3D" parent="Fundo"]
+position = Vector3(149, 3.53, -7.95)
+pixel_size = 0.12
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("71_toldo")
+
+[node name="Caixa78" type="CSGBox3D" parent="Fundo"]
+position = Vector3(158, 1.75, -10.5)
+size = Vector3(5.9, 3.5, 5)
+material = SubResource("loja_b")
+
+[node name="Caixa79" type="CSGBox3D" parent="Fundo"]
+position = Vector3(158, 5.25, -10.5)
+size = Vector3(5.9, 3.5, 5)
+material = SubResource("andar_c")
+
+[node name="Objeto80" type="Sprite3D" parent="Fundo"]
+position = Vector3(156.5, 3.53, -7.95)
+pixel_size = 0.12
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("71_toldo")
+
+[node name="Caixa81" type="CSGBox3D" parent="Fundo"]
+position = Vector3(165, 1.75, -10.5)
+size = Vector3(7.9, 3.5, 5)
+material = SubResource("loja_c")
+
+[node name="Caixa82" type="CSGBox3D" parent="Fundo"]
+position = Vector3(165, 7.25, -10.5)
+size = Vector3(7.9, 7.5, 5)
+material = SubResource("andar_a")
+
+[node name="Objeto83" type="Sprite3D" parent="Fundo"]
+position = Vector3(163, 3.53, -7.95)
+pixel_size = 0.12
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("71_toldo")
+
+[node name="Caixa84" type="CSGBox3D" parent="Fundo"]
+position = Vector3(173, 1.75, -10.5)
+size = Vector3(7.9, 3.5, 5)
+material = SubResource("loja_a")
+
+[node name="Caixa85" type="CSGBox3D" parent="Fundo"]
+position = Vector3(173, 5.25, -10.5)
+size = Vector3(7.9, 3.5, 5)
+material = SubResource("andar_b")
+
+[node name="Objeto86" type="Sprite3D" parent="Fundo"]
+position = Vector3(171, 3.53, -7.95)
+pixel_size = 0.12
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("71_toldo")
+
+[node name="Caixa87" type="CSGBox3D" parent="Fundo"]
+position = Vector3(180.5, 1.75, -10.5)
+size = Vector3(6.9, 3.5, 5)
+material = SubResource("loja_b")
+
+[node name="Caixa88" type="CSGBox3D" parent="Fundo"]
+position = Vector3(180.5, 8, -10.5)
+size = Vector3(6.9, 9, 5)
+material = SubResource("andar_c")
+
+[node name="Objeto89" type="Sprite3D" parent="Fundo"]
+position = Vector3(178.75, 3.53, -7.95)
+pixel_size = 0.12
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("71_toldo")
+
+[node name="Caixa90" type="CSGBox3D" parent="Fundo"]
+position = Vector3(187, 1.75, -10.5)
+size = Vector3(5.9, 3.5, 5)
+material = SubResource("loja_c")
+
+[node name="Caixa91" type="CSGBox3D" parent="Fundo"]
+position = Vector3(187, 7.25, -10.5)
+size = Vector3(5.9, 7.5, 5)
+material = SubResource("andar_a")
+
+[node name="Objeto92" type="Sprite3D" parent="Fundo"]
+position = Vector3(185.5, 3.53, -7.95)
+pixel_size = 0.12
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("71_toldo")
+
+[node name="Letreiro93" type="Label3D" parent="Fundo"]
+position = Vector3(8.5, 5, -7.9)
+pixel_size = 0.01
+modulate = Color(1, 0.95, 0.75, 1)
+text = "ASSISTÊNCIA TÉCNICA"
+font_size = 64
+outline_size = 16
+
+[node name="Letreiro94" type="Label3D" parent="Fundo"]
+position = Vector3(8.5, 4.45, -7.9)
+pixel_size = 0.01
+modulate = Color(0.75, 0.9, 1, 1)
+text = "CONSERTO DE NOTEBOOK"
+font_size = 40
+outline_size = 16
+
+[node name="Objeto95" type="Sprite3D" parent="Fundo"]
+position = Vector3(9.5, 1.12, -6.8)
+pixel_size = 0.06
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("72_banca")
+
+[node name="Objeto96" type="Sprite3D" parent="Fundo"]
+position = Vector3(23, 1.12, -6.9)
+pixel_size = 0.06
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("73_orelhao")
+
+[node name="Objeto97" type="Sprite3D" parent="Fundo"]
+position = Vector3(30, 2.08, -6.6)
+pixel_size = 0.09
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("79_arvore")
+
+[node name="Objeto98" type="Sprite3D" parent="Fundo"]
 position = Vector3(-2.5, 0.53, -1.6)
 pixel_size = 0.053
 alpha_cut = 1
 texture_filter = 0
 texture = ExtResource("21_lixeira")
 
-[node name="Saco1" type="Sprite3D" parent="Fundo"]
-position = Vector3(6.8, 0.32, -1.6)
-pixel_size = 0.053
-alpha_cut = 1
-texture_filter = 0
-texture = ExtResource("22_saco")
-
-[node name="Poste1" type="Sprite3D" parent="Fundo"]
-position = Vector3(-1, 1.86, -1.8)
+[node name="Objeto99" type="Sprite3D" parent="Fundo"]
+position = Vector3(-1, 1.855, -1.8)
 pixel_size = 0.053
 alpha_cut = 1
 texture_filter = 0
 texture = ExtResource("23_poste")
 
-[node name="Poste2" type="Sprite3D" parent="Fundo"]
-position = Vector3(20, 1.86, -1.8)
+[node name="Objeto100" type="Sprite3D" parent="Fundo"]
+position = Vector3(20, 1.855, -1.8)
 pixel_size = 0.053
 alpha_cut = 1
 texture_filter = 0
 texture = ExtResource("23_poste")
 
-[node name="Saco2" type="Sprite3D" parent="Fundo"]
-position = Vector3(16, 0.32, -1.6)
+[node name="Letreiro101" type="Label3D" parent="Fundo"]
+position = Vector3(17, 4.6, -7.9)
+pixel_size = 0.01
+modulate = Color(1, 0.85, 0.4, 1)
+text = "BAR"
+font_size = 64
+outline_size = 16
+
+[node name="Objeto102" type="Sprite3D" parent="Fundo"]
+position = Vector3(37.4, 0.318, -1.7)
 pixel_size = 0.053
 alpha_cut = 1
 texture_filter = 0
 texture = ExtResource("22_saco")
 
-[node name="Lixeira2" type="Sprite3D" parent="Fundo"]
-position = Vector3(37.5, 0.53, -1.6)
+[node name="Objeto103" type="Sprite3D" parent="Fundo"]
+position = Vector3(38.2, 0.318, -1.7)
+pixel_size = 0.053
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("22_saco")
+
+[node name="Objeto104" type="Sprite3D" parent="Fundo"]
+position = Vector3(48, 0.318, -1.7)
+pixel_size = 0.053
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("22_saco")
+
+[node name="Objeto105" type="Sprite3D" parent="Fundo"]
+position = Vector3(48.7, 0.318, -1.7)
+pixel_size = 0.053
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("22_saco")
+
+[node name="Objeto106" type="Sprite3D" parent="Fundo"]
+position = Vector3(55.3, 0.318, -1.7)
+pixel_size = 0.053
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("22_saco")
+
+[node name="Letreiro107" type="Label3D" parent="Fundo"]
+position = Vector3(50, 2.9, -7.9)
+pixel_size = 0.01
+modulate = Color(1, 0.6, 0.5, 1)
+text = "PROIBIDO JOGAR LIXO"
+font_size = 44
+outline_size = 16
+
+[node name="Objeto108" type="Sprite3D" parent="Fundo"]
+position = Vector3(36.6, 0.53, -1.6)
 pixel_size = 0.053
 alpha_cut = 1
 texture_filter = 0
 texture = ExtResource("21_lixeira")
 
-[node name="Poste3" type="Sprite3D" parent="Fundo"]
-position = Vector3(36.6, 1.86, -1.8)
+[node name="Objeto109" type="Sprite3D" parent="Fundo"]
+position = Vector3(86.5, 0.9, -1.8)
+pixel_size = 0.06
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("75_sucata")
+
+[node name="Objeto110" type="Sprite3D" parent="Fundo"]
+position = Vector3(92.2, 0.53, -1.7)
 pixel_size = 0.053
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("76_bobina")
+
+[node name="Objeto111" type="Sprite3D" parent="Fundo"]
+position = Vector3(105.4, 0.371, -1.5)
+pixel_size = 0.053
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("74_cone")
+
+[node name="Objeto112" type="Sprite3D" parent="Fundo"]
+position = Vector3(105.9, 0.371, -1.5)
+pixel_size = 0.053
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("74_cone")
+
+[node name="Objeto113" type="Sprite3D" parent="Fundo"]
+position = Vector3(118.5, 0.371, -1.5)
+pixel_size = 0.053
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("74_cone")
+
+[node name="Objeto114" type="Sprite3D" parent="Fundo"]
+position = Vector3(119, 0.371, -1.5)
+pixel_size = 0.053
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("74_cone")
+
+[node name="Objeto115" type="Sprite3D" parent="Fundo"]
+position = Vector3(120, 2.1, -2.6)
+pixel_size = 0.06
 alpha_cut = 1
 texture_filter = 0
 texture = ExtResource("23_poste")
 
-[node name="Predio7" type="CSGBox3D" parent="Fundo"]
-position = Vector3(86, 4, -10)
-size = Vector3(9, 10, 5)
-material = SubResource("predio_a")
-
-[node name="Predio8" type="CSGBox3D" parent="Fundo"]
-position = Vector3(100, 5, -11)
-size = Vector3(10, 12, 5)
-material = SubResource("predio_b")
-
-[node name="Predio9" type="CSGBox3D" parent="Fundo"]
-position = Vector3(114, 3.5, -9)
-size = Vector3(9, 9, 5)
-material = SubResource("predio_a")
-
-[node name="Lixeira3" type="Sprite3D" parent="Fundo"]
-position = Vector3(67, 0.53, -1.6)
-pixel_size = 0.053
-alpha_cut = 1
-texture_filter = 0
-texture = ExtResource("21_lixeira")
-
-[node name="Poste4" type="Sprite3D" parent="Fundo"]
-position = Vector3(84, 1.86, -1.8)
-pixel_size = 0.053
+[node name="Objeto116" type="Sprite3D" parent="Fundo"]
+position = Vector3(128, 2.1, -2.6)
+pixel_size = 0.06
 alpha_cut = 1
 texture_filter = 0
 texture = ExtResource("23_poste")
 
-[node name="Saco3" type="Sprite3D" parent="Fundo"]
-position = Vector3(95, 0.32, -1.6)
+[node name="Objeto117" type="Sprite3D" parent="Fundo"]
+position = Vector3(136, 2.1, -2.6)
+pixel_size = 0.06
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("23_poste")
+
+[node name="Objeto118" type="Sprite3D" parent="Fundo"]
+position = Vector3(144, 2.1, -2.6)
+pixel_size = 0.06
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("23_poste")
+
+[node name="Objeto119" type="Sprite3D" parent="Fundo"]
+position = Vector3(152, 2.1, -2.6)
+pixel_size = 0.06
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("23_poste")
+
+[node name="Objeto120" type="Sprite3D" parent="Fundo"]
+position = Vector3(160, 2.1, -2.6)
+pixel_size = 0.06
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("23_poste")
+
+[node name="Objeto121" type="Sprite3D" parent="Fundo"]
+position = Vector3(124, 3.45, -2.65)
+pixel_size = 0.03125
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("78_fiacao")
+
+[node name="Objeto122" type="Sprite3D" parent="Fundo"]
+position = Vector3(132, 3.45, -2.65)
+pixel_size = 0.03125
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("78_fiacao")
+
+[node name="Objeto123" type="Sprite3D" parent="Fundo"]
+position = Vector3(140, 3.45, -2.65)
+pixel_size = 0.03125
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("78_fiacao")
+
+[node name="Objeto124" type="Sprite3D" parent="Fundo"]
+position = Vector3(148, 3.45, -2.65)
+pixel_size = 0.03125
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("78_fiacao")
+
+[node name="Objeto125" type="Sprite3D" parent="Fundo"]
+position = Vector3(156, 3.45, -2.65)
+pixel_size = 0.03125
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("78_fiacao")
+
+[node name="Objeto126" type="Sprite3D" parent="Fundo"]
+position = Vector3(146.8, 0.53, -1.7)
 pixel_size = 0.053
 alpha_cut = 1
 texture_filter = 0
-texture = ExtResource("22_saco")
+texture = ExtResource("76_bobina")
 
-[node name="Predio10" type="CSGBox3D" parent="Fundo"]
-position = Vector3(128, 4, -10)
-size = Vector3(9, 10, 5)
-material = SubResource("predio_a")
+[node name="Letreiro127" type="Label3D" parent="Fundo"]
+position = Vector3(169, 5.6, -7.6)
+pixel_size = 0.01
+modulate = Color(0.6, 1, 0.65, 1)
+text = "COOPERATIVA DE RECICLAGEM"
+font_size = 64
+outline_size = 16
 
-[node name="Predio11" type="CSGBox3D" parent="Fundo"]
-position = Vector3(142, 5, -11)
-size = Vector3(10, 12, 5)
-material = SubResource("predio_b")
+[node name="Objeto128" type="Sprite3D" parent="Fundo"]
+position = Vector3(161.5, 0.82, -6.7)
+pixel_size = 0.06
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("77_bag")
 
-[node name="Predio12" type="CSGBox3D" parent="Fundo"]
-position = Vector3(156, 3.5, -9)
-size = Vector3(9, 9, 5)
-material = SubResource("predio_a")
+[node name="Objeto129" type="Sprite3D" parent="Fundo"]
+position = Vector3(163, 0.82, -6.7)
+pixel_size = 0.06
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("77_bag")
 
-[node name="Predio13" type="CSGBox3D" parent="Fundo"]
-position = Vector3(170, 5, -10)
-size = Vector3(10, 12, 5)
-material = SubResource("predio_b")
+[node name="Objeto130" type="Sprite3D" parent="Fundo"]
+position = Vector3(170, 0.82, -6.7)
+pixel_size = 0.06
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("77_bag")
 
-[node name="Predio10" type="CSGBox3D" parent="Fundo"]
-position = Vector3(128, 4, -10)
-size = Vector3(9, 10, 5)
-material = SubResource("predio_a")
+[node name="Objeto131" type="Sprite3D" parent="Fundo"]
+position = Vector3(171.4, 0.82, -6.7)
+pixel_size = 0.06
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("77_bag")
 
-[node name="Predio11" type="CSGBox3D" parent="Fundo"]
-position = Vector3(142, 5, -11)
-size = Vector3(10, 12, 5)
-material = SubResource("predio_b")
+[node name="Objeto132" type="Sprite3D" parent="Fundo"]
+position = Vector3(169, 0.82, -1.9)
+pixel_size = 0.06
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("77_bag")
 
-[node name="Predio12" type="CSGBox3D" parent="Fundo"]
-position = Vector3(156, 3.5, -9)
-size = Vector3(9, 9, 5)
-material = SubResource("predio_a")
+[node name="Objeto133" type="Sprite3D" parent="Fundo"]
+position = Vector3(30, 17, -60)
+pixel_size = 0.6
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("80_morro")
+modulate = Color(0.85, 0.88, 0.95, 1)
 
-[node name="Predio13" type="CSGBox3D" parent="Fundo"]
-position = Vector3(170, 5, -10)
-size = Vector3(10, 12, 5)
-material = SubResource("predio_b")
+[node name="Objeto134" type="Sprite3D" parent="Fundo"]
+position = Vector3(135, 19.25, -65)
+pixel_size = 0.65
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("80_morro")
+modulate = Color(0.82, 0.86, 0.94, 1)
 
-[node name="Predio10" type="CSGBox3D" parent="Fundo"]
-position = Vector3(128, 4, -10)
-size = Vector3(9, 10, 5)
-material = SubResource("predio_a")
+[node name="Caixa135" type="CSGBox3D" parent="Fundo"]
+position = Vector3(-24, 9.5, -34)
+size = Vector3(12, 19, 4)
+material = SubResource("horizonte")
 
-[node name="Predio11" type="CSGBox3D" parent="Fundo"]
-position = Vector3(142, 5, -11)
-size = Vector3(10, 12, 5)
-material = SubResource("predio_b")
+[node name="Caixa136" type="CSGBox3D" parent="Fundo"]
+position = Vector3(-11.5, 7.5, -34)
+size = Vector3(11, 15, 4)
+material = SubResource("horizonte")
 
-[node name="Predio12" type="CSGBox3D" parent="Fundo"]
-position = Vector3(156, 3.5, -9)
-size = Vector3(9, 9, 5)
-material = SubResource("predio_a")
+[node name="Caixa137" type="CSGBox3D" parent="Fundo"]
+position = Vector3(-1, 9.5, -34)
+size = Vector3(6, 19, 4)
+material = SubResource("horizonte")
 
-[node name="Predio13" type="CSGBox3D" parent="Fundo"]
-position = Vector3(170, 5, -10)
-size = Vector3(10, 12, 5)
-material = SubResource("predio_b")
+[node name="Caixa138" type="CSGBox3D" parent="Fundo"]
+position = Vector3(10, 9, -34)
+size = Vector3(12, 18, 4)
+material = SubResource("horizonte")
 
-[node name="Predio10" type="CSGBox3D" parent="Fundo"]
-position = Vector3(128, 4, -10)
-size = Vector3(9, 10, 5)
-material = SubResource("predio_a")
+[node name="Caixa139" type="CSGBox3D" parent="Fundo"]
+position = Vector3(22, 7.5, -34)
+size = Vector3(10, 15, 4)
+material = SubResource("horizonte")
 
-[node name="Predio11" type="CSGBox3D" parent="Fundo"]
-position = Vector3(142, 5, -11)
-size = Vector3(10, 12, 5)
-material = SubResource("predio_b")
+[node name="Caixa140" type="CSGBox3D" parent="Fundo"]
+position = Vector3(33, 6.5, -34)
+size = Vector3(6, 13, 4)
+material = SubResource("horizonte")
 
-[node name="Predio12" type="CSGBox3D" parent="Fundo"]
-position = Vector3(156, 3.5, -9)
-size = Vector3(9, 9, 5)
-material = SubResource("predio_a")
+[node name="Caixa141" type="CSGBox3D" parent="Fundo"]
+position = Vector3(41.5, 4, -34)
+size = Vector3(7, 8, 4)
+material = SubResource("horizonte")
 
-[node name="Predio13" type="CSGBox3D" parent="Fundo"]
-position = Vector3(170, 5, -10)
-size = Vector3(10, 12, 5)
-material = SubResource("predio_b")
+[node name="Caixa142" type="CSGBox3D" parent="Fundo"]
+position = Vector3(52, 11, -34)
+size = Vector3(10, 22, 4)
+material = SubResource("horizonte")
+
+[node name="Caixa143" type="CSGBox3D" parent="Fundo"]
+position = Vector3(65, 4.5, -34)
+size = Vector3(10, 9, 4)
+material = SubResource("horizonte")
+
+[node name="Caixa144" type="CSGBox3D" parent="Fundo"]
+position = Vector3(76.5, 4, -34)
+size = Vector3(9, 8, 4)
+material = SubResource("horizonte")
+
+[node name="Caixa145" type="CSGBox3D" parent="Fundo"]
+position = Vector3(85, 6.5, -34)
+size = Vector3(6, 13, 4)
+material = SubResource("horizonte")
+
+[node name="Caixa146" type="CSGBox3D" parent="Fundo"]
+position = Vector3(95, 7, -34)
+size = Vector3(8, 14, 4)
+material = SubResource("horizonte")
+
+[node name="Caixa147" type="CSGBox3D" parent="Fundo"]
+position = Vector3(107.5, 9.5, -34)
+size = Vector3(11, 19, 4)
+material = SubResource("horizonte")
+
+[node name="Caixa148" type="CSGBox3D" parent="Fundo"]
+position = Vector3(122, 5, -34)
+size = Vector3(12, 10, 4)
+material = SubResource("horizonte")
+
+[node name="Caixa149" type="CSGBox3D" parent="Fundo"]
+position = Vector3(134, 11.5, -34)
+size = Vector3(10, 23, 4)
+material = SubResource("horizonte")
+
+[node name="Caixa150" type="CSGBox3D" parent="Fundo"]
+position = Vector3(144.5, 10.5, -34)
+size = Vector3(9, 21, 4)
+material = SubResource("horizonte")
+
+[node name="Caixa151" type="CSGBox3D" parent="Fundo"]
+position = Vector3(155.5, 7, -34)
+size = Vector3(11, 14, 4)
+material = SubResource("horizonte")
+
+[node name="Caixa152" type="CSGBox3D" parent="Fundo"]
+position = Vector3(167.5, 9, -34)
+size = Vector3(7, 18, 4)
+material = SubResource("horizonte")
+
+[node name="Caixa153" type="CSGBox3D" parent="Fundo"]
+position = Vector3(180, 5, -34)
+size = Vector3(12, 10, 4)
+material = SubResource("horizonte")
+
+[node name="Caixa154" type="CSGBox3D" parent="Fundo"]
+position = Vector3(191.5, 11.5, -34)
+size = Vector3(7, 23, 4)
+material = SubResource("horizonte")
+
+[node name="Caixa155" type="CSGBox3D" parent="Fundo"]
+position = Vector3(201.5, 7.5, -34)
+size = Vector3(11, 15, 4)
+material = SubResource("horizonte")
+
+[node name="Caixa156" type="CSGBox3D" parent="Fundo"]
+position = Vector3(214.5, 9.5, -34)
+size = Vector3(13, 19, 4)
+material = SubResource("horizonte")
 
 [connection signal="finished" from="Sons/Musica" to="Sons/Musica" method="play"]
 [connection signal="body_entered" from="Chegada" to="Telas" method="_ao_chegar"]
