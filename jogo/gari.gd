@@ -283,6 +283,10 @@ func guardar_celula() -> bool:
 
 
 func guardar_motor() -> bool:
+	if tem_arma:
+		energia = energia_maxima
+		sons.get_node("Coleta").play()
+		return true
 	motores += 1
 	sons.get_node("Coleta").play()
 	return true

@@ -14,7 +14,7 @@ uv1_world_triplanar = true
 texture_filter = 0
 
 [sub_resource type="BoxShape3D" id="forma_zona"]
-size = Vector3(8, 1.4, 4)
+size = Vector3(8, 0.3, 4)
 
 [sub_resource type="Gradient" id="cores_faisca"]
 offsets = PackedFloat32Array(0, 0.25, 0.7, 1)
@@ -93,7 +93,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="Colisao" type="CollisionShape3D" parent="Zona"]
-position = Vector3(0, 0.6, 0)
+position = Vector3(0, 0.15, 0)
 shape = SubResource("forma_zona")
 
 [node name="Faiscas" type="GPUParticles3D" parent="."]

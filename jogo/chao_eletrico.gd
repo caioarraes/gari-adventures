@@ -2,7 +2,7 @@ extends Node3D
 
 const INTERVALO_MINIMO := 0.12
 const INTERVALO_MAXIMO := 0.45
-const MEIA_LARGURA := 3.8
+const RECUO_DA_BORDA := 0.2
 const PONTOS_POR_RAIO := 14
 const COR_NUCLEO := Color(0.94, 0.98, 1.0, 1.0)
 const COR_BRILHO := Color(0.3, 0.6, 1.0, 0.6)
@@ -11,22 +11,38 @@ var tempo := 0.0
 var proximo_raio := 0.0
 var clarao := 0.0
 var raios: Array[Dictionary] = []
+var meia_largura := 3.8
+var inicio_x := 0.0
+var malha: ImmediateMesh
+
+@export var largura := 8.0
 
 @onready var zona: Area3D = $Zona
 @onready var luz: OmniLight3D = $Brilho
 @onready var zumbido: AudioStreamPlayer3D = $Zumbido
 @onready var som_raio: AudioStreamPlayer3D = $Raio
-@onready var malha: ImmediateMesh = $Raios.mesh
-@onready var inicio_x: float = global_position.x - $Placa.size.x / 2.0
 
 
 func _ready() -> void:
 	zumbido.finished.connect(zumbido.play)
+	$Placa.size.x = largura
+	var forma: BoxShape3D = $Zona/Colisao.shape.duplicate()
+	forma.size.x = largura
+	$Zona/Colisao.shape = forma
+	for particulas: GPUParticles3D in [$Faiscas, $Brilhos]:
+		var processo: ParticleProcessMaterial = particulas.process_material.duplicate()
+		processo.emission_box_extents.x = largura / 2.0 - 0.1
+		particulas.process_material = processo
+		particulas.amount = maxi(10, int(particulas.amount * largura / 8.0))
+	malha = ImmediateMesh.new()
+	$Raios.mesh = malha
+	meia_largura = largura / 2.0 - RECUO_DA_BORDA
+	inicio_x = global_position.x - largura / 2.0
 
 
 func _physics_process(delta: float) -> void:
 	tempo += delta
-	for corpo in zona.get_overlapping_bodies():
+	for corpo in _pisando():
 		corpo.pisar_chao_eletrico(inicio_x)
 
 	proximo_raio -= delta
@@ -48,12 +64,12 @@ func _process(delta: float) -> void:
 
 
 func _criar_raio() -> void:
-	var de_x := randf_range(-MEIA_LARGURA, MEIA_LARGURA)
-	var ate_x := clampf(de_x + randf_range(-2.5, 2.5), -MEIA_LARGURA, MEIA_LARGURA)
+	var de_x := randf_range(-meia_largura, meia_largura)
+	var ate_x := clampf(de_x + randf_range(-2.5, 2.5), -meia_largura, meia_largura)
 	var ate_y := 0.02
-	var corpos := zona.get_overlapping_bodies()
+	var corpos := _pisando()
 	if not corpos.is_empty() and randf() < 0.5:
-		ate_x = corpos[0].global_position.x - global_position.x
+		ate_x = clampf(corpos[0].global_position.x - global_position.x, -meia_largura - 0.4, meia_largura + 0.4)
 		ate_y = 0.35
 	var z := randf_range(-1.6, 1.6)
 	raios.append({
@@ -66,6 +82,10 @@ func _criar_raio() -> void:
 	som_raio.position = Vector3(de_x, 0.5, 0.0)
 	som_raio.pitch_scale = randf_range(0.75, 1.35)
 	som_raio.play()
+
+
+func _pisando() -> Array:
+	return zona.get_overlapping_bodies().filter(func(corpo): return corpo.is_on_floor())
 
 
 func _desenhar() -> void:

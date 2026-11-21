@@ -36,7 +36,8 @@ Uma fase curta com arte, som e os dois ciclos anteriores.
 - Pneu → borracha → solado: aprovado e depois substituído pelos fios.
 - Vida, derrota e ecopontos: implementados.
 - Notebook básico com células e powerbanks, micro-ondas atirador e pistola-dínamo, sem PET: implementado, aguardando avaliação.
-- Fios usados → cobre → malha de aterramento, com chão eletrificado no lugar do muro e gerador que abre o portão: implementado, aguardando avaliação.
+- Fios usados → cobre → malha de aterramento, chão eletrificado, gerador e portão: aprovados.
+- Fase 1 refeita com cerca de 172 unidades, micro-ondas reposicionados e choque só ao pisar: aprovada pelo usuário.
 
 Novos inimigos, melhorias e fases, conforme o resultado da fatia vertical.
 

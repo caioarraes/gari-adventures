@@ -8,7 +8,7 @@ var tempo := VIDA
 
 func _ready() -> void:
 	area_entered.connect(_ao_acertar_inimigo)
-	body_entered.connect(_ao_acertar_gari)
+	body_entered.connect(_ao_bater_em_corpo)
 
 
 func _physics_process(delta: float) -> void:
@@ -25,8 +25,9 @@ func _ao_acertar_inimigo(inimigo: Area3D) -> void:
 	queue_free()
 
 
-func _ao_acertar_gari(corpo: Node3D) -> void:
+func _ao_bater_em_corpo(corpo: Node3D) -> void:
 	if is_queued_for_deletion():
 		return
-	corpo.empurrar(global_position.x)
+	if corpo.has_method("empurrar"):
+		corpo.empurrar(global_position.x)
 	queue_free()

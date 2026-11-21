@@ -8,7 +8,7 @@ radius = 0.16
 
 [node name="FaiscaInimiga" type="Area3D"]
 collision_layer = 0
-collision_mask = 2
+collision_mask = 3
 script = ExtResource("1_faisca")
 
 [node name="Colisao" type="CollisionShape3D" parent="."]

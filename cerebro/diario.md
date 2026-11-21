@@ -4,8 +4,8 @@
 
 - **Fase:** 1 a 3 aprovadas. Fase 4 elogiada pelo usuário, ainda sem teste com outra pessoa. Fase 5 em andamento.
 - **Projeto Godot:** criado na raiz, com cena principal em `jogo/main.tscn`.
-- **Repositório:** público em https://github.com/caioarraes/gari-adventures, com tudo enviado até as apresentações dos itens.
-- **Próximo passo:** o usuário avalia os fios, a malha e o chão eletrificado e envia os próximos inimigos. Cada inimigo novo entra também em [reciclagem.md](reciclagem.md).
+- **Repositório:** público em https://github.com/caioarraes/gari-adventures, com a fase refeita ainda não enviada.
+- **Próximo passo:** o usuário envia os próximos inimigos. Cada um entra também em [reciclagem.md](reciclagem.md).
 
 ## Registro
 
@@ -46,3 +46,11 @@
 - Raios do chão aprovados.
 - Apresentação animada do uso real criada para a primeira montagem de cada item (D-015).
 - A pedido do usuário, o nome provisório anterior foi retirado dos arquivos.
+
+### 2026-11-21
+
+- Primeira fase ampliada para cerca de 118 unidades, com faixa eletrificada curta, corredor de micro-ondas com caixas, abismo com plataformas e 5 ecopontos (D-016).
+- Motores extras passaram a recarregar a pistola.
+- Usuário achou a fase curta e os micro-ondas mal posicionados. Fase refeita com cerca de 172 unidades, caixa-escudo, torre e micro-ondas espaçados (D-017).
+- Chão eletrificado passou a dar choque só quando o gari pisa nele, e não mais ao passar por cima (D-018).
+- Usuário aprovou a fase refeita e a nova regra do chão eletrificado.

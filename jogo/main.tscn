@@ -166,6 +166,9 @@ shadow_enabled = true
 [node name="Gari" type="CharacterBody3D" parent="."]
 position = Vector3(0, 0.05, 0)
 collision_layer = 2
+collision_mask = 17
+collision_mask = 17
+collision_mask = 17
 axis_lock_linear_z = true
 script = ExtResource("1_gari")
 
@@ -268,38 +271,66 @@ size = Vector3(3, 0.6, 4)
 material = SubResource("plataforma")
 
 [node name="Chao3" type="CSGBox3D" parent="Pista"]
-position = Vector3(49, -1, 0)
+position = Vector3(40, -1, 0)
+use_collision = true
+size = Vector3(8, 2, 4)
+material = SubResource("chao")
+
+[node name="ChaoEletricoPequeno" parent="Pista" instance=ExtResource("9_chao_eletrico")]
+position = Vector3(45.25, 0, 0)
+largura = 2.5
+
+[node name="Chao3b" type="CSGBox3D" parent="Pista"]
+position = Vector3(76.25, -1, 0)
+use_collision = true
+size = Vector3(59.5, 2, 4)
+material = SubResource("chao")
+
+[node name="Caixa2" type="CSGBox3D" parent="Pista"]
+position = Vector3(64.75, 0.6, 0)
+use_collision = true
+size = Vector3(1.5, 1.2, 4)
+material = SubResource("plataforma")
+
+[node name="Caixa3" type="CSGBox3D" parent="Pista"]
+position = Vector3(77.5, 0.6, 0)
+use_collision = true
+size = Vector3(3, 1.2, 4)
+material = SubResource("plataforma")
+
+[node name="Torre" type="CSGBox3D" parent="Pista"]
+position = Vector3(81.25, 1.2, 0)
+use_collision = true
+size = Vector3(4.5, 2.4, 4)
+material = SubResource("plataforma")
+
+[node name="Caixa4" type="CSGBox3D" parent="Pista"]
+position = Vector3(90.75, 0.6, 0)
+use_collision = true
+size = Vector3(1.5, 1.2, 4)
+material = SubResource("plataforma")
+
+[node name="Plataforma3" type="CSGBox3D" parent="Pista"]
+position = Vector3(109.5, -0.3, 0)
+use_collision = true
+size = Vector3(3, 0.6, 4)
+material = SubResource("plataforma")
+
+[node name="Plataforma4" type="CSGBox3D" parent="Pista"]
+position = Vector3(114.5, -0.3, 0)
+use_collision = true
+size = Vector3(3, 0.6, 4)
+material = SubResource("plataforma")
+
+[node name="Chao5" type="CSGBox3D" parent="Pista"]
+position = Vector3(131, -1, 0)
 use_collision = true
 size = Vector3(26, 2, 4)
 material = SubResource("chao")
 
-[node name="ParedeFinal" type="CSGBox3D" parent="Pista"]
-position = Vector3(76.5, 4, 0)
-use_collision = true
-size = Vector3(1, 10, 4)
-material = SubResource("parede")
-
-[node name="Chao4" type="CSGBox3D" parent="Pista"]
-position = Vector3(73, -1, 0)
-use_collision = true
-size = Vector3(6, 2, 4)
-material = SubResource("chao")
-
-[node name="ChaoEletrico" parent="Pista" instance=ExtResource("9_chao_eletrico")]
-position = Vector3(66, 0, 0)
-
-[node name="Gerador" parent="Pista" instance=ExtResource("10_gerador")]
-position = Vector3(70.7, 0, 0)
-
-[node name="Portao" type="CSGBox3D" parent="Pista"]
-position = Vector3(71.8, 2, 0)
-use_collision = true
-size = Vector3(0.4, 4, 4)
-material = SubResource("portao")
-script = ExtResource("11_portao")
-
 [node name="Cerca" type="CSGBox3D" parent="Pista"]
-position = Vector3(51, 4, 0)
+position = Vector3(136, 4, 0)
+collision_layer = 16
 use_collision = true
 size = Vector3(0.6, 8, 4)
 material = SubResource("invisivel")
@@ -310,8 +341,43 @@ alpha_cut = 1
 texture_filter = 0
 texture = ExtResource("19_cerca")
 
+[node name="ChaoEletricoMedio" parent="Pista" instance=ExtResource("9_chao_eletrico")]
+position = Vector3(145.25, 0, 0)
+largura = 2.5
+
+[node name="Chao6" type="CSGBox3D" parent="Pista"]
+position = Vector3(152.25, -1, 0)
+use_collision = true
+size = Vector3(11.5, 2, 4)
+material = SubResource("chao")
+
+[node name="ChaoEletrico" parent="Pista" instance=ExtResource("9_chao_eletrico")]
+position = Vector3(162, 0, 0)
+
+[node name="Gerador" parent="Pista" instance=ExtResource("10_gerador")]
+position = Vector3(166.7, 0, 0)
+
+[node name="Portao" type="CSGBox3D" parent="Pista"]
+position = Vector3(167.8, 2, 0)
+use_collision = true
+size = Vector3(0.4, 4, 4)
+material = SubResource("portao")
+script = ExtResource("11_portao")
+
+[node name="Chao4" type="CSGBox3D" parent="Pista"]
+position = Vector3(169, -1, 0)
+use_collision = true
+size = Vector3(6, 2, 4)
+material = SubResource("chao")
+
+[node name="ParedeFinal" type="CSGBox3D" parent="Pista"]
+position = Vector3(172.5, 4, 0)
+use_collision = true
+size = Vector3(1, 10, 4)
+material = SubResource("parede")
+
 [node name="Chegada" type="Area3D" parent="."]
-position = Vector3(72.5, 2, 0)
+position = Vector3(168.5, 2, 0)
 collision_layer = 0
 collision_mask = 2
 
@@ -340,31 +406,37 @@ position = Vector3(18.5, 0, 0)
 position = Vector3(20.4, 0, 0)
 
 [node name="Notebook5" parent="Inimigos" instance=ExtResource("3_notebook")]
-position = Vector3(22.2, 0, 0)
+position = Vector3(40, 0, 0)
 
 [node name="Notebook6" parent="Inimigos" instance=ExtResource("3_notebook")]
-position = Vector3(38.5, 0, 0)
+position = Vector3(51, 0, 0)
 
 [node name="Microondas1" parent="Inimigos" instance=ExtResource("5_microondas")]
-position = Vector3(43, 0, 0)
+position = Vector3(68.5, 0, 0)
 
 [node name="Microondas2" parent="Inimigos" instance=ExtResource("5_microondas")]
-position = Vector3(45.5, 0, 0)
+position = Vector3(82.8, 2.4, 0)
 
 [node name="Microondas3" parent="Inimigos" instance=ExtResource("5_microondas")]
-position = Vector3(48, 0, 0)
+position = Vector3(96, 0, 0)
+
+[node name="Microondas4" parent="Inimigos" instance=ExtResource("5_microondas")]
+position = Vector3(121, 0, 0)
+
+[node name="Microondas5" parent="Inimigos" instance=ExtResource("5_microondas")]
+position = Vector3(129, 0, 0)
 
 [node name="MicroondasFinal" parent="Inimigos" instance=ExtResource("5_microondas")]
-position = Vector3(54, 0, 0)
+position = Vector3(140, 0, 0)
 
 [node name="Fio1" parent="Inimigos" instance=ExtResource("7_fio")]
-position = Vector3(56, 0, 0)
+position = Vector3(141.6, 0, 0)
 
 [node name="Fio2" parent="Inimigos" instance=ExtResource("7_fio")]
-position = Vector3(58, 0, 0)
+position = Vector3(150.5, 0, 0)
 
 [node name="Fio3" parent="Inimigos" instance=ExtResource("7_fio")]
-position = Vector3(60, 0, 0)
+position = Vector3(154, 0, 0)
 
 [node name="Ecopontos" type="Node3D" parent="."]
 
@@ -375,50 +447,87 @@ position = Vector3(16, 0, 0)
 position = Vector3(36.8, 0, 0)
 
 [node name="Ecoponto3" parent="Ecopontos" instance=ExtResource("8_ecoponto")]
-position = Vector3(52.5, 0, 0)
+position = Vector3(56, 0, 0)
+
+[node name="Ecoponto4" parent="Ecopontos" instance=ExtResource("8_ecoponto")]
+position = Vector3(89, 0, 0)
+
+[node name="Ecoponto5" parent="Ecopontos" instance=ExtResource("8_ecoponto")]
+position = Vector3(103, 0, 0)
+
+[node name="Ecoponto6" parent="Ecopontos" instance=ExtResource("8_ecoponto")]
+position = Vector3(137.5, 0, 0)
 
 [node name="Placas" type="Node3D" parent="."]
-
-[node name="Placa4" type="Label3D" parent="Placas"]
-position = Vector3(58, 4, -1.9)
-pixel_size = 0.01
-text = "Fios usados viram cobre: malha de aterramento"
-font_size = 44
-outline_size = 14
-
-[node name="Placa5" type="Label3D" parent="Placas"]
-position = Vector3(66, 3.6, -1.9)
-pixel_size = 0.01
-text = "Chão eletrificado: só passa quem está aterrado"
-font_size = 44
-outline_size = 14
-
-[node name="Placa6" type="Label3D" parent="Placas"]
-position = Vector3(71, 4.6, -1.9)
-pixel_size = 0.01
-text = "Gerador: traga a corrente do chão"
-font_size = 40
-outline_size = 14
 
 [node name="Placa1" type="Label3D" parent="Placas"]
 position = Vector3(3, 3.4, -1.9)
 pixel_size = 0.01
 text = "Células boas de notebook viram powerbank"
-font_size = 44
+font_size = 40
+outline_size = 14
+
+[node name="Placa7" type="Label3D" parent="Placas"]
+position = Vector3(45.25, 3.4, -1.9)
+pixel_size = 0.01
+text = "Chão eletrificado: pule por cima"
+font_size = 40
 outline_size = 14
 
 [node name="Placa2" type="Label3D" parent="Placas"]
-position = Vector3(41, 3.4, -1.9)
+position = Vector3(62, 3.8, -1.9)
 pixel_size = 0.01
 text = "Motor de micro-ondas vira dínamo: pistola de faíscas"
-font_size = 44
+font_size = 40
+outline_size = 14
+
+[node name="Placa9" type="Label3D" parent="Placas"]
+position = Vector3(64.75, 2.6, -1.9)
+pixel_size = 0.01
+text = "As caixas bloqueiam as ondas"
+font_size = 40
+outline_size = 14
+
+[node name="Placa10" type="Label3D" parent="Placas"]
+position = Vector3(77.5, 4.4, -1.9)
+pixel_size = 0.01
+text = "Suba entre as ondas"
+font_size = 40
+outline_size = 14
+
+[node name="Placa8" type="Label3D" parent="Placas"]
+position = Vector3(104, 3.6, -1.9)
+pixel_size = 0.01
+text = "Derrube os micro-ondas de longe antes de pular"
+font_size = 40
 outline_size = 14
 
 [node name="Placa3" type="Label3D" parent="Placas"]
-position = Vector3(47.5, 4.6, -1.9)
+position = Vector3(133.5, 4.6, -1.9)
 pixel_size = 0.01
 text = "Só faíscas atravessam a cerca"
-font_size = 44
+font_size = 40
+outline_size = 14
+
+[node name="Placa4" type="Label3D" parent="Placas"]
+position = Vector3(143, 4, -1.9)
+pixel_size = 0.01
+text = "Fios usados viram cobre: malha de aterramento"
+font_size = 40
+outline_size = 14
+
+[node name="Placa5" type="Label3D" parent="Placas"]
+position = Vector3(162, 3.6, -1.9)
+pixel_size = 0.01
+text = "Chão eletrificado: só passa quem está aterrado"
+font_size = 40
+outline_size = 14
+
+[node name="Placa6" type="Label3D" parent="Placas"]
+position = Vector3(167, 4.6, -1.9)
+pixel_size = 0.01
+text = "Gerador: traga a corrente do chão"
+font_size = 40
 outline_size = 14
 
 [node name="Sons" type="Node" parent="."]
@@ -737,6 +846,122 @@ pixel_size = 0.053
 alpha_cut = 1
 texture_filter = 0
 texture = ExtResource("23_poste")
+
+[node name="Predio7" type="CSGBox3D" parent="Fundo"]
+position = Vector3(86, 4, -10)
+size = Vector3(9, 10, 5)
+material = SubResource("predio_a")
+
+[node name="Predio8" type="CSGBox3D" parent="Fundo"]
+position = Vector3(100, 5, -11)
+size = Vector3(10, 12, 5)
+material = SubResource("predio_b")
+
+[node name="Predio9" type="CSGBox3D" parent="Fundo"]
+position = Vector3(114, 3.5, -9)
+size = Vector3(9, 9, 5)
+material = SubResource("predio_a")
+
+[node name="Lixeira3" type="Sprite3D" parent="Fundo"]
+position = Vector3(67, 0.53, -1.6)
+pixel_size = 0.053
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("21_lixeira")
+
+[node name="Poste4" type="Sprite3D" parent="Fundo"]
+position = Vector3(84, 1.86, -1.8)
+pixel_size = 0.053
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("23_poste")
+
+[node name="Saco3" type="Sprite3D" parent="Fundo"]
+position = Vector3(95, 0.32, -1.6)
+pixel_size = 0.053
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("22_saco")
+
+[node name="Predio10" type="CSGBox3D" parent="Fundo"]
+position = Vector3(128, 4, -10)
+size = Vector3(9, 10, 5)
+material = SubResource("predio_a")
+
+[node name="Predio11" type="CSGBox3D" parent="Fundo"]
+position = Vector3(142, 5, -11)
+size = Vector3(10, 12, 5)
+material = SubResource("predio_b")
+
+[node name="Predio12" type="CSGBox3D" parent="Fundo"]
+position = Vector3(156, 3.5, -9)
+size = Vector3(9, 9, 5)
+material = SubResource("predio_a")
+
+[node name="Predio13" type="CSGBox3D" parent="Fundo"]
+position = Vector3(170, 5, -10)
+size = Vector3(10, 12, 5)
+material = SubResource("predio_b")
+
+[node name="Predio10" type="CSGBox3D" parent="Fundo"]
+position = Vector3(128, 4, -10)
+size = Vector3(9, 10, 5)
+material = SubResource("predio_a")
+
+[node name="Predio11" type="CSGBox3D" parent="Fundo"]
+position = Vector3(142, 5, -11)
+size = Vector3(10, 12, 5)
+material = SubResource("predio_b")
+
+[node name="Predio12" type="CSGBox3D" parent="Fundo"]
+position = Vector3(156, 3.5, -9)
+size = Vector3(9, 9, 5)
+material = SubResource("predio_a")
+
+[node name="Predio13" type="CSGBox3D" parent="Fundo"]
+position = Vector3(170, 5, -10)
+size = Vector3(10, 12, 5)
+material = SubResource("predio_b")
+
+[node name="Predio10" type="CSGBox3D" parent="Fundo"]
+position = Vector3(128, 4, -10)
+size = Vector3(9, 10, 5)
+material = SubResource("predio_a")
+
+[node name="Predio11" type="CSGBox3D" parent="Fundo"]
+position = Vector3(142, 5, -11)
+size = Vector3(10, 12, 5)
+material = SubResource("predio_b")
+
+[node name="Predio12" type="CSGBox3D" parent="Fundo"]
+position = Vector3(156, 3.5, -9)
+size = Vector3(9, 9, 5)
+material = SubResource("predio_a")
+
+[node name="Predio13" type="CSGBox3D" parent="Fundo"]
+position = Vector3(170, 5, -10)
+size = Vector3(10, 12, 5)
+material = SubResource("predio_b")
+
+[node name="Predio10" type="CSGBox3D" parent="Fundo"]
+position = Vector3(128, 4, -10)
+size = Vector3(9, 10, 5)
+material = SubResource("predio_a")
+
+[node name="Predio11" type="CSGBox3D" parent="Fundo"]
+position = Vector3(142, 5, -11)
+size = Vector3(10, 12, 5)
+material = SubResource("predio_b")
+
+[node name="Predio12" type="CSGBox3D" parent="Fundo"]
+position = Vector3(156, 3.5, -9)
+size = Vector3(9, 9, 5)
+material = SubResource("predio_a")
+
+[node name="Predio13" type="CSGBox3D" parent="Fundo"]
+position = Vector3(170, 5, -10)
+size = Vector3(10, 12, 5)
+material = SubResource("predio_b")
 
 [connection signal="finished" from="Sons/Musica" to="Sons/Musica" method="play"]
 [connection signal="body_entered" from="Chegada" to="Telas" method="_ao_chegar"]

@@ -86,3 +86,13 @@ Os raios do chão são desenhados a cada quadro com `ImmediateMesh` em `jogo/cha
 ## Teste das apresentações (2026-11-20)
 
 A primeira montagem do powerbank pausou o jogo e mostrou a apresentação. O primeiro Espaço completou a animação, e o segundo fechou e despausou. O segundo powerbank não repetiu a apresentação. Pistola e malha mostraram as suas, e a fase completa continuou vencível.
+
+## Teste da fase ampliada (2026-11-21)
+
+O jogador automático completou a fase de 118 unidades em 27,5 segundos, sem quedas: pulou a faixa curta, derrubou os micro-ondas do abismo de longe, abriu a cerca, montou a malha e abriu o portão. O chão eletrificado tem `largura` exportada. Cada instância duplica a forma da zona, os materiais de partícula e a malha dos raios, porque recursos de cena são compartilhados entre instâncias. O alvo dos raios é limitado à largura do chão, para não desenhar um raio até o ecoponto quando o gari volta.
+
+## Teste da versão 3 da fase (2026-11-21)
+
+O jogador automático completou as 172 unidades sem quedas. Atrás da caixa-escudo, nenhuma onda passou e o gari não perdeu vida. Ondas e faíscas têm máscara de colisão com a camada 1, do cenário. A cerca usa a camada 16, e o gari colide com as camadas 1 e 16, então ela bloqueia o gari mas não as faíscas. O layout da fase é gerado por `ferramentas/montar_fase1.pl`, que reescreve os nós de `Pista`, `Inimigos`, `Ecopontos` e `Placas` em `main.tscn`.
+
+O chão eletrificado usa uma zona de 0,3 de altura e filtra os corpos com `is_on_floor()`. No teste, pular por cima da faixa curta não tirou vida, e cair ou ficar de pé nela tirou.

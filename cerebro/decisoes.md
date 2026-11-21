@@ -61,3 +61,15 @@ Definido pelo usuário. O gari aterrado absorve a corrente do chão eletrificado
 ## D-015: Apresentação do uso real na primeira montagem de cada item (2026-11-20)
 
 Definido pelo usuário. Os textos seguem só o que está confirmado em [reciclagem.md](reciclagem.md) e incluem um cuidado real, como o risco das células de lítio, do capacitor do micro-ondas e da queima de fios.
+
+## D-016: Primeira fase ampliada sem mecânicas novas (2026-11-21)
+
+Pedido do usuário. A fase passou de cerca de 76 para 118 unidades, seguindo o padrão de apresentar cada mecânica em segurança e depois testá-la. O chão eletrificado ganhou largura ajustável para a faixa curta, e motores extras passaram a recarregar a pistola.
+
+## D-017: Fase 1 em 172 unidades e micro-ondas reposicionados (2026-11-21)
+
+Pedido do usuário, que achou a fase curta e os micro-ondas mal posicionados. O posicionamento segue precedentes de Mega Man 8 e Shovel Knight: um atirador por vez, nenhum perto de ecoponto ou pouso, apresentação em chão plano e cobertura com caixas. Ondas e faíscas passaram a parar em caixas, paredes e plataformas. Substitui o layout de D-016.
+
+## D-018: Chão eletrificado só dá choque ao ser pisado (2026-11-21)
+
+Pedido do usuário para melhorar a experiência. A área de dano virou uma camada fina na superfície e só afeta o gari quando ele está no chão. Os raios só miram no gari nessas condições.

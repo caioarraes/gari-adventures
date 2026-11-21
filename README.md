@@ -51,10 +51,11 @@ O primeiro comando só é necessário depois de baixar o projeto ou quando a art
 
 1. Derrote os notebooks com a vassoura e recolha as células de bateria.
 2. Com 3 células, monte um powerbank. Você pode montar até 2, e cada um aumenta a carga da pistola.
-3. Derrote os micro-ondas e recolha os motores. Com 3 motores, monte a pistola-dínamo, que gera a própria carga aos poucos.
-4. Atire através da cerca para derrotar o micro-ondas do outro lado.
-5. Derrote os fios usados e, com 3 cobres, faça a malha de aterramento.
-6. Atravesse o chão eletrificado com a malha. Ela leva a corrente até o gerador, que abre o portão do caminhão de lixo.
+3. Pule a faixa eletrificada. Derrote os micro-ondas usando caixas como escudo e suba a torre entre as ondas. Com 3 motores, monte a pistola-dínamo, que gera a própria carga aos poucos.
+4. No abismo, derrube os micro-ondas de longe antes de pular pelas plataformas. Motores extras recarregam a pistola.
+5. Atire através da cerca para derrotar o micro-ondas do outro lado.
+6. Derrote os fios usados e, com 3 cobres, faça a malha de aterramento.
+7. Atravesse o chão eletrificado com a malha. Ela leva a corrente até o gerador, que abre o portão do caminhão de lixo.
 
 Você tem 3 pontos de vida. Encoste nos ecopontos verdes para recuperar a vida e marcar o local de retorno. Ao perder toda a vida, você volta ao último ecoponto sem perder o que coletou.
 
