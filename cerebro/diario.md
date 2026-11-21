@@ -4,7 +4,7 @@
 
 - **Fase:** 1 a 3 aprovadas. Fase 4 elogiada pelo usuário, ainda sem teste com outra pessoa. Fase 5 em andamento.
 - **Projeto Godot:** criado na raiz, com cena principal em `jogo/main.tscn`.
-- **Repositório:** público em https://github.com/caioarraes/gari-adventures, com a fase refeita ainda não enviada.
+- **Repositório:** público em https://github.com/caioarraes/gari-adventures, com tudo enviado até a fase refeita.
 - **Próximo passo:** o usuário envia os próximos inimigos. Cada um entra também em [reciclagem.md](reciclagem.md).
 
 ## Registro
