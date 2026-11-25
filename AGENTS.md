@@ -7,6 +7,8 @@ Valem para qualquer agente ou sessão neste projeto. O jogo é um plataforma 2.5
 1. Leia [cerebro/README.md](cerebro/README.md) e [cerebro/diario.md](cerebro/diario.md).
 2. Leia só os outros arquivos do cérebro que a tarefa exigir.
 3. Ao terminar, atualize o que mudou. Veja a tabela em [cerebro/README.md](cerebro/README.md).
+4. Se a mudança afeta o que o jogador faz ou o que o jogo afirma, atualize também o manual e o relatório da entrega. Os links e as regras estão em [cerebro/entrega.md](cerebro/entrega.md).
+5. Não gere executável nem pacote de entrega sem o usuário pedir.
 
 ## Interpretar o pedido
 

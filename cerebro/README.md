@@ -13,6 +13,7 @@ Memória do desenvolvimento. Cada informação tem um lugar só. Os outros arqui
 | [precedentes.md](precedentes.md) | Jogos de referência e fontes | Uma pesquisa trouxer algo útil |
 | [reciclagem.md](reciclagem.md) | Reaproveitamento real de cada inimigo | Um inimigo for criado ou mudar |
 | [tecnico-godot.md](tecnico-godot.md) | Instalação e fatos técnicos testados | Algo técnico for confirmado |
+| [entrega.md](entrega.md) | Prazo, documentos da entrega e pendências do grupo | Mudar o jogo, um documento ou uma pendência |
 
 ## Convenções
 

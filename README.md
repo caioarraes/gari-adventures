@@ -6,7 +6,20 @@ Plataforma 2.5D feito na Godot, em que um gari reaproveita os próprios inimigos
 
 ![Gari com a malha de aterramento atravessando o chão eletrificado, cercado de raios, com o gerador, o portão e o caminhão de lixo ao fundo](docs/captura.png)
 
-## Como rodar
+## Baixar e jogar no Windows
+
+Baixe `GariAdventures-Windows.zip` na [página de downloads](https://github.com/caioarraes/gari-adventures/releases/latest), extraia a pasta e abra `GariAdventures.exe`. Não é preciso instalar a Godot.
+
+Se o Windows mostrar "O Windows protegeu o computador", clique em **Mais informações** e depois em **Executar assim mesmo**. O aviso aparece porque o jogo não tem assinatura digital.
+
+## Documentos do trabalho
+
+Este jogo foi feito para o Trabalho Prático de Computação e Sustentabilidade. Os documentos de entrega estão na pasta [`entrega/`](entrega/):
+
+- Manual de Regras, em PDF
+- Relatório do Projeto, em PDF e em Word
+
+## Como rodar pelo código-fonte
 
 Você precisa da **Godot 4.7, versão padrão**. A versão .NET não é necessária.
 

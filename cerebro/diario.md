@@ -4,8 +4,8 @@
 
 - **Fase:** 1 a 3 aprovadas. Fase 4 elogiada pelo usuário, ainda sem teste com outra pessoa. Fase 5 em andamento.
 - **Projeto Godot:** criado na raiz, com cena principal em `jogo/main.tscn`.
-- **Repositório:** público em https://github.com/caioarraes/gari-adventures, com tudo enviado até o cenário de rua.
-- **Próximo passo:** o usuário envia os próximos inimigos. Cada um entra também em [reciclagem.md](reciclagem.md).
+- **Repositório:** público em https://github.com/caioarraes/gari-adventures, com tudo enviado, incluindo a pasta `entrega/` e a release com o jogo para Windows.
+- **Próximo passo:** o usuário envia os próximos inimigos. Cada mudança atualiza [reciclagem.md](reciclagem.md) e, quando afetar o jogador, o manual e o relatório de [entrega.md](entrega.md). Entrega em 10/12/2026.
 
 ## Registro
 
@@ -61,3 +61,5 @@
 
 - Manual de regras e relatório do projeto criados como documentos para a entrega do trabalho.
 - Executável de Windows gerado em `export/GariAdventures.exe`, com pacote `export/GariAdventures-Windows.zip` e código em `export/GariAdventures-codigo-fonte.zip`. A pasta `export/` fica fora do git.
+- Usuário pediu para manter o manual e o relatório atualizados conforme o projeto mudar, e para não gerar executável sem pedido. Regras em AGENTS.md e links em [entrega.md](entrega.md).
+- Manual e relatório exportados para `entrega/` e pacotes de Windows publicados como release no GitHub.
