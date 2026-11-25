@@ -56,3 +56,8 @@
 - Usuário aprovou a fase refeita e a nova regra do chão eletrificado.
 - Cenário refeito em camadas com tema de rua brasileira por trecho, a partir de referências (D-019).
 - Muro do ferro-velho, pilhas de sucata encostadas nele e tapume da obra retirados a pedido do usuário.
+
+### 2026-11-24
+
+- Manual de regras e relatório do projeto criados como documentos para a entrega do trabalho.
+- Executável de Windows gerado em `export/GariAdventures.exe`, com pacote `export/GariAdventures-Windows.zip` e código em `export/GariAdventures-codigo-fonte.zip`. A pasta `export/` fica fora do git.

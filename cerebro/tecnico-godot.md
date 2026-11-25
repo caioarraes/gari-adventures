@@ -100,3 +100,7 @@ O chão eletrificado usa uma zona de 0,3 de altura e filtra os corpos com `is_on
 ## Cenário (2026-11-21)
 
 `ferramentas/montar_cenario.pl` gera todos os nós de `Fundo`: rua, calçada de trás, fachada contínua, toldos, letreiros, objetos por trecho, morros e horizonte. `ferramentas/montar_fase1.pl` também cria a frente de concreto de cada trecho de chão. As texturas novas vêm de `_cenario_rua()` em `gerar_assets.gd`. Materiais de fachada usam escala vertical negativa no mapeamento `triplanar` para a imagem não ficar de cabeça para baixo, exceto o concreto. Nada do cenário tem colisão, e a fase continuou vencível no teste automático.
+
+## Exportação para Windows (2026-11-24)
+
+Modelos oficiais 4.7.2 conferidos pelo SHA-512 publicado e instalados só com os arquivos de Windows em `%APPDATA%\Godotxport_templates.7.2.stable`. A predefinição `Windows Desktop` em `export_presets.cfg` embute o pacote no executável e exclui notas e ferramentas. Para gerar de novo: `--headless --export-release "Windows Desktop" export/GariAdventures.exe`. O executável abriu sozinho, iniciou sem erros e mostrou a janela. A versão de exportação não aceitou rodar o jogador automático por `--script`, então esse teste continua sendo feito no projeto.
